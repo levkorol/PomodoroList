@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.timer.TimerFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.budiyev.android.circularprogressbar.CircularProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:padding="8dp"
+        app:animateProgress="true"
+        app:backgroundStrokeColor="@color/purple_200"
+        app:backgroundStrokeWidth="16dp"
+        app:startAngle="270"
+        app:drawBackgroundStroke="true"
+        app:foregroundStrokeCap="square"
+        app:foregroundStrokeColor="@color/purple_500"
+        app:foregroundStrokeWidth="16dp"
+        app:indeterminate="false"
+        app:indeterminateMinimumAngle="45"
+        app:indeterminateRotationAnimationDuration="1200"
+        app:indeterminateSweepAnimationDuration="600"
+        app:progressAnimationDuration="100"
+       />
+
+    <TextView
+        android:id="@+id/timer_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:text="1234" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/start_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="36sp"
+        android:text="start"/>
+
+    <TextView
+        android:id="@+id/stop_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="36sp"
+        android:layout_gravity="center"
+        android:text="stop"/>
+
+</LinearLayout>
