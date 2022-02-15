@@ -3,7 +3,7 @@ package ru.harlion.pomodorolist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import ru.harlion.pomodorolist.ui.timer.TimerFragment
+import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.profile.ProfileFragment
 import ru.harlion.pomodorolist.ui.statistic.StatisticFragment
 import ru.harlion.pomodorolist.utils.replaceFragment

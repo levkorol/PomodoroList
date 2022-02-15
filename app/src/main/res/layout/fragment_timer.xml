@@ -5,7 +5,25 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.timer.TimerFragment">
+    tools:context=".ui.pomodoro.TimerFragment">
+
+    <RelativeLayout
+        android:id="@+id/top_ll"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn"
+            android:src="@drawable/ic_pie_chart_24"
+            style="@style/ButtonToolBar" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/settings_timer"
+            android:src="@drawable/ic_baseline_settings_24"
+            android:layout_alignParentEnd="true"
+            style="@style/ButtonToolBar" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

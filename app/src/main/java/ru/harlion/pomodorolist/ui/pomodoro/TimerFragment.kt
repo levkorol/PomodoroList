@@ -1,4 +1,4 @@
-package ru.harlion.pomodorolist.ui.timer
+package ru.harlion.pomodorolist.ui.pomodoro
 
 
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.os.CountDownTimer
 import android.view.View
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentTimerBinding
+import ru.harlion.pomodorolist.utils.Player
 import ru.harlion.pomodorolist.utils.formatTimeMins
 import kotlin.math.min
 
@@ -17,9 +18,13 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
     private var pomodoroTimerText = "25:00"
     private var timeOfBreak = ""
     private var timer: CountDownTimer? = null
+    private lateinit var player: Player
+    private var isOnPlayer: Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        player = Player(requireContext())
 
         initClicks()
     }
@@ -34,11 +39,14 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
                         binding.progressBar.maximum = 30000.toFloat()
                         binding.progressBar.progress = min(millisUntilFinished, 30000).toFloat()
+
+                        player.playSound()
                     }
                 }
 
                 override fun onFinish() {
                     binding.timerCount.text = "done!"
+                    player.stopSound()
                 }
             }.start()
         }

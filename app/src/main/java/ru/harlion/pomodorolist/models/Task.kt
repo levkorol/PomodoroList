@@ -6,5 +6,7 @@ data class Task (
     val name: String,
     val isDone: Boolean,
     val position: Int,
-
-        )
+    val countCyclePomodoro: Int,
+    val isPomodoro: Boolean,
+    val time: Long
+    )
