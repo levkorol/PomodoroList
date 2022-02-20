@@ -1,4 +1,4 @@
-package ru.harlion.pomodorolist.ui.statistic
+package ru.harlion.pomodorolist.ui.profile.statistic
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -4,16 +4,18 @@
     <item
         android:id="@+id/item_main_page"
         android:icon="@drawable/ic_baseline_av_timer_24"
-        android:title="Помодоро"/>
+        android:title="Томат"/>
 
     <item
-        android:id="@+id/item_tasks_page"
-        android:icon="@drawable/ic_profile_24"
-        android:title="Задачи"/>
+        android:id="@+id/item_projects_page"
+        android:icon="@drawable/ic_list_bulleted_24"
+        android:title="Проекты"/>
+
     <item
-        android:id="@+id/item_statistic_page"
-        android:icon="@drawable/ic_pie_chart_24"
-        android:title="Статистика"/>
+        android:id="@+id/item_profile_page"
+        android:icon="@drawable/ic_profile_24"
+        android:title="Профиль"/>
+
 
 <!--    <item-->
 <!--        android:id="@+id/item_profile_page"-->
