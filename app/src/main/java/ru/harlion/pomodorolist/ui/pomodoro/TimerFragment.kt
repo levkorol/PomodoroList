@@ -1,13 +1,17 @@
 package ru.harlion.pomodorolist.ui.pomodoro
 
 
+import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import ru.harlion.pomodorolist.base.BindingFragment
+import ru.harlion.pomodorolist.base.DialogSettings
 import ru.harlion.pomodorolist.databinding.FragmentTimerBinding
+import ru.harlion.pomodorolist.ui.adding.AddTaskFragment
 import ru.harlion.pomodorolist.utils.Player
 import ru.harlion.pomodorolist.utils.formatTimeMins
+import ru.harlion.pomodorolist.utils.replaceFragment
 import kotlin.math.min
 
 
@@ -26,19 +30,32 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
         player = Player(requireContext())
 
+        initTimerAndClick()
+
         initClicks()
     }
 
     private fun initClicks() {
+        binding.settingsTimer.setOnClickListener {
+            DialogSettings().show(parentFragmentManager, null)
+        }
+
+        binding.btnAdd.setOnClickListener {
+            replaceFragment(AddTaskFragment(), true)
+        }
+    }
+
+    private fun initTimerAndClick() {
         binding.startBtn.setOnClickListener {
-            timer = object : CountDownTimer(30000, 1000) {
+            timer = object : CountDownTimer(10000, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
                     if (timer != null) {
                         binding.timerCount.text = formatTimeMins(millisUntilFinished, resources)
 
-                        binding.progressBar.maximum = 30000.toFloat()
-                        binding.progressBar.progress = min(millisUntilFinished, 30000).toFloat()
+                        binding.progressBar.maximum = 10000.toFloat()
+
+                        binding.progressBar.progress = min(millisUntilFinished, 10000).toFloat()
 
                         player.playSound()
                     }
@@ -54,6 +71,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         binding.stopBtn.setOnClickListener {
             timer?.cancel()
             binding.timerCount.text = "stop"
+            player.stopSound()
         }
     }
 

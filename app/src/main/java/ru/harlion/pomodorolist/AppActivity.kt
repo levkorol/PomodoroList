@@ -6,6 +6,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.profile.ProfileFragment
 import ru.harlion.pomodorolist.ui.profile.statistic.StatisticFragment
+import ru.harlion.pomodorolist.ui.tasks.ListTasksFragment
 import ru.harlion.pomodorolist.utils.replaceFragment
 
 class AppActivity : AppCompatActivity() {
@@ -28,7 +29,7 @@ class AppActivity : AppCompatActivity() {
                 }
 
                 R.id.item_projects_page -> {
-                    replaceFragment(StatisticFragment(), true)
+                    replaceFragment(ListTasksFragment(), true)
                     true
                 }
                 R.id.item_profile_page -> {

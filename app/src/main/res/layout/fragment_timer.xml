@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/light"
     tools:context=".ui.pomodoro.TimerFragment">
 
 
@@ -15,18 +16,17 @@
         android:layout_height="?attr/actionBarSize"
         app:layout_collapseMode="pin">
 
-<!--        <androidx.appcompat.widget.AppCompatImageButton-->
-<!--            android:id="@+id/btn"-->
-<!--            android:src="@drawable/ic_pie_chart_24"-->
-<!--            style="@style/ButtonToolBar" />-->
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_add"
+            android:src="@drawable/ic_baseline_add_circle_outline_24"
+            android:layout_alignParentEnd="true"
+            style="@style/ButtonToolBar" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/settings_timer"
             android:src="@drawable/ic_baseline_settings_24"
             style="@style/ButtonToolBar" />
     </RelativeLayout>
-
-
 
 
     <RelativeLayout
@@ -42,13 +42,13 @@
         android:layout_gravity="center"
         android:padding="8dp"
         app:animateProgress="true"
-        app:backgroundStrokeColor="@color/purple_200"
-        app:backgroundStrokeWidth="16dp"
+        app:backgroundStrokeColor="@color/middle_l"
+        app:backgroundStrokeWidth="4dp"
         app:startAngle="270"
         app:drawBackgroundStroke="true"
-        app:foregroundStrokeCap="square"
-        app:foregroundStrokeColor="@color/purple_500"
-        app:foregroundStrokeWidth="16dp"
+        app:foregroundStrokeCap="round"
+        app:foregroundStrokeColor="@color/middle_d"
+        app:foregroundStrokeWidth="24dp"
         app:indeterminate="false"
         app:indeterminateMinimumAngle="45"
         app:indeterminateRotationAnimationDuration="1200"
@@ -63,34 +63,53 @@
         android:layout_gravity="center"
         android:padding="10dp"
         android:layout_centerInParent="true"
-        android:textSize="40sp"
+        android:textSize="46sp"
         android:textStyle="bold"
-        tools:text="1234" />
+        android:text="25:00" />
     </RelativeLayout>
+
     <TextView
         android:id="@+id/start_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="36sp"
-        android:text="start"/>
+        android:layout_marginTop="16dp"
+        android:paddingHorizontal="16dp"
+        android:paddingStart="8dp"
+        android:textColor="@color/white"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:gravity="center"
+        android:drawableStart="@drawable/ic_play"
+        android:drawablePadding="4dp"
+        android:background="@drawable/btn_bg"
+        android:text="@string/begin_focus"/>
 
     <TextView
         android:id="@+id/stop_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="36sp"
+        android:layout_marginTop="16dp"
         android:layout_gravity="center"
-        android:text="stop"/>
+        android:text="Остановить таймер"/>
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="36dp"
+        android:layout_marginTop="26dp"
+        android:gravity="center"
+        android:text="@string/work_on_task"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         app:cardCornerRadius="10dp"
+        android:layout_marginTop="8dp"
         app:cardElevation="4dp"
-        android:layout_margin="8dp">
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -106,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="-8dp"
-                android:text="text"/>
+                android:text="Сделать что - то"/>
 
         </LinearLayout>
 

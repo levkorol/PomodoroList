@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/light"
     tools:context=".AppActivity">
 
     <FrameLayout
@@ -23,6 +24,7 @@
         app:elevation="0dp"
         app:itemIconTint="@color/nav_selector"
         app:labelVisibilityMode="selected"
+        android:background="@color/light"
         app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
         app:itemTextAppearanceInactive="@style/BottomNavigationView"
         app:itemTextColor="@color/nav_selector"

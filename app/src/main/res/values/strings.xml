@@ -5,4 +5,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">Профиль</string>
     <string name="main">Главная</string>
+    <string name="begin_focus">Начать фокусировку</string>
+    <string name="settings_pomodoro">Настройки Помодоро</string>
+    <string name="sound_focus">Звук сессии Помодоро</string>
+    <string name="notify">Сигнал</string>
+    <string name="work_on_task">Работа над задачей:</string>
+    <string name="save">Сохранить</string>
 </resources>

@@ -7,4 +7,44 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+<!--      for  theme rubin-->
+        <color name="darker">#230309</color>
+        <color name="middle">#fe2c55</color>
+        <color name="middle_d">#C5556A</color>
+        <color name="middle_l">#C8AAAF</color>
+        <color name="light">#EFE2E4</color>
+
+
+<!--&lt;!&ndash;      for  theme green&ndash;&gt;-->
+<!--        <color name="darker">#103A12</color>-->
+<!--        <color name="middle">#2A852F</color>-->
+<!--        <color name="light">#E9EFE3</color>-->
+
+    <!--  for  theme sky-->
+    <color name="red_light">#DEECF2</color>
+    <color name="red_darker">#0E2B3A</color>
+    <color name="red">#31719A</color>
+
+
+    <!--  for  theme izumrud-->
+    <color name="green_light">#E9EFE3</color>
+    <color name="green">#C2E7C2</color>
+    <color name="green_dark">#71A732</color>
+
+    <!--  for  theme sky-->
+    <color name="blue_light">#DEECF2</color>
+    <color name="blue">#B3DCF1</color>
+    <color name="blue_dark">#51B6F5</color>
+
+    <!--  for  theme tuman-->
+    <color name="t_light">#EBEDF2</color>
+    <color name="t">#CFD1D6</color>
+    <color name="t_dark">#8F9396</color>
+
+    <!--  for  theme persik-->
+    <color name="p_light">#F1F2F6</color>
+    <color name="p">#F2E4B9</color>
+    <color name="p_dark">#FCBF2E</color>
 </resources>

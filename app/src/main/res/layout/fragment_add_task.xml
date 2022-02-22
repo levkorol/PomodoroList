@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/light"
+    android:orientation="vertical"
+    tools:context=".ui.adding.AddTaskFragment">
+
+    <RelativeLayout
+        android:id="@+id/top_ll"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/settings_timer"
+            android:src="@drawable/ic_back_24"
+            style="@style/ButtonToolBar" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>
