@@ -11,21 +11,56 @@
     <RelativeLayout
         android:id="@+id/top_ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_collapseMode="pin">
+        android:layout_height="wrap_content">
+
+<!--        <androidx.appcompat.widget.AppCompatImageButton-->
+<!--            android:id="@+id/back"-->
+<!--            style="@style/ButtonToolBar"-->
+<!--            android:src="@drawable/ic_back_24" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Задачи"-->
+<!--            android:textColor="@color/gray_normal_d"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_margin="16dp"/>-->
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/icadd_24"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_back_24"
             app:backgroundTint="@color/middle_d"
             app:fabSize="mini"
             app:tint="@android:color/white" />
     </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        android:background="@color/light"
+        app:tabIconTint="@color/middle_d"
+        app:tabIconTintMode="src_in"
+        app:tabIndicator="@color/black"
+        app:tabIndicatorColor="@color/middle_d"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorHeight="3dp"
+        app:tabInlineLabel="true"
+        app:tabMode="fixed"
+        android:layout_marginTop="-0dp"
+        app:tabRippleColor="@null"
+        app:tabSelectedTextColor="@color/middle_d"
+        app:tabTextAppearance="@style/tabText" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/tasks_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>

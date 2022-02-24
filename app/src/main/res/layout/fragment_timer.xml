@@ -28,7 +28,7 @@
 <!--            android:layout_alignParentEnd="true"/>-->
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_add"
+            android:id="@+id/btn_calendar"
             android:src="@drawable/ic_date_d"
             android:layout_alignParentEnd="true"
             style="@style/ButtonToolBar" />

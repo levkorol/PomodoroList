@@ -1,4 +1,4 @@
-package ru.harlion.pomodorolist.ui.adding
+package ru.harlion.pomodorolist.ui.projects.adding
 
 
 import ru.harlion.pomodorolist.AppActivity

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentListProjectsBinding
-import ru.harlion.pomodorolist.ui.adding.AddProjectFragment
+import ru.harlion.pomodorolist.ui.projects.adding.AddProjectFragment
 import ru.harlion.pomodorolist.utils.replaceFragment
 
 

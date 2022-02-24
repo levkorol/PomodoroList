@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/light"
     android:orientation="vertical"
-    tools:context=".ui.adding.AddProjectFragment">
+    tools:context=".ui.projects.adding.AddProjectFragment">
 
     <RelativeLayout
         android:id="@+id/top_ll"

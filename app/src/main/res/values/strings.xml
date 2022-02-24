@@ -22,4 +22,6 @@
     <string name="on_boarding_three">Будь продуктивнее и быстрее</string>
     <string name="des_task">Описание задачи...</string>
     <string name="new_project">Новый проект</string>
+    <string name="today">Сегодня</string>
+    <string name="month">Месяц</string>
 </resources>
