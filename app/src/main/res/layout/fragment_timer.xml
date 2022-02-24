@@ -16,9 +16,20 @@
         android:layout_height="?attr/actionBarSize"
         app:layout_collapseMode="pin">
 
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:fabSize="mini"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            app:backgroundTint="@color/middle_d"-->
+<!--            app:tint="@android:color/white"-->
+<!--            android:src="@drawable/icadd_24"-->
+<!--            android:layout_alignParentEnd="true"/>-->
+
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_add"
-            android:src="@drawable/ic_baseline_add_circle_outline_24"
+            android:src="@drawable/ic_date_d"
             android:layout_alignParentEnd="true"
             style="@style/ButtonToolBar" />
 
@@ -37,8 +48,8 @@
         android:id="@+id/progress_bar"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:layout_marginTop="26dp"
         android:layout_centerInParent="true"
-        android:layout_marginTop="32dp"
         android:layout_gravity="center"
         android:padding="8dp"
         app:animateProgress="true"
@@ -93,7 +104,11 @@
         android:layout_gravity="center"
         android:text="Остановить таймер"/>
 
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -109,23 +124,45 @@
         app:cardCornerRadius="10dp"
         android:layout_marginTop="8dp"
         app:cardElevation="4dp"
+        android:layout_marginBottom="36dp"
         >
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
             >
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:layout_width="match_parent"
+            <CheckedTextView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="-8dp"
-                android:text="Сделать что - то"/>
+                android:checkMark="@null"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:drawableStart="?android:attr/listChoiceIndicatorSingle"
+                android:drawableEnd="@null"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
+                android:text="Сделать что -ngndgAAAAAA"
+             />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_pause_24"/>
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="-8dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:text="Сделать что - gndgndgndgndgndgndggndgndgndgndgndgngndgndgndgndgndgndgnAAAAAA"/>-->
 
         </LinearLayout>
 

@@ -2,11 +2,16 @@ package ru.harlion.pomodorolist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.profile.ProfileFragment
+import ru.harlion.pomodorolist.ui.profile.on_boarding.OnBoardingFragment
 import ru.harlion.pomodorolist.ui.profile.statistic.StatisticFragment
+import ru.harlion.pomodorolist.ui.projects.ListProjectsFragment
 import ru.harlion.pomodorolist.ui.tasks.ListTasksFragment
+import ru.harlion.pomodorolist.utils.Prefs
 import ru.harlion.pomodorolist.utils.replaceFragment
 
 class AppActivity : AppCompatActivity() {
@@ -19,7 +24,16 @@ class AppActivity : AppCompatActivity() {
 
         bottomNavView = findViewById(R.id.bottom_nav_view)
 
-        replaceFragment(TimerFragment(), true)
+        val prefs = Prefs(this)
+        if(!prefs.isShowOnBoarding) {
+            prefs.isShowOnBoarding = true
+            replaceFragment(OnBoardingFragment(), true)
+        } else {
+            replaceFragment(TimerFragment(), true)
+        }
+
+
+
 
         bottomNavView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -29,7 +43,7 @@ class AppActivity : AppCompatActivity() {
                 }
 
                 R.id.item_projects_page -> {
-                    replaceFragment(ListTasksFragment(), true)
+                    replaceFragment(ListProjectsFragment(), true)
                     true
                 }
                 R.id.item_profile_page -> {
@@ -39,6 +53,14 @@ class AppActivity : AppCompatActivity() {
 
                 else -> false
             }
+        }
+    }
+
+    fun setBottomNavigationVisible(isVisible: Boolean) {
+        if(isVisible) {
+            bottomNavView.visibility  = View.VISIBLE
+        } else {
+            bottomNavView.visibility  = View.GONE
         }
     }
 }

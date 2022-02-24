@@ -1,15 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light"
+    android:orientation="vertical"
     tools:context=".ui.profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_white"
+        android:orientation="vertical"
+
+        android:paddingHorizontal="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_theme"
+            android:drawablePadding="6dp"
+            android:gravity="center|start"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="@string/change_theme" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_copy"
+            android:drawablePadding="6dp"
+            android:gravity="center|start"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="@string/backup_copy" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:drawableStart="@drawable/ic_baseline_mail"
+            android:drawablePadding="6dp"
+            android:gravity="center|start"
+            android:text="@string/mail_dev" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:drawableStart="@drawable/ic_star"
+            android:drawablePadding="6dp"
+            android:gravity="center|start"
+            android:text="@string/assess" />
+
+    </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_right_24"
+            android:gravity="center|start"
+            android:padding="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_white"
+            android:text="@string/c_newtime" />
+
+
+       <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_white"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:text="Моя статистика "/>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Сегодня"
+                   android:layout_weight="1"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Неделя"
+                   android:layout_marginStart="16dp"
+                   android:layout_height="wrap_content"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Месяц"
+                   android:layout_marginStart="16dp"
+                   android:layout_height="wrap_content"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_weight="1"
+                   android:text="Все время"
+                   android:layout_marginStart="16dp"
+                   android:layout_height="wrap_content"/>
+
+           </LinearLayout>
+
+
+       </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

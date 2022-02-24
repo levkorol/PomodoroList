@@ -11,4 +11,15 @@
     <string name="notify">Сигнал</string>
     <string name="work_on_task">Работа над задачей:</string>
     <string name="save">Сохранить</string>
+    <string name="change_theme">Сменить оформление</string>
+    <string name="backup_copy">Резервное копирование</string>
+    <string name="assess">Поставьте нам оценку</string>
+    <string name="mail_dev">Связь с разработчиком</string>
+    <string name="c_newtime">Постановка целей и привычек c NewTime</string>
+    <string name="on_boarding_one">Дела медленно продвигаются ?</string>
+    <string name="on_boarding_two">Много задач но не удается сфокусироваться?</string>
+    <string name="on_boarding_for">Здесь ты найдешь отличный инструмент фокусировки Помодоро</string>
+    <string name="on_boarding_three">Будь продуктивнее и быстрее</string>
+    <string name="des_task">Описание задачи...</string>
+    <string name="new_project">Новый проект</string>
 </resources>

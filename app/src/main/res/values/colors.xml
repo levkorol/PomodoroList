@@ -16,6 +16,8 @@
         <color name="middle_l">#C8AAAF</color>
         <color name="light">#EFE2E4</color>
 
+        <color name="gray_normal_l">#42000000</color>
+        <color name="gray_normal_d">#89000000</color>
 
 <!--&lt;!&ndash;      for  theme green&ndash;&gt;-->
 <!--        <color name="darker">#103A12</color>-->

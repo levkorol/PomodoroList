@@ -1,14 +1,12 @@
 package ru.harlion.pomodorolist.ui.pomodoro
 
 
-import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import ru.harlion.pomodorolist.base.BindingFragment
-import ru.harlion.pomodorolist.base.DialogSettings
 import ru.harlion.pomodorolist.databinding.FragmentTimerBinding
-import ru.harlion.pomodorolist.ui.adding.AddTaskFragment
+import ru.harlion.pomodorolist.ui.profile.settings.SettingsTimerFragment
 import ru.harlion.pomodorolist.utils.Player
 import ru.harlion.pomodorolist.utils.formatTimeMins
 import ru.harlion.pomodorolist.utils.replaceFragment
@@ -37,12 +35,13 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
     private fun initClicks() {
         binding.settingsTimer.setOnClickListener {
-            DialogSettings().show(parentFragmentManager, null)
+            //DialogSettings().show(parentFragmentManager, null)
+            replaceFragment(SettingsTimerFragment(), true)
         }
 
-        binding.btnAdd.setOnClickListener {
-            replaceFragment(AddTaskFragment(), true)
-        }
+//        binding.btnAdd.setOnClickListener {
+//            replaceFragment(AddTaskFragment(), true)
+//        }
     }
 
     private fun initTimerAndClick() {
