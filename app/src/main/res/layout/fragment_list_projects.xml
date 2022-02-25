@@ -27,6 +27,11 @@
             app:tint="@android:color/white" />
     </RelativeLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_project"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <LinearLayout
         android:id="@+id/empty_list"
         android:layout_width="match_parent"

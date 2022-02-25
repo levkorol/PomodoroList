@@ -7,5 +7,7 @@ class Project(
     val prize: String,
     val tasks: List<Task>,
     val isDone: Boolean,
-    val position: Int
+    val deadline: Long = 0,
+    val position: Int,
+   // val timeInFocus: Long
 )

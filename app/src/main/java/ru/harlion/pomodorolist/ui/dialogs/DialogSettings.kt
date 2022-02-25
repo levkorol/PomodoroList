@@ -1,4 +1,4 @@
-package ru.harlion.pomodorolist.base
+package ru.harlion.pomodorolist.ui.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater

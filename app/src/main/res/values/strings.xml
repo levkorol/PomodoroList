@@ -24,4 +24,14 @@
     <string name="new_project">Новый проект</string>
     <string name="today">Сегодня</string>
     <string name="month">Месяц</string>
+    <string name="in_focus">В фокусе</string>
+    <string name="color">Цвет</string>
+    <string name="date_deadline">Дата дедлайна</string>
+    <string name="save_task">ГОТОВО</string>
+    <string name="add_task">Добавить задачу</string>
+    <string name="name_project">Название проекта...</string>
+    <string name="done">Выполнено</string>
+    <string name="task_weiting">Задачи ожидают</string>
+    <string name="plan_focus">План фокуса</string>
+    <string name="prize_to_complete">Награда по завершению...</string>
 </resources>
