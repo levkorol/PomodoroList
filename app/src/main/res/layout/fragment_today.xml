@@ -8,6 +8,11 @@
     tools:context=".ui.tasks.fragments_pager.TodayFragment">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_task_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <LinearLayout
         android:id="@+id/task_empty"
         android:layout_width="match_parent"

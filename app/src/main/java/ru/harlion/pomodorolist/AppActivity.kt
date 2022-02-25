@@ -22,6 +22,8 @@ class AppActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        
+
         bottomNavView = findViewById(R.id.bottom_nav_view)
 
         val prefs = Prefs(this)

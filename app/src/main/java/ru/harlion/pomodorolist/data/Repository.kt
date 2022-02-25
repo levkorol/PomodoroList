@@ -39,5 +39,10 @@ class Repository private constructor( context: Context) {
                ),
 
            )
+
+
+       fun getListTask() = listOf (
+           Task(1, 1, 1, "taskito", "Высокий", true, 0, 3, true, 1111, 11111)
+               )
    }
 }
