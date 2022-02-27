@@ -22,4 +22,14 @@ class Prefs(val context: Context) {
         set(value) = sharedPrefs.edit().putLong("BREAK_TIMER_MIN", value)
             .apply()
 
+    var song : Int
+        get() = sharedPrefs.getInt("SOUND", -1)
+        set(value) = sharedPrefs.edit().putInt("SOUND", value)
+            .apply()
+
+    var isSound : Boolean
+        get() = sharedPrefs.getBoolean("IS_SOUND", false)
+        set(value) = sharedPrefs.edit().putBoolean("IS_SOUND", value)
+            .apply()
+
 }
