@@ -35,5 +35,7 @@
     <string name="plan_focus">План фокуса</string>
     <string name="prize_to_complete">Награда по завершению...</string>
     <string name="design_timer">Оформление таймера</string>
+    <string name="time_for_break">Перерыв в минутах</string>
+    <string name="time_for_pomodoro">Работа в фокусе в минутах</string>
 
 </resources>

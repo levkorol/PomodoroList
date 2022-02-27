@@ -11,10 +11,15 @@ class Prefs(val context: Context) {
         set(value) = sharedPrefs.edit().putBoolean("ON_BOARDING_SHOW", value)
             .apply()
 
-//    var loadTimerActive
-//    var saveTimerActive
-//
-//    var saveTimeTimer
+    var focusTimerActiveSettings : Long
+        get() = sharedPrefs.getLong("TIME_COUNT_MIN", -1)
+        set(value) = sharedPrefs.edit().putLong("TIME_COUNT_MIN", value)
+            .apply()
 
+
+    var breakTimerActiveSettings : Long
+        get() = sharedPrefs.getLong("BREAK_TIMER_MIN", -1)
+        set(value) = sharedPrefs.edit().putLong("BREAK_TIMER_MIN", value)
+            .apply()
 
 }

@@ -76,7 +76,7 @@
         android:layout_centerInParent="true"
         android:textSize="46sp"
         android:textStyle="bold"
-        android:text="25:00" />
+        tools:text="25:00" />
     </RelativeLayout>
 
     <TextView

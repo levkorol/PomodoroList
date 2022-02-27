@@ -8,35 +8,40 @@ import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentTimerBinding
 import ru.harlion.pomodorolist.ui.profile.settings.SettingsTimerFragment
 import ru.harlion.pomodorolist.ui.tasks.ListTasksFragment
-import ru.harlion.pomodorolist.utils.Player
-import ru.harlion.pomodorolist.utils.formatTimeMins
-import ru.harlion.pomodorolist.utils.replaceFragment
+import ru.harlion.pomodorolist.utils.*
 import kotlin.math.min
 
 
 class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding::inflate) {
 
-    private var shortBreakText = "05:00"
-    private var longBreakText = "25:00"
-    private var pomodoroTimerText = "25:00"
-    private var timeOfBreak = ""
+    private lateinit var prefs: Prefs
+    private  var prefTimeFocus = 0L
+    private  var prefTimeBreak = 0L
     private var timer: CountDownTimer? = null
     private lateinit var player: Player
-    private var isOnPlayer: Boolean = false
+    private var isOnFocus: Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        prefs = Prefs(requireContext())
+        prefTimeFocus = prefs.focusTimerActiveSettings
+        prefTimeBreak = prefs.breakTimerActiveSettings
 
         player = Player(requireContext())
 
         initTimerAndClick()
 
         initClicks()
+
+        if(!isOnFocus) {
+            binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
+        //todo сделать отображение минут больше 60ти
+        }
     }
 
     private fun initClicks() {
         binding.settingsTimer.setOnClickListener {
-            //DialogSettings().show(parentFragmentManager, null)
             replaceFragment(SettingsTimerFragment(), true)
         }
 
@@ -46,16 +51,19 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
     }
 
     private fun initTimerAndClick() {
+
+        val timeFocus = prefTimeFocus * 60000
+
         binding.startBtn.setOnClickListener {
-            timer = object : CountDownTimer(10000, 1000) {
+            timer = object : CountDownTimer(timeFocus, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
                     if (timer != null) {
                         binding.timerCount.text = formatTimeMins(millisUntilFinished, resources)
+                        isOnFocus = true
+                        binding.progressBar.maximum = timeFocus.toFloat()
 
-                        binding.progressBar.maximum = 10000.toFloat()
-
-                        binding.progressBar.progress = min(millisUntilFinished, 10000).toFloat()
+                        binding.progressBar.progress = min(millisUntilFinished, timeFocus).toFloat()
 
                         player.playSound()
                     }
@@ -63,6 +71,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
                 override fun onFinish() {
                     binding.timerCount.text = "done!"
+                    isOnFocus = false
                     player.stopSound()
                 }
             }.start()
@@ -75,9 +84,6 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 
     override fun onPause() {
         timer?.cancel()
