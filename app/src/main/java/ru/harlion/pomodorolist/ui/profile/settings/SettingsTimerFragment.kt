@@ -7,6 +7,7 @@ import android.widget.SeekBar
 import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentSettingsTimerBinding
+import ru.harlion.pomodorolist.ui.profile.settings.sounds.RingtonesFragment
 import ru.harlion.pomodorolist.utils.Prefs
 import ru.harlion.pomodorolist.utils.replaceFragment
 
