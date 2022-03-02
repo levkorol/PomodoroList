@@ -4,7 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light"
+    android:orientation="vertical"
     tools:context=".ui.profile.settings.sounds.RingtonesFragment">
+
+    <RelativeLayout
+        android:id="@+id/top_ll"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/back"
+            android:src="@drawable/ic_back_24"
+            style="@style/ButtonToolBar" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sound_focus"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_margin="16dp"/>
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ringtones_recycler_view"
