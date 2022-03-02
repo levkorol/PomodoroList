@@ -1,11 +1,30 @@
 package ru.harlion.pomodorolist.data
 
 import android.content.Context
+import androidx.room.Room
 import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.Task
+import java.util.concurrent.Executors
 
+
+private const val DATABASE_NAME = "pomodoro-database"
 class Repository private constructor( context: Context) {
 
+
+    private val database: DataBaseApp = Room.databaseBuilder(
+        context.applicationContext,
+        DataBaseApp::class.java,
+        DATABASE_NAME
+    ).build()
+
+    private val projectDao = database.projectDao()
+    private val executor = Executors.newSingleThreadExecutor()
+
+    fun addProject(project: Project) {
+        executor.execute {
+            projectDao.addProject(project)
+        }
+    }
 
    companion object {
        private var INSTANCE: Repository? = null

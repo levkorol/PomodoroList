@@ -1,12 +1,32 @@
 package ru.harlion.pomodorolist.ui.projects.adding
 
 
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.viewModels
 import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentAddTaskBinding
+import ru.harlion.pomodorolist.ui.projects.detail_project.DetailProjectFragment
+import ru.harlion.pomodorolist.utils.replaceFragment
 
 class AddProjectFragment : BindingFragment<FragmentAddTaskBinding>(FragmentAddTaskBinding::inflate) {
 
+    private val viewModel: AddProjectViewModel by viewModels()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.save.setOnClickListener {
+            viewModel.addProject(
+                name = binding.name.text.toString(),
+                tasks = listOf(),
+                prize = binding.prize.text.toString(),
+                deadline = 1
+            )
+            replaceFragment(DetailProjectFragment.newInstance(1), true)
+        }
+    }
 
     override fun onStart() {
         super.onStart()
