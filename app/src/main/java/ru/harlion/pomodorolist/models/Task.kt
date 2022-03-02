@@ -1,7 +1,11 @@
 package ru.harlion.pomodorolist.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class Task (
-    val id : Long,
+    @PrimaryKey(autoGenerate = true)val id : Long,
     val parentId: Long,
     val parentColor: Int,
     val name: String,

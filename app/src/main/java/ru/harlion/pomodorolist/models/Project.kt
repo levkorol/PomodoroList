@@ -1,8 +1,11 @@
 package ru.harlion.pomodorolist.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 class Project(
-    val id: Long,
+    @PrimaryKey(autoGenerate = true)val id: Long,
     val name: String,
     val prize: String,
     val tasks: List<Task>,
