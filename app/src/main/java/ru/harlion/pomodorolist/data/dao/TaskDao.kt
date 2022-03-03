@@ -1,12 +1,10 @@
 package ru.harlion.pomodorolist.data.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import ru.harlion.pomodorolist.models.Task
 
+@Dao
 interface TaskDao {
     @Query("SELECT * FROM task")
     fun getTasks(): LiveData<List<Task>>

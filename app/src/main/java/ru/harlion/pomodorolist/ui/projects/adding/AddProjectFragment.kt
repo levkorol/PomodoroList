@@ -13,9 +13,14 @@ import ru.harlion.pomodorolist.utils.replaceFragment
 class AddProjectFragment : BindingFragment<FragmentAddTaskBinding>(FragmentAddTaskBinding::inflate) {
 
     private val viewModel: AddProjectViewModel by viewModels()
+    private var projectId = -1L
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.id.observe(viewLifecycleOwner, {
+            projectId = it
+        })
 
         binding.save.setOnClickListener {
             viewModel.addProject(
@@ -23,8 +28,9 @@ class AddProjectFragment : BindingFragment<FragmentAddTaskBinding>(FragmentAddTa
                 tasks = listOf(),
                 prize = binding.prize.text.toString(),
                 deadline = 1
-            )
-            replaceFragment(DetailProjectFragment.newInstance(1), true)
+            ) {
+                replaceFragment(DetailProjectFragment.newInstance(projectId), true)
+            }
         }
     }
 

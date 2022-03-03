@@ -17,7 +17,7 @@ interface ProjectDao {
     fun updateProject(project: Project)
 
     @Insert
-    fun addProject(project: Project)
+    fun addProject(project: Project) : Long
 
     @Delete
     fun deleteProject(project: Project)

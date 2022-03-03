@@ -12,13 +12,13 @@ class Prefs(val context: Context) {
             .apply()
 
     var focusTimerActiveSettings : Long
-        get() = sharedPrefs.getLong("TIME_COUNT_MIN", -1)
+        get() = sharedPrefs.getLong("TIME_COUNT_MIN", 25)
         set(value) = sharedPrefs.edit().putLong("TIME_COUNT_MIN", value)
             .apply()
 
 
     var breakTimerActiveSettings : Long
-        get() = sharedPrefs.getLong("BREAK_TIMER_MIN", -1)
+        get() = sharedPrefs.getLong("BREAK_TIMER_MIN", 5)
         set(value) = sharedPrefs.edit().putLong("BREAK_TIMER_MIN", value)
             .apply()
 

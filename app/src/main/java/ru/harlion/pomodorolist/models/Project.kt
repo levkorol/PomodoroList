@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 class Project(
-    @PrimaryKey(autoGenerate = true)val id: Long = -1,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = -1,
     val name: String,
     val prize: String,
     val tasks: List<Task>,

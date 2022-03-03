@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken
 import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.AppApplication
 import ru.harlion.pomodorolist.data.dao.ProjectDao
+import ru.harlion.pomodorolist.data.dao.TaskDao
 import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.Task
 
@@ -16,6 +17,7 @@ import ru.harlion.pomodorolist.models.Task
 abstract class DataBaseApp : RoomDatabase() {
 
     abstract fun projectDao(): ProjectDao
+    abstract fun taskDao(): TaskDao
 }
 
 object ConverterApp {
