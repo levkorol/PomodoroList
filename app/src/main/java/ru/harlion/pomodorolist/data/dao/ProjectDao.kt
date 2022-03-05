@@ -3,22 +3,39 @@ package ru.harlion.pomodorolist.data.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import ru.harlion.pomodorolist.models.Project
+import ru.harlion.pomodorolist.models.ProjectWithTasks
+import ru.harlion.pomodorolist.models.Task
 
 @Dao
-interface ProjectDao {
+abstract class ProjectDao {
 
     @Query("SELECT * FROM project")
-    fun getProjects(): LiveData<List<Project>>
+   abstract fun liveProjects(): LiveData<List<Project>>
 
     @Query("SELECT * FROM project WHERE id = (:id)")
-    fun getProjectById(id: Long): LiveData<Project?>
+    abstract fun liveProjectById(id: Long): LiveData<Project?>
+
+    @Query("SELECT * FROM project WHERE id = (:id)")
+    abstract fun projectById(id: Long): ProjectWithTasks?
 
     @Update
-    fun updateProject(project: Project)
+    abstract fun updateProject(project: Project)
 
     @Insert
-    fun addProject(project: Project) : Long
+    protected abstract fun addProject(project: Project) : Long
+
+    fun addProject(projectWithTasks: ProjectWithTasks) : Long {
+      val id =  addProject(projectWithTasks.project)
+        projectWithTasks.tasks.forEach {
+            it.parentId = id
+        }
+        addTasks(projectWithTasks.tasks)
+        return id
+    }
+
+    @Insert
+    abstract fun addTasks(tasks: List<Task>)
 
     @Delete
-    fun deleteProject(project: Project)
+    abstract fun deleteProject(project: Project)
 }

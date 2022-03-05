@@ -49,77 +49,79 @@
         android:hint="Название проекта..."
         android:lines="3" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_white"
-        android:gravity="start|center"
-        android:drawablePadding="6dp"
-        android:padding="8dp"
-        android:drawableStart="@drawable/icadd_24"
-        android:text="Добавить задачу"
-        android:layout_marginHorizontal="16dp"
-        android:textSize="14sp"
-        android:layout_marginTop="16dp"
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/bg_white"-->
+<!--        android:gravity="start|center"-->
+<!--        android:drawablePadding="6dp"-->
+<!--        android:padding="8dp"-->
+<!--        android:drawableStart="@drawable/icadd_24"-->
+<!--        android:text="Добавить задачу"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:textSize="14sp"-->
+<!--        android:layout_marginTop="16dp"-->
 
-        />
+<!--        />-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_white"
-        android:layout_marginHorizontal="16dp"
-        android:paddingBottom="8dp"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/bg_white"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:paddingBottom="8dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:orientation="vertical">-->
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_white"
-            android:gravity="top|start"
-            android:padding="8dp"
-            android:textSize="14sp"
-            android:hint="@string/des_task"
-            android:lines="5" />
+<!--        <EditText-->
+<!--            android:id="@+id/name_task"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/bg_white"-->
+<!--            android:gravity="top|start"-->
+<!--            android:padding="8dp"-->
+<!--            android:textSize="14sp"-->
+<!--            android:hint="@string/des_task"-->
+<!--            android:lines="3" />-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:background="@drawable/bg_white"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="8dp"-->
+<!--        android:background="@drawable/bg_white"-->
+<!--        android:orientation="horizontal">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_date"
-            android:drawablePadding="6dp"
-            android:layout_weight="1"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_baseline_av_timer_24"
-            android:drawablePadding="6dp"
-            android:layout_weight="1"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_label"
-            android:drawablePadding="6dp"
-            android:layout_weight="1"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:drawableStart="@drawable/ic_date"-->
+<!--            android:drawablePadding="6dp"-->
+<!--            android:layout_weight="1"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:drawableStart="@drawable/ic_baseline_av_timer_24"-->
+<!--            android:drawablePadding="6dp"-->
+<!--            android:layout_weight="1"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:drawableStart="@drawable/ic_label"-->
+<!--            android:drawablePadding="6dp"-->
+<!--            android:layout_weight="1"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ГОТОВО"
-            android:gravity="end"
-            android:layout_marginEnd="8dp"
-            android:drawablePadding="6dp"
-            android:layout_weight="5"/>
+<!--        <TextView-->
+<!--            android:id="@+id/add_task"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="ГОТОВО"-->
+<!--            android:gravity="end"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:drawablePadding="6dp"-->
+<!--            android:layout_weight="5"/>-->
 
-    </LinearLayout>
-    </LinearLayout>
+<!--    </LinearLayout>-->
+<!--    </LinearLayout>-->
 
 
     <TextView
@@ -168,5 +170,13 @@
         android:textSize="14sp"
         android:hint="Награда по завершению..."
         android:lines="1" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasks_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:nestedScrollingEnabled="false"
+        />
 
 </LinearLayout>

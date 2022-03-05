@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import ru.harlion.pomodorolist.models.Project
+import ru.harlion.pomodorolist.models.ProjectWithTasks
 import ru.harlion.pomodorolist.models.Task
 import java.util.concurrent.Executors
 
@@ -22,9 +23,9 @@ class Repository private constructor( context: Context) {
     private val taskDao = database.taskDao()
     private val executor = Executors.newSingleThreadExecutor()
 
-    fun addProject(project: Project, code: (Long) -> Unit) {
+    fun addProject(projectWithTasks: ProjectWithTasks, code: (Long) -> Unit) {
         executor.execute {
-          val projectId =  projectDao.addProject(project)
+          val projectId =  projectDao.addProject(projectWithTasks)
             code.invoke(projectId)
         }
     }
@@ -36,7 +37,7 @@ class Repository private constructor( context: Context) {
     }
 
     fun getListProjects(): LiveData<List<Project>> {
-        return projectDao.getProjects()
+        return projectDao.liveProjects()
     }
 
     fun getListTasks(): LiveData<List<Task>> {
@@ -44,7 +45,13 @@ class Repository private constructor( context: Context) {
     }
 
     fun getProject(id: Long): LiveData<Project?> {
-        return projectDao.getProjectById(id)
+        return projectDao.liveProjectById(id)
+    }
+
+    fun getProjectById(projectId: Long, code: (ProjectWithTasks?) -> Unit) {
+        executor.execute {
+           code.invoke(projectDao.projectById(projectId))
+        }
     }
 
    companion object {

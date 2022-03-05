@@ -63,7 +63,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
                         isOnFocus = true
                         binding.progressBar.maximum = timeFocus.toFloat()
 
-                        binding.progressBar.progress = min(millisUntilFinished, timeFocus).toFloat()
+                        binding.progressBar.progress = timeFocus - min(millisUntilFinished, timeFocus).toFloat()
 
                         if(prefs.isSound) {
                             player.playSound()

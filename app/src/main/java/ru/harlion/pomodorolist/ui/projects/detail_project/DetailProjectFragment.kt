@@ -12,21 +12,37 @@ import ru.harlion.pomodorolist.models.Task
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
 
 
-class DetailProjectFragment : BindingFragment<FragmentDetailProjectBinding>(FragmentDetailProjectBinding::inflate) {
+class DetailProjectFragment :
+    BindingFragment<FragmentDetailProjectBinding>(FragmentDetailProjectBinding::inflate) {
 
-   private lateinit var adapterTask: AdapterTask
-   private val viewModel: DetailProjectViewModel by viewModels()
+    private lateinit var adapterTask: AdapterTask
+    private val viewModel: DetailProjectViewModel by viewModels()
+    private var projectId = 0L
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+      projectId = arguments?.getLong("id_project")!!
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.addTask.setOnClickListener {
             viewModel.addTask(binding.nameTask.text.toString())
+            binding.nameTask.setText("")
         }
 
         viewModel.tasks.observe(viewLifecycleOwner, {
             tasksRecyclerView(it)
         })
+
+        viewModel.project.observe(viewLifecycleOwner, {
+            binding.nameProject.setText(it.name)
+            binding.prizeToComplete.setText(it.prize)
+        })
+
+        viewModel.getProjectById(projectId)
     }
 
     private fun tasksRecyclerView(tasks: List<Task>) {
@@ -52,9 +68,9 @@ class DetailProjectFragment : BindingFragment<FragmentDetailProjectBinding>(Frag
     }
 
     companion object {
-        fun newInstance(id : Long) = DetailProjectFragment().apply {
+        fun newInstance(id: Long) = DetailProjectFragment().apply {
             arguments = Bundle().apply {
-                putLong("id_project" , id)
+                putLong("id_project", id)
             }
         }
     }

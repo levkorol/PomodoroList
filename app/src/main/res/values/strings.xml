@@ -20,14 +20,14 @@
     <string name="on_boarding_two">Много задач но не удается сфокусироваться?</string>
     <string name="on_boarding_for">Здесь ты найдешь отличный инструмент фокусировки Помодоро</string>
     <string name="on_boarding_three">Будь продуктивнее и быстрее</string>
-    <string name="des_task">Описание задачи...</string>
+    <string name="des_task">Описание новой задачи...</string>
     <string name="new_project">Новый проект</string>
     <string name="today">Сегодня</string>
     <string name="month">Месяц</string>
     <string name="in_focus">В фокусе</string>
     <string name="color">Цвет</string>
     <string name="date_deadline">Дата дедлайна</string>
-    <string name="save_task">ГОТОВО</string>
+    <string name="save_task">Сохранить</string>
     <string name="add_task">Добавить задачу</string>
     <string name="name_project">Название проекта...</string>
     <string name="done">Выполнено</string>

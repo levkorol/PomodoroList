@@ -18,133 +18,133 @@
             style="@style/ButtonToolBar"
             android:src="@drawable/ic_back_24" />
 
-        <!--        <TextView-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="@string/new_project"-->
-        <!--            android:gravity="center"-->
-        <!--            android:textColor="@color/black"-->
-        <!--            android:layout_margin="16dp"/>-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Сделать до 23.12, 19:00"
+                    android:gravity="center"
+                    android:layout_margin="16dp"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/save_project"
             style="@style/ButtonToolBar"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_done_24" />
+            android:src="@drawable/ic_circle" />
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/statistic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/bg_white"
-        android:orientation="horizontal"
-        android:paddingHorizontal="10dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="16dp">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/statistic"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:background="@drawable/bg_white"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:paddingHorizontal="10dp"-->
+<!--        android:paddingTop="8dp"-->
+<!--        android:paddingBottom="16dp">-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical">-->
 
-            <TextView
-                android:id="@+id/count_in_focus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab_black"
-                android:gravity="center"
-                android:text="13:00"
-                android:textColor="@color/middle_l"
-                android:textSize="25sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/count_in_focus"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/roboto_slab_black"-->
+<!--                android:textColor="@color/middle_l"-->
+<!--                android:gravity="center"-->
+<!--                android:text="13:00"-->
+<!--                android:textSize="25sp" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/in_focus"
-                android:textSize="10sp" />
-        </LinearLayout>
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/in_focus"-->
+<!--                android:textSize="10sp" />-->
+<!--        </LinearLayout>-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical">-->
 
-            <TextView
-                android:id="@+id/count_plan_focus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab_black"
-                android:gravity="center"
-                android:text="25:00"
-                android:textColor="@color/middle_l"
-                android:textSize="25sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/count_plan_focus"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/roboto_slab_black"-->
+<!--                android:gravity="center"-->
+<!--                android:text="25:00"-->
+<!--                android:textColor="@color/middle_l"-->
+<!--                android:textSize="25sp" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/plan_focus"
-                android:textSize="10sp" />
-        </LinearLayout>
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/plan_focus"-->
+<!--                android:textSize="10sp" />-->
+<!--        </LinearLayout>-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical">-->
 
-            <TextView
-                android:id="@+id/count_tasks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab_black"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="@color/middle_l"
-                android:textSize="25sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/count_tasks"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/roboto_slab_black"-->
+<!--                android:gravity="center"-->
+<!--                android:text="0"-->
+<!--                android:textColor="@color/middle_l"-->
+<!--                android:textSize="25sp" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/task_weiting"
-                android:textSize="10sp" />
-        </LinearLayout>
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/task_weiting"-->
+<!--                android:textSize="10sp" />-->
+<!--        </LinearLayout>-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical">-->
 
-            <TextView
-                android:id="@+id/count_tasks_done"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab_black"
-                android:gravity="center"
-                android:text="3"
-                android:textColor="@color/middle_l"
-                android:textSize="25sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/count_tasks_done"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/roboto_slab_black"-->
+<!--                android:gravity="center"-->
+<!--                android:text="3"-->
+<!--                android:textColor="@color/middle_l"-->
+<!--                android:textSize="25sp" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/done"
-                android:textSize="10sp" />
-        </LinearLayout>
-    </LinearLayout>
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/done"-->
+<!--                android:textSize="10sp" />-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
 
     <EditText
+        android:id="@+id/name_project"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -155,34 +155,34 @@
         android:padding="8dp"
         android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/date_deadline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_white"
-        android:drawableStart="@drawable/ic_arrow_down_24"
-        android:drawablePadding="6dp"
-        android:gravity="start|center"
-        android:padding="8dp"
-        android:text="@string/date_deadline"
-        android:textSize="14sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/date_deadline"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:background="@drawable/bg_white"-->
+<!--        android:drawableStart="@drawable/ic_arrow_down_24"-->
+<!--        android:drawablePadding="6dp"-->
+<!--        android:gravity="start|center"-->
+<!--        android:padding="8dp"-->
+<!--        android:text="@string/date_deadline"-->
+<!--        android:textSize="14sp" />-->
 
-    <TextView
-        android:id="@+id/color_project"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_white"
-        android:drawableStart="@drawable/ic_circle"
-        android:drawablePadding="9dp"
-        android:gravity="start|center"
-        android:padding="8dp"
-        android:paddingStart="12dp"
-        android:text="@string/color"
-        android:textSize="14sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/color_project"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:background="@drawable/bg_white"-->
+<!--        android:drawableStart="@drawable/ic_circle"-->
+<!--        android:drawablePadding="9dp"-->
+<!--        android:gravity="start|center"-->
+<!--        android:padding="8dp"-->
+<!--        android:paddingStart="12dp"-->
+<!--        android:text="@string/color"-->
+<!--        android:textSize="14sp" />-->
 
 
     <EditText
@@ -200,21 +200,21 @@
         android:padding="8dp"
         android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/add_task_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_white"
-        android:drawableStart="@drawable/icadd_24"
-        android:drawablePadding="6dp"
-        android:gravity="start|center"
-        android:padding="8dp"
-        android:text="@string/add_task"
-        android:textSize="14sp"
+<!--    <TextView-->
+<!--        android:id="@+id/add_task_btn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:background="@drawable/bg_white"-->
+<!--        android:drawableStart="@drawable/icadd_24"-->
+<!--        android:drawablePadding="6dp"-->
+<!--        android:gravity="start|center"-->
+<!--        android:padding="8dp"-->
+<!--        android:text="@string/add_task"-->
+<!--        android:textSize="14sp"-->
 
-        />
+<!--        />-->
 
     <LinearLayout
         android:id="@+id/add_task"
@@ -263,11 +263,11 @@
                 android:id="@+id/save_task"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="3"
                 android:layout_marginEnd="8dp"
-                android:layout_weight="5"
-                android:drawablePadding="6dp"
-                android:gravity="end"
-                android:text="@string/save_task" />
+                android:gravity="end|center"
+                android:text="@string/save_task"
+                />
 
         </LinearLayout>
 
@@ -278,16 +278,18 @@
             android:background="@drawable/bg_white"
             android:gravity="top|start"
             android:hint="@string/des_task"
-            android:lines="5"
+            android:lines="2"
             android:padding="8dp"
             android:textSize="14sp" />
+
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasks_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:nestedScrollingEnabled="false"
         />
 

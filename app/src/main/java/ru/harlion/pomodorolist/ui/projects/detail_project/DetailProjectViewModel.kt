@@ -10,19 +10,23 @@ import ru.harlion.pomodorolist.models.Task
 class DetailProjectViewModel: ViewModel() {
 
     private val repository = Repository.get()
-    var tasks = repository.getListTasks()
-//    var project : LiveData<Project?>
-//
-//
-//    init {
-//        project = repository.getProject(project.value.id)
-//    }
+    val project = MutableLiveData<Project>()
+    val tasks = MutableLiveData<List<Task>>()
+
+
+    fun getProjectById(id: Long) {
+        repository.getProjectById(id) {
+            project.postValue(it?.project)
+            tasks.postValue(it?.tasks)
+        }
+    }
 
     fun addTask(
         name: String
     ) {
         val task = repository.addTask(Task(
-          name = name
+          name = name,
+          parentId = project.value?.id ?: 0L
       ))
     }
 
