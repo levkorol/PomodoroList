@@ -52,6 +52,9 @@ class Repository private constructor(context: Context) {
         return taskDao.getTasks(projectId = projectId)
     }
 
+    fun updateTask(task: Task) {
+        return taskDao.updateTask(task)
+    }
 
     fun getProject(id: Long): LiveData<Project?> {
         return projectDao.liveProjectById(id)

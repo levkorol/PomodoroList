@@ -10,7 +10,7 @@ data class Task (
     val parentColor: Int = 0,
     val name: String,
     val priority: String = "",
-    val isDone: Boolean = false,
+    var isDone: Boolean = false,
     val position: Int = 0,
     val countCyclePomodoro: Int = 0,
     val isPomodoro: Boolean = false,

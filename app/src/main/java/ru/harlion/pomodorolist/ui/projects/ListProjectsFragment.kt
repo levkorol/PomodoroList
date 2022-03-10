@@ -37,7 +37,8 @@ class ListProjectsFragment :
         adapterProject =
             ProjectsAdapter(
                 { replaceFragment(DetailProjectFragment.newInstance(it), true) },
-                viewModel::getListTasks
+                viewModel::getListTasks,
+                viewModel::updateTask
             )
 
         binding.listProject.apply {

@@ -21,6 +21,10 @@ class DetailProjectViewModel: ViewModel() {
         }
     }
 
+    fun updateTask(task: Task) {
+        repository.updateTask(task)
+    }
+
     fun addTask(
         name: String
     ) {

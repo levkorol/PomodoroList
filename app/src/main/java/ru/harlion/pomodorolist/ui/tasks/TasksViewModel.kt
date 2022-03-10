@@ -1,20 +1,12 @@
-package ru.harlion.pomodorolist.ui.projects
-
+package ru.harlion.pomodorolist.ui.tasks
 
 import androidx.lifecycle.ViewModel
 import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.models.Task
 
-
-class ListProjectsViewModel : ViewModel() {
+class TasksViewModel: ViewModel() {
 
     private val repository = Repository.get()
-
-    val projects = repository.getListProjects()
-
-    fun getListTasks(projectId: Long): List<Task> {
-       return repository.getListTasks(projectId)
-    }
 
     fun updateTask(task: Task) {
         repository.updateTask(task)

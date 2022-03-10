@@ -9,7 +9,9 @@ import ru.harlion.pomodorolist.models.Task
 
 typealias ItemHolderTask = BindingHolder<ItemTaskBinding>
 
-class AdapterTask() : RecyclerView.Adapter<ItemHolderTask>() {
+class AdapterTask(
+    private val updateTask: (Task) -> Unit)
+    : RecyclerView.Adapter<ItemHolderTask>() {
 
     var items: List<Task> = listOf()
         set(value) {
@@ -23,7 +25,7 @@ class AdapterTask() : RecyclerView.Adapter<ItemHolderTask>() {
         }
 
     override fun onBindViewHolder(holder: ItemHolderTask, position: Int) {
-        bindTask(holder, items[position])
+        bindTask(holder, items[position], updateTask )
     }
 
 
@@ -32,7 +34,8 @@ class AdapterTask() : RecyclerView.Adapter<ItemHolderTask>() {
 
 fun bindTask(
     holder: ItemHolderTask,
-    task: Task
+    task: Task,
+    updateTask: (Task) -> Unit
 ) {
     holder.binding.apply {
         descTask.text = task.name
@@ -40,5 +43,17 @@ fun bindTask(
         //  setCheckMarkDrawable
         //             colorProj.setBackgroundColor(Color.CYAN)
         descTask.isChecked = task.isDone
+        descTask.setOnClickListener {
+           // descTask.isChecked = !descTask.isChecked
+            if (!descTask.isChecked) {
+                descTask.isChecked = true
+                task.isDone = true
+                updateTask.invoke(task)
+            } else {
+                descTask.isChecked = false
+                task.isDone = false
+                updateTask.invoke(task)
+            }
+        }
     }
 }

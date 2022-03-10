@@ -59,7 +59,7 @@ class AddProjectFragment :
     private fun tasksRecyclerView(tasks: List<Task>) {
         val llm = LinearLayoutManager(requireContext())
         llm.orientation = LinearLayoutManager.VERTICAL
-        adapterTask = AdapterTask()
+        adapterTask = AdapterTask( viewModel::updateTask)
         binding.tasksRecyclerView.apply {
             layoutManager = llm
             adapter = adapterTask

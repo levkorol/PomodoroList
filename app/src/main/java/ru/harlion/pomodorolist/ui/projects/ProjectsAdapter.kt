@@ -15,7 +15,8 @@ private typealias ItemHolderProject = BindingHolder<ItemProjectBinding>
 
 class ProjectsAdapter(
     private val click: (Long) -> Unit,
-    private val taskList: (Long) -> List<Task>
+    private val taskList: (Long) -> List<Task>,
+    private val updateTask: (Task) -> Unit
 ) :
     RecyclerView.Adapter<BindingHolder<*>>() {
 
@@ -46,7 +47,10 @@ class ProjectsAdapter(
                                         it is Project
                                     }
                                 val newItems = item.toMutableList()
-                                newItems.subList(adapterPosition + 1, adapterPosition + 1 + taskCount)
+                                newItems.subList(
+                                    adapterPosition + 1,
+                                    adapterPosition + 1 + taskCount
+                                )
                                     .clear()
                                 item = newItems
                                 notifyItemRangeRemoved(adapterPosition + 1, taskCount)
@@ -92,15 +96,15 @@ class ProjectsAdapter(
                     prize.visibility = View.GONE
                 }
 
-                val max = project.tasks.size
-                val done = project.tasks.filter { it.isDone }.size
-                countTasks.text =
-                    "$done / $max"
+                val elements = taskList.invoke((item[position] as Project).id)
+                val done = elements.filter { it.isDone }.size
+                val max = elements.size
+                countTasks.text = "$done / $max"
                 progressDoneTasks.max = max
                 progressDoneTasks.progress = done
             }
         } else {
-            bindTask(holder as ItemHolderTask, item[position] as Task)
+            bindTask(holder as ItemHolderTask, item[position] as Task, updateTask)
         }
 
     }
