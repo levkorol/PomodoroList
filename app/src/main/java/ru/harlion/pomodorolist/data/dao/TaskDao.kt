@@ -6,10 +6,11 @@ import ru.harlion.pomodorolist.models.Task
 
 @Dao
 interface TaskDao {
-    @Query("SELECT * FROM task")
-    fun getTasks(): LiveData<List<Task>>
+    @Query("SELECT * FROM task WHERE parentId = :projectId")
+    fun getTasks(projectId : Long): List<Task>
 
-    @Query("SELECT * FROM task WHERE id = (:id)")
+
+    @Query("SELECT * FROM task WHERE id = :id")
     fun getTaskById(id: Long): LiveData<Task?>
 
     @Update

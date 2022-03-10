@@ -34,9 +34,12 @@ class ListProjectsFragment :
     private fun projectsRecyclerView(projects: List<Project>) {
         val llm = LinearLayoutManager(requireContext())
         llm.orientation = LinearLayoutManager.VERTICAL
-        adapterProject = ProjectsAdapter {
-            replaceFragment(DetailProjectFragment.newInstance(it), true)
-        }
+        adapterProject =
+            ProjectsAdapter(
+                { replaceFragment(DetailProjectFragment.newInstance(it), true) },
+                viewModel::getListTasks
+            )
+
         binding.listProject.apply {
             layoutManager = llm
             adapter = adapterProject
@@ -44,6 +47,7 @@ class ListProjectsFragment :
 
         if (projects.isNotEmpty()) {
             adapterProject.item = projects
+            adapterProject.notifyDataSetChanged()
             binding.listProject.visibility = View.VISIBLE
             binding.emptyList.visibility = View.GONE
         } else {

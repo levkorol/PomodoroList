@@ -7,7 +7,7 @@ import ru.harlion.pomodorolist.base.BindingHolder
 import ru.harlion.pomodorolist.databinding.ItemTaskBinding
 import ru.harlion.pomodorolist.models.Task
 
-private typealias ItemHolderTask = BindingHolder<ItemTaskBinding>
+typealias ItemHolderTask = BindingHolder<ItemTaskBinding>
 
 class AdapterTask() : RecyclerView.Adapter<ItemHolderTask>() {
 
@@ -23,14 +23,22 @@ class AdapterTask() : RecyclerView.Adapter<ItemHolderTask>() {
         }
 
     override fun onBindViewHolder(holder: ItemHolderTask, position: Int) {
-         holder.binding.apply {
-             descTask.text = items[position].name
-             time.text = "0"
-           //  setCheckMarkDrawable
-//             colorProj.setBackgroundColor(Color.CYAN)
-             descTask.isChecked = items[position].isDone
-         }
+        bindTask(holder, items[position])
     }
 
+
     override fun getItemCount() = items.size
+}
+
+fun bindTask(
+    holder: ItemHolderTask,
+    task: Task
+) {
+    holder.binding.apply {
+        descTask.text = task.name
+        time.text = "0"
+        //  setCheckMarkDrawable
+        //             colorProj.setBackgroundColor(Color.CYAN)
+        descTask.isChecked = task.isDone
+    }
 }
