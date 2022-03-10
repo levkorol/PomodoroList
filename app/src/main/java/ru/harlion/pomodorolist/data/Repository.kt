@@ -30,6 +30,12 @@ class Repository private constructor( context: Context) {
         }
     }
 
+    fun getProjectById(projectId: Long, code: (ProjectWithTasks?) -> Unit) {
+        executor.execute {
+            code.invoke(projectDao.projectById(projectId))
+        }
+    }
+
     fun addTask(task: Task) {
         executor.execute {
             taskDao.addTask(task)
@@ -48,11 +54,6 @@ class Repository private constructor( context: Context) {
         return projectDao.liveProjectById(id)
     }
 
-    fun getProjectById(projectId: Long, code: (ProjectWithTasks?) -> Unit) {
-        executor.execute {
-           code.invoke(projectDao.projectById(projectId))
-        }
-    }
 
    companion object {
        private var INSTANCE: Repository? = null

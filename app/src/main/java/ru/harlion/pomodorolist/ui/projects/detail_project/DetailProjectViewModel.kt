@@ -24,10 +24,13 @@ class DetailProjectViewModel: ViewModel() {
     fun addTask(
         name: String
     ) {
-        val task = repository.addTask(Task(
-          name = name,
-          parentId = project.value?.id ?: 0L
-      ))
+        val task = Task(
+            name = name,
+            parentId = project.value?.id ?: 0L)
+
+        repository.addTask(task)
+
+        tasks.value = (tasks.value ?: emptyList()) + task
     }
 
 }
