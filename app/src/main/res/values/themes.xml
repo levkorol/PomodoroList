@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-
+        <item name="android:windowBackground">@drawable/load_bg</item>
         <item name="android:fontFamily">@font/roboto_slab_regular</item>
     </style>
 
@@ -26,6 +26,14 @@
     <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">10sp</item>
         <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <!--    splash screen-->
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!--        <item name="android:windowBackground">@drawable/pick_splash_screen</item>-->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent
+        </item>
     </style>
 
     <style name="tabText" parent="@android:style/TextAppearance.Widget.TabWidget">
