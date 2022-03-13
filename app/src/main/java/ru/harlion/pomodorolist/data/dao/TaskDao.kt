@@ -2,6 +2,7 @@ package ru.harlion.pomodorolist.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.Task
 
 @Dao
@@ -21,5 +22,8 @@ interface TaskDao {
 
     @Delete
     fun deleteTask(task: Task)
+
+    @Query("SELECT * FROM task")
+    fun getTasks(): List<Task>
 
 }

@@ -7,7 +7,7 @@ import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.Task
 
-class DetailProjectViewModel: ViewModel() {
+class DetailProjectViewModel : ViewModel() {
 
     private val repository = Repository.get()
     val project = MutableLiveData<Project>()
@@ -25,16 +25,29 @@ class DetailProjectViewModel: ViewModel() {
         repository.updateTask(task)
     }
 
+    fun updateProject(
+        name: String
+    ) {
+        project.value?.name = name
+        repository.updateProject(project.value!!)
+    }
+
     fun addTask(
         name: String
     ) {
         val task = Task(
             name = name,
-            parentId = project.value?.id ?: 0L)
+            parentId = project.value?.id ?: 0L,
+            date = System.currentTimeMillis()
+        )
 
         repository.addTask(task)
 
         tasks.value = (tasks.value ?: emptyList()) + task
+    }
+
+    fun deleteProject() {
+        repository.deleteProject(project.value!!)
     }
 
 }

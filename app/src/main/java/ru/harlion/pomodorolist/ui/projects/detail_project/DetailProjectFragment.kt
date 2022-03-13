@@ -2,6 +2,7 @@ package ru.harlion.pomodorolist.ui.projects.detail_project
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.harlion.pomodorolist.AppActivity
@@ -9,7 +10,9 @@ import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.databinding.FragmentDetailProjectBinding
 import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.ui.projects.ListProjectsFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
+import ru.harlion.pomodorolist.utils.replaceFragment
 
 
 class DetailProjectFragment :
@@ -22,7 +25,7 @@ class DetailProjectFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-      projectId = arguments?.getLong("id_project")!!
+        projectId = arguments?.getLong("id_project")!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,8 +36,22 @@ class DetailProjectFragment :
             binding.nameTask.setText("")
         }
 
+        binding.deleteProject.setOnClickListener {
+            AlertDialog.Builder(requireContext()).apply {
+                setTitle("Удалить проект?")
+                setPositiveButton("Да") { _, _ ->
+                    viewModel.deleteProject()
+                    replaceFragment(ListProjectsFragment(), false)
+                }
+                setNegativeButton("Нет") { _, _ ->
+                }
+            }.show()
+        }
+
         viewModel.tasks.observe(viewLifecycleOwner, {
-            tasksRecyclerView(it)
+            tasksRecyclerView(it.sortedBy { task ->
+                task.isDone
+            })
         })
 
         viewModel.project.observe(viewLifecycleOwner, {

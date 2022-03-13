@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.databinding.FragmentTodayBinding
+import ru.harlion.pomodorolist.models.Task
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
 import ru.harlion.pomodorolist.ui.tasks.TasksViewModel
 
@@ -20,10 +21,15 @@ class TodayFragment : BindingFragment<FragmentTodayBinding>(FragmentTodayBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        taskRecyclerView()
+        viewModel.tasks.observe(viewLifecycleOwner, {
+            taskRecyclerView( it.filter { task ->
+                task.date == System.currentTimeMillis()
+            })
+        })
+
     }
 
-    private fun taskRecyclerView() {
+    private fun taskRecyclerView(tasks: List<Task>) {
         val llm = LinearLayoutManager(requireContext())
         llm.orientation = LinearLayoutManager.VERTICAL
 
@@ -34,9 +40,8 @@ class TodayFragment : BindingFragment<FragmentTodayBinding>(FragmentTodayBinding
             adapter = adapterTask
         }
 
-        val list = Repository.getListTask()
-        if(list.isNotEmpty()) {
-            adapterTask.items = list
+        if (tasks.isNotEmpty()) {
+            adapterTask.items = tasks
             binding.listTaskRecycler.visibility = View.VISIBLE
             binding.taskEmpty.visibility = View.GONE
         } else {

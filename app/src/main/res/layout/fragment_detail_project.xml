@@ -28,9 +28,15 @@
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/save_project"
             style="@style/ButtonToolBar"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_toStartOf="@+id/delete_project"
             android:src="@drawable/ic_circle" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/delete_project"
+            style="@style/ButtonToolBar"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_delete_24" />
 
     </RelativeLayout>
 

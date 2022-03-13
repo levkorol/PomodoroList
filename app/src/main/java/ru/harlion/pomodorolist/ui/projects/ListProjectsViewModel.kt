@@ -13,7 +13,7 @@ class ListProjectsViewModel : ViewModel() {
     val projects = repository.getListProjects()
 
     fun getListTasks(projectId: Long): List<Task> {
-       return repository.getListTasks(projectId)
+       return repository.getListTasksByProjectId(projectId)
     }
 
     fun updateTask(task: Task) {

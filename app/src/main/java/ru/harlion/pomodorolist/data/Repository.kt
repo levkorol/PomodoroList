@@ -48,13 +48,21 @@ class Repository private constructor(context: Context) {
         return projectDao.liveProjects()
     }
 
-    fun getListTasks(projectId: Long): List<Task> {
+    fun getListTasksByProjectId(projectId: Long): List<Task> {
         return taskDao.getTasks(projectId = projectId)
+    }
+
+    fun getTasksByDate(): List<Task> {
+        return taskDao.getTasks()
     }
 
     fun updateTask(task: Task) {
         return taskDao.updateTask(task)
     }
+
+    fun deleteProject(project: Project) = projectDao.deleteProject(project)
+
+    fun updateProject(project: Project) = projectDao.updateProject(project)
 
     fun getProject(id: Long): LiveData<Project?> {
         return projectDao.liveProjectById(id)

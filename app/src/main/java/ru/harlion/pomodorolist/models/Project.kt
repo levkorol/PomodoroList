@@ -9,11 +9,11 @@ import androidx.room.Relation
 class Project(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val name: String,
-    val prize: String,
+    var name: String,
+    var prize: String,
     val tasks: List<Task>,
     val isDone: Boolean = false,
-    val deadline: Long = 0,
+    var deadline: Long = 0,
     val position: Int = 0,
    // val timeInFocus: Long
    // val dateCreate: Long
