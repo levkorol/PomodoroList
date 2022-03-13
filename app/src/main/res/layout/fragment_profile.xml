@@ -12,58 +12,10 @@
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_white"
-        android:orientation="vertical"
-
-        android:paddingHorizontal="10dp">
-
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_theme"
-            android:drawablePadding="6dp"
-            android:gravity="center|start"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
-            android:text="@string/change_theme" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_copy"
-            android:drawablePadding="6dp"
-            android:gravity="center|start"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
-            android:text="@string/backup_copy" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
-            android:drawableStart="@drawable/ic_baseline_mail"
-            android:drawablePadding="6dp"
-            android:gravity="center|start"
-            android:text="@string/mail_dev" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
-            android:drawableStart="@drawable/ic_star"
-            android:drawablePadding="6dp"
-            android:gravity="center|start"
-            android:text="@string/assess" />
-
-    </LinearLayout>
-
+            android:layout_height="200dp"
+            android:src="@drawable/image_fly"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -71,60 +23,64 @@
             android:drawableEnd="@drawable/ic_right_24"
             android:gravity="center|start"
             android:padding="16dp"
+            android:drawableStart="@drawable/ic_hot_24"
+            android:drawablePadding="6dp"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
             android:background="@drawable/bg_white"
             android:text="@string/c_newtime" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_right_24"
+            android:gravity="center|start"
+            android:padding="16dp"
+            android:drawableStart="@drawable/ic_theme"
+            android:drawablePadding="6dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/bg_white"
+            android:text="@string/change_theme" />
 
-       <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_white"
-        android:orientation="vertical"
-        android:padding="16dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_right_24"
+            android:gravity="center|start"
+            android:padding="16dp"
+            android:drawablePadding="6dp"
+            android:layout_marginTop="16dp"
+            android:drawableStart="@drawable/ic_copy"
+            android:text="@string/backup_copy"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/bg_white" />
 
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:gravity="center"
-               android:text="Моя статистика "/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_right_24"
+            android:gravity="center|start"
+            android:padding="16dp"
+            android:drawablePadding="6dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/bg_white"
+            android:drawableStart="@drawable/ic_baseline_mail"
+            android:text="@string/mail_dev"/>
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="16dp"
-               android:orientation="horizontal">
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Сегодня"
-                   android:layout_weight="1"/>
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_weight="1"
-                   android:text="Неделя"
-                   android:layout_marginStart="16dp"
-                   android:layout_height="wrap_content"/>
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_weight="1"
-                   android:text="Месяц"
-                   android:layout_marginStart="16dp"
-                   android:layout_height="wrap_content"/>
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_weight="1"
-                   android:text="Все время"
-                   android:layout_marginStart="16dp"
-                   android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_right_24"
+            android:gravity="center|start"
+            android:padding="16dp"
+            android:drawablePadding="6dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/bg_white"
+            android:drawableStart="@drawable/ic_star"
+            android:text="@string/assess"/>
 
-           </LinearLayout>
-
-
-       </LinearLayout>
 
     </LinearLayout>
 

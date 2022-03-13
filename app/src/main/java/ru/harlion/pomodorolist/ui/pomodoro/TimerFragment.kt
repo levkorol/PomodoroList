@@ -7,6 +7,7 @@ import android.view.View
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentTimerBinding
 import ru.harlion.pomodorolist.ui.profile.settings.SettingsTimerFragment
+import ru.harlion.pomodorolist.ui.profile.statistic.StatisticFragment
 import ru.harlion.pomodorolist.ui.tasks.ListTasksFragment
 import ru.harlion.pomodorolist.utils.*
 import kotlin.math.min
@@ -45,8 +46,8 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
             replaceFragment(SettingsTimerFragment(), true)
         }
 
-        binding.btnCalendar.setOnClickListener {
-            replaceFragment(ListTasksFragment(), true)
+        binding.btnStatistic.setOnClickListener {
+            replaceFragment(StatisticFragment(), true)
         }
     }
 

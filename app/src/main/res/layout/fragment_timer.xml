@@ -28,8 +28,8 @@
 <!--            android:layout_alignParentEnd="true"/>-->
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_calendar"
-            android:src="@drawable/ic_date_d"
+            android:id="@+id/btn_statistic"
+            android:src="@drawable/ic_pie_chart_24"
             android:layout_alignParentEnd="true"
             style="@style/ButtonToolBar" />
 

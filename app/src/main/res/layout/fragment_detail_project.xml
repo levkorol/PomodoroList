@@ -18,19 +18,19 @@
             style="@style/ButtonToolBar"
             android:src="@drawable/ic_back_24" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Сделать до 23.12, 19:00"
-                    android:gravity="center"
-                    android:layout_margin="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="Сделать до 23.12, 19:00" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/save_project"
-            style="@style/ButtonToolBar"
-            android:layout_marginTop="10dp"
-            android:layout_toStartOf="@+id/delete_project"
-            android:src="@drawable/ic_circle" />
+<!--        <androidx.appcompat.widget.AppCompatImageButton-->
+<!--            android:id="@+id/save_project"-->
+<!--            style="@style/ButtonToolBar"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_toStartOf="@+id/delete_project"-->
+<!--            android:src="@drawable/ic_circle" />-->
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/delete_project"
@@ -40,206 +40,113 @@
 
     </RelativeLayout>
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/statistic"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginHorizontal="16dp"-->
-<!--        android:layout_marginBottom="16dp"-->
-<!--        android:background="@drawable/bg_white"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:paddingHorizontal="10dp"-->
-<!--        android:paddingTop="8dp"-->
-<!--        android:paddingBottom="16dp">-->
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:orientation="vertical">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/count_in_focus"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/roboto_slab_black"-->
-<!--                android:textColor="@color/middle_l"-->
-<!--                android:gravity="center"-->
-<!--                android:text="13:00"-->
-<!--                android:textSize="25sp" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:text="@string/in_focus"-->
-<!--                android:textSize="10sp" />-->
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:orientation="vertical">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/count_plan_focus"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/roboto_slab_black"-->
-<!--                android:gravity="center"-->
-<!--                android:text="25:00"-->
-<!--                android:textColor="@color/middle_l"-->
-<!--                android:textSize="25sp" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:text="@string/plan_focus"-->
-<!--                android:textSize="10sp" />-->
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:orientation="vertical">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/count_tasks"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/roboto_slab_black"-->
-<!--                android:gravity="center"-->
-<!--                android:text="0"-->
-<!--                android:textColor="@color/middle_l"-->
-<!--                android:textSize="25sp" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:text="@string/task_weiting"-->
-<!--                android:textSize="10sp" />-->
-<!--        </LinearLayout>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:orientation="vertical">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/count_tasks_done"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/roboto_slab_black"-->
-<!--                android:gravity="center"-->
-<!--                android:text="3"-->
-<!--                android:textColor="@color/middle_l"-->
-<!--                android:textSize="25sp" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:text="@string/done"-->
-<!--                android:textSize="10sp" />-->
-<!--        </LinearLayout>-->
-<!--    </LinearLayout>-->
-
-    <EditText
+    <TextView
         android:id="@+id/name_project"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:background="@drawable/bg_white"
+        android:drawableStart="@drawable/ic_circle"
         android:gravity="top|start"
-        android:hint="@string/name_project"
-        android:lines="2"
-        android:padding="8dp"
-        android:textSize="14sp" />
+        android:layout_marginStart="20dp"
+        android:drawablePadding="6dp"
+        android:textSize="14sp"
+        tools:text="project name" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/date_deadline"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginHorizontal="16dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:background="@drawable/bg_white"-->
-<!--        android:drawableStart="@drawable/ic_arrow_down_24"-->
-<!--        android:drawablePadding="6dp"-->
-<!--        android:gravity="start|center"-->
-<!--        android:padding="8dp"-->
-<!--        android:text="@string/date_deadline"-->
-<!--        android:textSize="14sp" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/date_deadline"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="16dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:background="@drawable/bg_white"-->
+    <!--        android:drawableStart="@drawable/ic_arrow_down_24"-->
+    <!--        android:drawablePadding="6dp"-->
+    <!--        android:gravity="start|center"-->
+    <!--        android:padding="8dp"-->
+    <!--        android:text="@string/date_deadline"-->
+    <!--        android:textSize="14sp" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/color_project"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginHorizontal="16dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:background="@drawable/bg_white"-->
-<!--        android:drawableStart="@drawable/ic_circle"-->
-<!--        android:drawablePadding="9dp"-->
-<!--        android:gravity="start|center"-->
-<!--        android:padding="8dp"-->
-<!--        android:paddingStart="12dp"-->
-<!--        android:text="@string/color"-->
-<!--        android:textSize="14sp" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/color_project"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="16dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:background="@drawable/bg_white"-->
+    <!--        android:drawableStart="@drawable/ic_circle"-->
+    <!--        android:drawablePadding="9dp"-->
+    <!--        android:gravity="start|center"-->
+    <!--        android:padding="8dp"-->
+    <!--        android:paddingStart="12dp"-->
+    <!--        android:text="@string/color"-->
+    <!--        android:textSize="14sp" />-->
 
 
-    <EditText
+    <TextView
         android:id="@+id/prize_to_complete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/bg_white"
+        android:layout_marginTop="8dp"
         android:drawableStart="@drawable/ic_price"
-        android:drawablePadding="6dp"
+        android:drawablePadding="2dp"
         android:gravity="start|center"
-        android:hint="@string/prize_to_complete"
-        android:lines="1"
-        android:padding="8dp"
-        android:textSize="14sp" />
+        tools:text="project price"
+        />
 
-<!--    <TextView-->
-<!--        android:id="@+id/add_task_btn"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginHorizontal="16dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:background="@drawable/bg_white"-->
-<!--        android:drawableStart="@drawable/icadd_24"-->
-<!--        android:drawablePadding="6dp"-->
-<!--        android:gravity="start|center"-->
-<!--        android:padding="8dp"-->
-<!--        android:text="@string/add_task"-->
-<!--        android:textSize="14sp"-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/add_task_btn"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="16dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:background="@drawable/bg_white"-->
+    <!--        android:drawableStart="@drawable/icadd_24"-->
+    <!--        android:drawablePadding="6dp"-->
+    <!--        android:gravity="start|center"-->
+    <!--        android:padding="8dp"-->
+    <!--        android:text="@string/add_task"-->
+    <!--        android:textSize="14sp"-->
 
-<!--        />-->
+    <!--        />-->
 
     <LinearLayout
         android:id="@+id/add_task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/bg_white"
         android:orientation="vertical"
         android:paddingBottom="8dp"
         android:visibility="visible"
         tools:visibility="visible">
+
         <LinearLayout
-            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bg_white"
             android:orientation="horizontal">
+
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/count_cycle_timer"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:drawableStart="@drawable/ic_baseline_av_timer_24"-->
+            <!--                android:drawablePadding="6dp" />-->
+
+            <TextView
+                android:id="@+id/priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:drawableStart="@drawable/ic_label"
+                android:drawablePadding="6dp" />
 
             <TextView
                 android:id="@+id/date_task"
@@ -250,30 +157,13 @@
                 android:drawablePadding="6dp" />
 
             <TextView
-                android:id="@+id/count_cycle_timer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/ic_baseline_av_timer_24"
-                android:drawablePadding="6dp" />
-
-            <TextView
-                android:id="@+id/priority"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/ic_label"
-                android:drawablePadding="6dp" />
-
-            <TextView
                 android:id="@+id/save_task"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
                 android:layout_marginEnd="8dp"
+                android:layout_weight="3"
                 android:gravity="end|center"
-                android:text="@string/save_task"
-                />
+                android:text="@string/save_task" />
 
         </LinearLayout>
 
@@ -291,12 +181,139 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_white"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/in_focus"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/count_in_focus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/roboto_slab_black"
+                android:gravity="center"
+                android:text="13:00"
+                android:textColor="@color/middle_l"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/count_tasks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="3/4" />
+
+        </LinearLayout>
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:orientation="vertical">-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/count_plan_focus"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:fontFamily="@font/roboto_slab_black"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="25:00"-->
+        <!--                android:textColor="@color/middle_l"-->
+        <!--                android:textSize="25sp" />-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="@string/plan_focus"-->
+        <!--                android:textSize="10sp" />-->
+        <!--        </LinearLayout>-->
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:orientation="vertical">-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/count_tasks"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:fontFamily="@font/roboto_slab_black"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="0"-->
+        <!--                android:textColor="@color/middle_l"-->
+        <!--                android:textSize="25sp" />-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="@string/task_weiting"-->
+        <!--                android:textSize="10sp" />-->
+        <!--        </LinearLayout>-->
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:orientation="vertical">-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/count_tasks_done"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:fontFamily="@font/roboto_slab_black"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="3"-->
+        <!--                android:textColor="@color/middle_l"-->
+        <!--                android:textSize="25sp" />-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="@string/done"-->
+        <!--                android:textSize="10sp" />-->
+        <!--        </LinearLayout>-->
+
+        <ProgressBar
+            android:id="@+id/progress_done_tasks"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="45"
+            android:progressBackgroundTint="@color/middle_l"
+            android:progressTint="@color/middle_l" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasks_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:nestedScrollingEnabled="false"
-        />
+        android:layout_marginTop="-8dp"
+        android:nestedScrollingEnabled="false" />
 
 </LinearLayout>

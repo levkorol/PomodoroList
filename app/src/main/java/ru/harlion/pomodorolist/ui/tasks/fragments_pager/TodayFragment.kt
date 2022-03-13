@@ -21,10 +21,14 @@ class TodayFragment : BindingFragment<FragmentTodayBinding>(FragmentTodayBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getTasksByDate()
+
         viewModel.tasks.observe(viewLifecycleOwner, {
-            taskRecyclerView( it.filter { task ->
-                task.date == System.currentTimeMillis()
-            })
+            taskRecyclerView( it
+                .filter { task ->
+                    task.date == System.currentTimeMillis()
+                }
+            )
         })
 
     }

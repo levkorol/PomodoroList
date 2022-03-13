@@ -44,6 +44,11 @@ class AppActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.item_tasks_page -> {
+                    replaceFragment(ListTasksFragment(), true)
+                    true
+                }
+
                 R.id.item_projects_page -> {
                     replaceFragment(ListProjectsFragment(), true)
                     true

@@ -10,6 +10,8 @@ import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.databinding.FragmentDetailProjectBinding
 import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.ui.dialogs.DialogCalendar
+import ru.harlion.pomodorolist.ui.dialogs.DialogPriorityTask
 import ru.harlion.pomodorolist.ui.projects.ListProjectsFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
 import ru.harlion.pomodorolist.utils.replaceFragment
@@ -31,9 +33,17 @@ class DetailProjectFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.addTask.setOnClickListener {
+        binding.saveTask.setOnClickListener {
             viewModel.addTask(binding.nameTask.text.toString())
             binding.nameTask.setText("")
+        }
+
+        binding.dateTask.setOnClickListener {
+            DialogCalendar().show(parentFragmentManager, null)
+        }
+
+        binding.priority.setOnClickListener {
+            DialogPriorityTask().show(parentFragmentManager, null)
         }
 
         binding.deleteProject.setOnClickListener {

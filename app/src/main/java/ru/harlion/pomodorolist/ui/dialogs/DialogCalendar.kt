@@ -8,7 +8,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.databinding.FragmentDialogSettingsBinding
 
-class DialogSettings : BottomSheetDialogFragment() {
+class DialogCalendar : BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

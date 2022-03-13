@@ -26,16 +26,16 @@
 <!--            android:gravity="center"-->
 <!--            android:layout_margin="16dp"/>-->
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/ic_back_24"
-            app:backgroundTint="@color/middle_d"
-            app:fabSize="mini"
-            app:tint="@android:color/white" />
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/add_btn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:src="@drawable/ic_back_24"-->
+<!--            app:backgroundTint="@color/middle_d"-->
+<!--            app:fabSize="mini"-->
+<!--            app:tint="@android:color/white" />-->
     </RelativeLayout>
 
     <com.google.android.material.tabs.TabLayout

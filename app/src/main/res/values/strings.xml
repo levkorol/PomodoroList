@@ -15,7 +15,7 @@
     <string name="backup_copy">Резервное копирование</string>
     <string name="assess">Поставьте нам оценку</string>
     <string name="mail_dev">Связь с разработчиком</string>
-    <string name="c_newtime">Постановка целей и привычек c NewTime</string>
+    <string name="c_newtime">Цели и привычки c NewTime</string>
     <string name="on_boarding_one">Дела медленно продвигаются ?</string>
     <string name="on_boarding_two">Много задач но не удается сфокусироваться?</string>
     <string name="on_boarding_for">Здесь ты найдешь отличный инструмент фокусировки Помодоро</string>
@@ -24,7 +24,7 @@
     <string name="new_project">Новый проект</string>
     <string name="today">Сегодня</string>
     <string name="month">Месяц</string>
-    <string name="in_focus">В фокусе</string>
+    <string name="in_focus">В фокусе - </string>
     <string name="color">Цвет</string>
     <string name="date_deadline">Дата дедлайна</string>
     <string name="save_task">Сохранить</string>
@@ -42,5 +42,10 @@
     <string name="sound_fire">Костер</string>
     <string name="sound_water">Ручей</string>
     <string name="no">Нет</string>
+    <string name="date">Дата задачи</string>
+    <string name="priority_task">Приоритет задачи</string>
+    <string name="high">Высокий</string>
+    <string name="middle">Средний</string>
+    <string name="normal">Обычный</string>
 
 </resources>

@@ -36,17 +36,6 @@ class ListTasksFragment : BindingFragment<FragmentListTasksBinding>(FragmentList
         }.attach()
     }
 
-
-    override fun onStart() {
-        super.onStart()
-        (activity as AppActivity).setBottomNavigationVisible(false)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as AppActivity).setBottomNavigationVisible(true)
-    }
-
     class TaskViewPager(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
         FragmentStateAdapter(fragmentManager, lifecycle) {
 
