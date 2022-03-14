@@ -47,5 +47,6 @@
     <string name="high">Высокий</string>
     <string name="middle">Средний</string>
     <string name="normal">Обычный</string>
+    <string name="pro">Премимум</string>
 
 </resources>

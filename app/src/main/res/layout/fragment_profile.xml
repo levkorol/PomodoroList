@@ -14,8 +14,10 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.7"
             android:src="@drawable/image_fly"/>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -23,11 +25,27 @@
             android:drawableEnd="@drawable/ic_right_24"
             android:gravity="center|start"
             android:padding="16dp"
+            android:drawableStart="@drawable/ic_baseline_attach_money_24"
+            android:drawablePadding="6dp"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/bg_white"
+            android:text="@string/pro" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_right_24"
+            android:gravity="center|start"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
             android:drawableStart="@drawable/ic_hot_24"
             android:drawablePadding="6dp"
             android:layout_marginHorizontal="16dp"
             android:background="@drawable/bg_white"
             android:text="@string/c_newtime" />
+
+
+
 
         <TextView
             android:layout_width="match_parent"
@@ -81,7 +99,10 @@
             android:drawableStart="@drawable/ic_star"
             android:text="@string/assess"/>
 
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"/>
     </LinearLayout>
 
 

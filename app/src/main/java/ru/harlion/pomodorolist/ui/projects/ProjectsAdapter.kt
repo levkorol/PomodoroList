@@ -2,6 +2,7 @@ package ru.harlion.pomodorolist.ui.projects
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import ru.harlion.pomodorolist.base.BindingHolder
 import ru.harlion.pomodorolist.databinding.ItemProjectBinding
@@ -54,6 +55,7 @@ class ProjectsAdapter(
                                     .clear()
                                 item = newItems
                                 notifyItemRangeRemoved(adapterPosition + 1, taskCount)
+                                binding.arrowTaskCount.changeIconShowTask(true)
                             } else {
                                 val newItems = item.toMutableList()
                                 val elements =
@@ -64,6 +66,7 @@ class ProjectsAdapter(
                                 )
                                 item = newItems
                                 notifyItemRangeInserted(adapterPosition + 1, elements.size)
+                                binding.arrowTaskCount.changeIconShowTask(false )
                             }
                         }
                     }
@@ -72,6 +75,14 @@ class ProjectsAdapter(
             2 -> ItemHolderTask(ItemTaskBinding::inflate, parent).apply { }
             else -> throw Exception()
         }
+
+    private fun ImageView.changeIconShowTask(taskVisible: Boolean) {
+        if (!taskVisible) {
+            this.rotation = 90F
+        } else {
+            this.rotation = 90F
+        }
+    }
 
     override fun onBindViewHolder(holder: BindingHolder<*>, position: Int) {
 

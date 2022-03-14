@@ -31,7 +31,7 @@ class AddProjectFragment :
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.createdProjectId.onEvent(viewLifecycleOwner, {
-            replaceFragment(DetailProjectFragment.newInstance(it), true)
+            replaceFragment(DetailProjectFragment.newInstance(it), false) //todo 0.3
         })
 
         viewModel.project.observe(viewLifecycleOwner, {

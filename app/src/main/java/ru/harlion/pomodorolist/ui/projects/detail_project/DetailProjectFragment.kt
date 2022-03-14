@@ -3,9 +3,12 @@ package ru.harlion.pomodorolist.ui.projects.detail_project
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.harlion.pomodorolist.AppActivity
+import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.databinding.FragmentDetailProjectBinding
@@ -23,18 +26,28 @@ class DetailProjectFragment :
     private lateinit var adapterTask: AdapterTask
     private val viewModel: DetailProjectViewModel by viewModels()
     private var projectId = 0L
+    private var priorityTask: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         projectId = arguments?.getLong("id_project")!!
+
+        setFragmentResultListener("priority") { _, bundle ->
+         priorityTask = bundle.getString("priority_task") ?: ""
+            setLabelPriorityTask()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         binding.saveTask.setOnClickListener {
-            viewModel.addTask(binding.nameTask.text.toString())
+            viewModel.addTask(
+                 binding.nameTask.text.toString(),
+                 priorityTask)
             binding.nameTask.setText("")
         }
 
@@ -82,6 +95,15 @@ class DetailProjectFragment :
         }
 
         adapterTask.items = tasks
+    }
+
+    private fun setLabelPriorityTask() {
+        when(priorityTask) {
+            "normal"  -> binding.priority.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_label))
+            "middle" -> binding.priority.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_label_green))
+            "high" -> binding.priority.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_label_red))
+            else -> binding.priority.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_label))
+        }
     }
 
     override fun onStart() {

@@ -70,6 +70,13 @@
             <!--                android:gravity="end|start"-->
             <!--                android:drawablePadding="8dp"-->
             <!--                android:src="@drawable/ic_label"/>-->
+            <ImageView
+                android:id="@+id/priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:drawablePadding="8dp" />
 
             <TextView
                 android:id="@+id/time"
@@ -79,14 +86,7 @@
                 android:layout_weight="1"
                 android:text="19:00" />
 
-            <ImageView
-                android:id="@+id/color_proj"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:drawablePadding="8dp"
-                android:src="@drawable/ic_circle" />
+
         </LinearLayout>
     </LinearLayout>
 

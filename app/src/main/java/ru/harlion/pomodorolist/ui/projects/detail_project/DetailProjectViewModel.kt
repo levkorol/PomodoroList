@@ -33,10 +33,12 @@ class DetailProjectViewModel : ViewModel() {
     }
 
     fun addTask(
-        name: String
+        name: String,
+        priorityTask : String
     ) {
         val task = Task(
             name = name,
+            priority = priorityTask,
             parentId = project.value?.id ?: 0L,
             date = System.currentTimeMillis()
         )
