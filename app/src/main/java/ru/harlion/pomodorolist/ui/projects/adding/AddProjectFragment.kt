@@ -31,7 +31,8 @@ class AddProjectFragment :
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.createdProjectId.onEvent(viewLifecycleOwner, {
-            replaceFragment(DetailProjectFragment.newInstance(it), false) //todo 0.3
+            parentFragmentManager.popBackStack()
+            replaceFragment(DetailProjectFragment.newInstance(it), true)
         })
 
         viewModel.project.observe(viewLifecycleOwner, {

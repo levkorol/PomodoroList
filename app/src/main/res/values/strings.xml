@@ -11,7 +11,7 @@
     <string name="notify">Сигнал</string>
     <string name="work_on_task">Работа над задачей:</string>
     <string name="save">Сохранить</string>
-    <string name="change_theme">Сменить оформление</string>
+    <string name="change_theme_menu">Сменить оформление</string>
     <string name="backup_copy">Резервное копирование</string>
     <string name="assess">Поставьте нам оценку</string>
     <string name="mail_dev">Связь с разработчиком</string>
@@ -48,5 +48,6 @@
     <string name="middle">Средний</string>
     <string name="normal">Обычный</string>
     <string name="pro">Премимум</string>
+    <string name="change_theme">Выберете оформление</string>
 
 </resources>

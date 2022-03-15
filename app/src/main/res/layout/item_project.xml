@@ -59,7 +59,7 @@
                 android:id="@+id/count_tasks"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_arrow_down_24"
+                android:drawableEnd="@drawable/arrow_rotation"
                 android:gravity="end"
                 android:layout_weight="1"
                 tools:text="3/4" />
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:progress="45"
-            android:progressBackgroundTint="@color/middle_l"
-            android:progressTint="@color/middle_l" />
+            android:progressBackgroundTint="?middle_l"
+            android:progressTint="?middle_l" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

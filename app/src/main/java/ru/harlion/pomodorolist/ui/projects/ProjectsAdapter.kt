@@ -43,19 +43,23 @@ class ProjectsAdapter(
                     binding.countTasks.setOnClickListener {
                         if (adapterPosition > -1) {
                             if (item.getOrNull(adapterPosition + 1) is Task) {
-                                val taskCount =
+                                var taskCount =
                                     item.subList(adapterPosition + 1, item.size).indexOfFirst {
                                         it is Project
                                     }
                                 val newItems = item.toMutableList()
-                                newItems.subList(
+                                val subList = newItems.subList(
                                     adapterPosition + 1,
-                                    adapterPosition + 1 + taskCount
+                                    if (taskCount < 0) {
+                                        newItems.size
+                                    } else {
+                                        adapterPosition + 1 + taskCount
+                                    }
                                 )
-                                    .clear()
+                                taskCount = subList.size
+                                subList.clear()
                                 item = newItems
                                 notifyItemRangeRemoved(adapterPosition + 1, taskCount)
-                                binding.arrowTaskCount.changeIconShowTask(true)
                             } else {
                                 val newItems = item.toMutableList()
                                 val elements =
@@ -66,8 +70,8 @@ class ProjectsAdapter(
                                 )
                                 item = newItems
                                 notifyItemRangeInserted(adapterPosition + 1, elements.size)
-                                binding.arrowTaskCount.changeIconShowTask(false )
                             }
+                            notifyItemChanged(adapterPosition, Unit)
                         }
                     }
                 }
@@ -76,18 +80,13 @@ class ProjectsAdapter(
             else -> throw Exception()
         }
 
-    private fun ImageView.changeIconShowTask(taskVisible: Boolean) {
-        if (!taskVisible) {
-            this.rotation = 90F
-        } else {
-            this.rotation = 90F
-        }
-    }
 
     override fun onBindViewHolder(holder: BindingHolder<*>, position: Int) {
 
         if (holder.binding is ItemProjectBinding) {
             holder.binding.apply {
+
+                countTasks.compoundDrawablesRelative[2].level = if (item.getOrNull(position + 1) is Task) 0 else 5000
 
                 val project = item[position] as Project
 

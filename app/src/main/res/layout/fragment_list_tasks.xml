@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light"
+    android:background="?light"
     android:orientation="vertical"
     tools:context=".ui.tasks.ListTasksFragment">
 
@@ -43,18 +43,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabGravity="fill"
-        android:background="@color/light"
-        app:tabIconTint="@color/middle_d"
+        android:background="?light"
+        app:tabIconTint="?middle_d"
         app:tabIconTintMode="src_in"
         app:tabIndicator="@color/black"
-        app:tabIndicatorColor="@color/middle_d"
+        app:tabIndicatorColor="?middle_d"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorHeight="3dp"
         app:tabInlineLabel="true"
         app:tabMode="fixed"
         android:layout_marginTop="-0dp"
         app:tabRippleColor="@null"
-        app:tabSelectedTextColor="@color/middle_d"
+        app:tabSelectedTextColor="?middle_d"
         app:tabTextAppearance="@style/tabText" />
 
     <androidx.viewpager2.widget.ViewPager2

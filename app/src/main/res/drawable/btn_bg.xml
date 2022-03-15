@@ -11,8 +11,8 @@
                 android:bottomRightRadius="10dp" />
 
             <gradient
-                android:endColor="@color/middle_d"
-                android:startColor="@color/middle_d" />
+                android:endColor="?middle_d"
+                android:startColor="?middle_d" />
 
         </shape>
     </item>

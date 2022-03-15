@@ -19,6 +19,10 @@ class AppActivity : AppCompatActivity() {
     private lateinit var bottomNavView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        setTheme(R.style.RedTheme)
+       // recreate() pref
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

@@ -19,25 +19,4 @@
         <color name="middle_l">#C8AAAF</color>
         <color name="light">#EFE2E4</color>
 
-<!--&lt;!&ndash;      for  theme green&ndash;&gt;-->
-<!--        <color name="darker">#0C290D</color>-->
-<!--        <color name="middle">#1F6826</color>-->
-<!--        <color name="middle_d">#457A48</color>-->
-<!--        <color name="middle_l">#7CA37E</color>-->
-<!--        <color name="light">#E9EFE3</color>-->
-
-    <!--  for  theme sky-->
-<!--    <color name="light">#DEECF2</color>-->
-<!--    <color name="darker">#0E2B3A</color>-->
-<!--    <color name="middle">#31719A</color>-->
-<!--    <color name="middle_d">#5C859F</color>-->
-<!--    <color name="middle_l">#879AA6</color>-->
-
-
-    <!--  for  theme persik-->
-<!--    <color name="light">#F1F2F6</color>-->
-<!--    <color name="darker">#352D12</color>-->
-<!--    <color name="middle">#9F781B</color>-->
-<!--    <color name="middle_l">#8A7647</color>-->
-<!--    <color name="middle_d">#AFA385</color>-->
 </resources>

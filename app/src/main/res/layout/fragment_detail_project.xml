@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light"
+    android:background="?light"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -214,7 +214,7 @@
                 android:fontFamily="@font/roboto_slab_black"
                 android:gravity="center"
                 android:text="13:00"
-                android:textColor="@color/middle_l"
+                android:textColor="?middle_l"
                 android:textSize="16sp" />
 
             <TextView
@@ -305,8 +305,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:progress="45"
-            android:progressBackgroundTint="@color/middle_l"
-            android:progressTint="@color/middle_l" />
+            android:progressBackgroundTint="?middle_l"
+            android:progressTint="?middle_l" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

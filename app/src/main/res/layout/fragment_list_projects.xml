@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light"
+    android:background="?light"
     android:orientation="vertical"
     tools:context=".ui.tasks.ListTasksFragment">
 
@@ -22,7 +22,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:src="@drawable/icadd_24"
-            app:backgroundTint="@color/middle_d"
+            app:backgroundTint="?middle_d"
             app:fabSize="mini"
             app:tint="@android:color/white" />
     </RelativeLayout>

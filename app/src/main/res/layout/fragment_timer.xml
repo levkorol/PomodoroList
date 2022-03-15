@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/light"
+    android:background="?light"
     tools:context=".ui.pomodoro.TimerFragment">
 
 
@@ -53,12 +53,12 @@
         android:layout_gravity="center"
         android:padding="8dp"
         app:animateProgress="true"
-        app:backgroundStrokeColor="@color/middle_l"
+        app:backgroundStrokeColor="?middle_l"
         app:backgroundStrokeWidth="4dp"
         app:startAngle="270"
         app:drawBackgroundStroke="true"
         app:foregroundStrokeCap="round"
-        app:foregroundStrokeColor="@color/middle_d"
+        app:foregroundStrokeColor="?middle_d"
         app:foregroundStrokeWidth="24dp"
         app:indeterminate="false"
         app:indeterminateMinimumAngle="45"
@@ -146,7 +146,7 @@
                 android:drawableEnd="@null"
                 android:drawablePadding="8dp"
                 android:padding="8dp"
-                android:text="Сделать что -ngndgAAAAAA"
+                android:text="Дочитать книгу"
              />
 
             <ImageView

@@ -42,7 +42,7 @@
         android:fontFamily="@font/roboto_slab_black"
         android:gravity="center"
         android:text="25"
-        android:textColor="@color/middle_l"
+        android:textColor="?middle_l"
         android:textSize="25sp" />
     <SeekBar
         android:id="@+id/min_focus"
@@ -67,7 +67,7 @@
         android:fontFamily="@font/roboto_slab_black"
         android:gravity="center"
         android:text="5"
-        android:textColor="@color/middle_l"
+        android:textColor="?middle_l"
         android:textSize="25sp" />
     <SeekBar
         android:id="@+id/min_break"

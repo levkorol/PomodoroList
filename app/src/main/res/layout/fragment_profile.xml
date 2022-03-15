@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light"
+    android:background="?light"
     android:orientation="vertical"
     tools:context=".ui.profile.ProfileFragment">
 
@@ -48,6 +48,7 @@
 
 
         <TextView
+            android:id="@+id/change_theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_right_24"
@@ -58,7 +59,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginHorizontal="16dp"
             android:background="@drawable/bg_white"
-            android:text="@string/change_theme" />
+            android:text="@string/change_theme_menu" />
 
         <TextView
             android:layout_width="match_parent"

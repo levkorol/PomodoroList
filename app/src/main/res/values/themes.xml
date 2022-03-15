@@ -2,18 +2,59 @@
     <!-- Base application theme. -->
     <style name="Theme.PomodoroList" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/middle</item>
-        <item name="colorPrimaryVariant">@color/darker</item>
+        <item name="colorPrimary">?middle</item>
+        <item name="colorPrimaryVariant">?darker</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/middle</item>
-        <item name="colorSecondaryVariant">@color/middle</item>
+        <item name="colorSecondary">?middle</item>
+        <item name="colorSecondaryVariant">?middle</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/load_bg</item>
         <item name="android:fontFamily">@font/roboto_slab_regular</item>
+    </style>
+
+    <attr name="darker"
+          format="color"/>
+    <attr name="middle"/>
+    <attr name="middle_d"/>
+    <attr name="middle_l"/>
+    <attr name="light"/>
+
+    <style name="RedTheme">
+        <item name="darker">#230309</item>
+        <item name="middle">#fe2c55</item>
+        <item name="middle_d">#C5556A</item>
+        <item name="middle_l">#C8AAAF</item>
+        <item name="light">#EFE2E4</item>
+    </style>
+
+    <style name="GreenTheme">
+        <item name="light">#E9EFE3</item>
+        <item name="darker">#0C290D</item>
+        <item name="middle">#1F6826</item>
+        <item name="middle_d">#457A48</item>
+        <item name="middle_l">#7CA37E</item>
+    </style>
+
+    <style name="SkyTheme">
+        <item name="light">#DEECF2</item>
+        <item name="darker">#0E2B3A</item>
+        <item name="middle">#31719A</item>
+        <item name="middle_d">#5C859F</item>
+        <item name="middle_l">#879AA6</item>
+
+    </style>
+
+    <style name="PeachTheme">
+        <item name="light">#F1E2CB</item>
+        <item name="darker">#352D12</item>
+        <item name="middle">#C69624</item>
+        <item name="middle_d">#8A7647</item>
+        <item name="middle_l">#AFA385</item>
+
     </style>
 
 
