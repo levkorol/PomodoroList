@@ -1,11 +1,14 @@
 package ru.harlion.pomodorolist.utils
 
+import android.app.Notification
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
 import android.os.Binder
 import android.os.CountDownTimer
 import android.os.IBinder
+import androidx.core.app.NotificationCompat
+import ru.harlion.pomodorolist.R
 
 class TimerService : Service() {
 
@@ -28,8 +31,12 @@ class TimerService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-       ( getSystemService(NOTIFICATION_SERVICE) as NotificationManager).notify(1, TODO())
-        startForeground(1, TODO())
+        val notify: Notification = NotificationCompat.Builder(this, "channelId")
+            .setContentTitle("Example Service")
+            .setSmallIcon(R.drawable.ic_baseline_av_timer_24)
+            .build()
+        (getSystemService(NOTIFICATION_SERVICE) as NotificationManager).notify(1, notify)
+        startForeground(1, notify)
         return super.onStartCommand(intent, flags, startId)
     }
 

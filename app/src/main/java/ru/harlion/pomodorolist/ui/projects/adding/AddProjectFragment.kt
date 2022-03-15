@@ -10,6 +10,8 @@ import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.base.onEvent
 import ru.harlion.pomodorolist.databinding.FragmentAddTaskBinding
 import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.ui.dialogs.DialogCalendar
+import ru.harlion.pomodorolist.ui.dialogs.DialogColor
 import ru.harlion.pomodorolist.ui.projects.detail_project.DetailProjectFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
 import ru.harlion.pomodorolist.utils.replaceFragment
@@ -38,6 +40,14 @@ class AddProjectFragment :
         viewModel.project.observe(viewLifecycleOwner, {
            binding.name.setText(it.name)
         })
+
+        binding.color.setOnClickListener {
+            DialogColor().show(parentFragmentManager, null)
+        }
+
+        binding.dateDeadline.setOnClickListener {
+            DialogCalendar().show(parentFragmentManager, null)
+        }
 
         binding.save.setOnClickListener {
             viewModel.addProject(
