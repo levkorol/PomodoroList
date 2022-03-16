@@ -15,8 +15,9 @@ class Project(
     val isDone: Boolean = false,
     var deadline: Long = 0,
     val position: Int = 0,
-   // val timeInFocus: Long
-   // val dateCreate: Long
+    val color: Int = 0,
+    val dateCreate: Long,
+    val timeInFocus: Long = 0L
 )
 
 class ProjectWithTasks(

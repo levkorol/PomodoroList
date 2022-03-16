@@ -9,6 +9,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="project_1">#FF018786</color>
+    <color name="project_2">#014287</color>
+    <color name="project_3">#873001</color>
+    <color name="project_4">#6E0187</color>
+    <color name="project_5">#F44336</color>
+    <color name="project_6">#84809E</color>
+    <color name="project_7">#00BCD4</color>
+    <color name="project_8">#8BC34A</color>
+
     <color name="gray_normal_l">#42000000</color>
     <color name="gray_normal_d">#89000000</color>
 

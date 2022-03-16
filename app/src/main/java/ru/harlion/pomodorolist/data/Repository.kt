@@ -82,29 +82,5 @@ class Repository private constructor(context: Context) {
             return INSTANCE ?: throw IllegalStateException("Repository must be init")
         }
 
-        fun getListProjects() =
-            listOf(
-                Project(
-                    1, "Project work 2", "prize cucumber", listOf(), false, 1, 0
-                ),
-                Project(
-                    1, "Project work", "prize cucumber", listOf(), false, 1, 0
-                ),
-                Project(
-                    1, "Project work", "", listOf(), false, 0, 0
-                ),
-                Project(
-                    1, "Project work", "prize cucumber", listOf(), false, 0, 0
-                ),
-                Project(
-                    1, "Project work", "prize cucumber", listOf(), false, 1, 0
-                ),
-
-                )
-
-
-        fun getListTask() = listOf(
-            Task(1, 1, 1, "taskito", "Высокий", true, 0, 3, true, 1111, 11111)
-        )
     }
 }

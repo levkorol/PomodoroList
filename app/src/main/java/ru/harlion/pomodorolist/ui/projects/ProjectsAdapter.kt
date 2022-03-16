@@ -1,8 +1,12 @@
 package ru.harlion.pomodorolist.ui.projects
 
+import android.content.res.ColorStateList
+import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import ru.harlion.pomodorolist.base.BindingHolder
 import ru.harlion.pomodorolist.databinding.ItemProjectBinding
@@ -86,7 +90,8 @@ class ProjectsAdapter(
         if (holder.binding is ItemProjectBinding) {
             holder.binding.apply {
 
-                countTasks.compoundDrawablesRelative[2].level = if (item.getOrNull(position + 1) is Task) 0 else 5000
+                countTasks.compoundDrawablesRelative[2].level =
+                    if (item.getOrNull(position + 1) is Task) 0 else 5000
 
                 val project = item[position] as Project
 
@@ -104,6 +109,16 @@ class ProjectsAdapter(
                     prize.visibility = View.VISIBLE
                 } else {
                     prize.visibility = View.GONE
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    //  binding.color.compoundDrawables[0].setTint(colorId)
+                    // TintList = ColorStateList.valueOf(colorId)
+                    if (project.color > 0) {
+                        val color = ContextCompat.getColor(name.context, project.color)
+                        val colorList = ColorStateList.valueOf(color)
+                        TextViewCompat.setCompoundDrawableTintList(name, colorList)
+                    }
                 }
 
                 val elements = taskList.invoke((item[position] as Project).id)

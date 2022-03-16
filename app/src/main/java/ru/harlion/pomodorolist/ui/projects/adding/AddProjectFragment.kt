@@ -1,8 +1,13 @@
 package ru.harlion.pomodorolist.ui.projects.adding
 
 
+import android.content.res.ColorStateList
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.core.widget.TextViewCompat
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.harlion.pomodorolist.AppActivity
@@ -21,12 +26,26 @@ class AddProjectFragment :
 
     private lateinit var adapterTask: AdapterTask
     private val viewModel: AddProjectViewModel by viewModels()
+    private var colorId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         arguments?.getLong("id_project")?.takeIf { it > 0 }?.let {
             viewModel.setProjectId(it, savedInstanceState == null) }
+
+        setFragmentResultListener("color") { _, bundle ->
+            colorId = bundle.getInt("colorId")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+              //  binding.color.compoundDrawables[0].setTint(colorId)
+               // TintList = ColorStateList.valueOf(colorId)
+
+                val color = ContextCompat.getColor(requireContext(), colorId)
+                val colorList = ColorStateList.valueOf(color)
+                TextViewCompat.setCompoundDrawableTintList(binding.color, colorList)
+
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +73,8 @@ class AddProjectFragment :
                 name = binding.name.text.toString(),
                 tasks = listOf(),
                 prize = binding.prize.text.toString(),
-                deadline = 1
+                deadline = 1,
+                color = colorId
             )
         }
 

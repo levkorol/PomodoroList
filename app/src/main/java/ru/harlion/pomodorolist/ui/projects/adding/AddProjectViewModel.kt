@@ -48,15 +48,17 @@ class AddProjectViewModel: ViewModel() {
         name : String,
         tasks: List<Task>,
         prize: String,
-        deadline: Long
+        deadline: Long,
+        color: Int
     ) {
         val project = ProjectWithTasks(Project(
             name = name,
             tasks = tasks,
             prize = prize,
-            deadline = deadline
-        ),
-        tasks)
+            deadline = deadline,
+            color = color,
+            dateCreate = System.currentTimeMillis()
+        ), tasks)
 
         repository.addProject(project) {
             createdProjectId.postContent(it)
