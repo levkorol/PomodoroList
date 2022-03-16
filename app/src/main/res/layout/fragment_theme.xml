@@ -11,7 +11,6 @@
         android:id="@+id/top_ll"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
-
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/back"
             android:src="@drawable/ic_back_24"
@@ -24,5 +23,37 @@
             android:textColor="@color/black"
             android:layout_margin="16dp"/>
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/red"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Рубин"/>
+
+    <TextView
+        android:id="@+id/sky"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Небо"/>
+
+    <TextView
+        android:id="@+id/peach"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Персик"/>
+
+    <TextView
+        android:id="@+id/green"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Авокадо"/>
 
 </LinearLayout>

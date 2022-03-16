@@ -17,7 +17,8 @@ class Project(
     val position: Int = 0,
     val color: Int = 0,
     val dateCreate: Long,
-    val timeInFocus: Long = 0L
+    val timeInFocus: Long = 0L,
+    val isArchive : Boolean = false
 )
 
 class ProjectWithTasks(

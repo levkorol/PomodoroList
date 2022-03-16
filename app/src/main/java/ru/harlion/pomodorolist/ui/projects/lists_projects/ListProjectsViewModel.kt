@@ -1,4 +1,4 @@
-package ru.harlion.pomodorolist.ui.projects
+package ru.harlion.pomodorolist.ui.projects.lists_projects
 
 
 import androidx.lifecycle.ViewModel

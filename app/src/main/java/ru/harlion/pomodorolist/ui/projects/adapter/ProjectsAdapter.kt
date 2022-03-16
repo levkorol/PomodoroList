@@ -1,4 +1,4 @@
-package ru.harlion.pomodorolist.ui.projects
+package ru.harlion.pomodorolist.ui.projects.adapter
 
 import android.content.res.ColorStateList
 import android.os.Build
@@ -112,8 +112,6 @@ class ProjectsAdapter(
                 }
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    //  binding.color.compoundDrawables[0].setTint(colorId)
-                    // TintList = ColorStateList.valueOf(colorId)
                     if (project.color > 0) {
                         val color = ContextCompat.getColor(name.context, project.color)
                         val colorList = ColorStateList.valueOf(color)

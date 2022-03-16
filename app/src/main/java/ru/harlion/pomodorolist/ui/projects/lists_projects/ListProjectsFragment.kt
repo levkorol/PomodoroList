@@ -1,4 +1,4 @@
-package ru.harlion.pomodorolist.ui.projects
+package ru.harlion.pomodorolist.ui.projects.lists_projects
 
 
 import android.os.Bundle
@@ -6,9 +6,9 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.harlion.pomodorolist.base.BindingFragment
-import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.databinding.FragmentListProjectsBinding
 import ru.harlion.pomodorolist.models.Project
+import ru.harlion.pomodorolist.ui.projects.adapter.ProjectsAdapter
 import ru.harlion.pomodorolist.ui.projects.adding.AddProjectFragment
 import ru.harlion.pomodorolist.ui.projects.detail_project.DetailProjectFragment
 import ru.harlion.pomodorolist.utils.replaceFragment

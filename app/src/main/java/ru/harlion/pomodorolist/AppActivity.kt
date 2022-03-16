@@ -3,13 +3,11 @@ package ru.harlion.pomodorolist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.profile.ProfileFragment
 import ru.harlion.pomodorolist.ui.profile.on_boarding.OnBoardingFragment
-import ru.harlion.pomodorolist.ui.profile.statistic.StatisticFragment
-import ru.harlion.pomodorolist.ui.projects.ListProjectsFragment
+import ru.harlion.pomodorolist.ui.projects.lists_projects.ListProjectsFragment
 import ru.harlion.pomodorolist.ui.tasks.ListTasksFragment
 import ru.harlion.pomodorolist.utils.Prefs
 import ru.harlion.pomodorolist.utils.replaceFragment
@@ -19,17 +17,22 @@ class AppActivity : AppCompatActivity() {
     private lateinit var bottomNavView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val prefs = Prefs(this)
 
-        setTheme(R.style.RedTheme)
-       // recreate() pref
+        when (prefs.theme) {
+            "green" -> setTheme(R.style.GreenTheme)
+            "sky" -> setTheme(R.style.SkyTheme)
+            "peach" -> setTheme(R.style.PeachTheme)
+             else -> setTheme(R.style.RedTheme)
+        }
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         bottomNavView = findViewById(R.id.bottom_nav_view)
 
-        val prefs = Prefs(this)
-        if(!prefs.isShowOnBoarding) {
+
+        if (!prefs.isShowOnBoarding) {
             prefs.isShowOnBoarding = true
             replaceFragment(OnBoardingFragment(), true)
         } else {
@@ -66,10 +69,10 @@ class AppActivity : AppCompatActivity() {
     }
 
     fun setBottomNavigationVisible(isVisible: Boolean) {
-        if(isVisible) {
-            bottomNavView.visibility  = View.VISIBLE
+        if (isVisible) {
+            bottomNavView.visibility = View.VISIBLE
         } else {
-            bottomNavView.visibility  = View.GONE
+            bottomNavView.visibility = View.GONE
         }
     }
 }
