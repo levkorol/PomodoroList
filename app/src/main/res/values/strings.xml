@@ -49,5 +49,10 @@
     <string name="normal">Обычный</string>
     <string name="pro">Премимум</string>
     <string name="change_theme">Выберете оформление</string>
+    <string name="today_task_empty">Сегодня у вас нет задач</string>
+    <string name="archive_empty">Здесь пока пусто</string>
+    <string name="empty_project">У вас пока нет проектов.\nНачните работать в фокусе c Помодоро! =)</string>
+    <string name="active">Активные</string>
+    <string name="archive">Архив проектов</string>
 
 </resources>

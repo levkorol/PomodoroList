@@ -13,10 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-<!--        <androidx.appcompat.widget.AppCompatImageButton-->
-<!--            android:id="@+id/back"-->
-<!--            style="@style/ButtonToolBar"-->
-<!--            android:src="@drawable/ic_back_24" />-->
+
 
 <!--        <TextView-->
 <!--            android:layout_width="match_parent"-->
@@ -31,9 +28,10 @@
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:src="@drawable/ic_back_24"-->
-<!--            app:backgroundTint="@color/middle_d"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:src="@drawable/icadd_24"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            app:backgroundTint="?middle_d"-->
 <!--            app:fabSize="mini"-->
 <!--            app:tint="@android:color/white" />-->
     </RelativeLayout>
