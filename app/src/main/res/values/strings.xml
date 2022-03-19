@@ -54,5 +54,9 @@
     <string name="empty_project">У вас пока нет проектов.\nНачните работать в фокусе c Помодоро! =)</string>
     <string name="active">Активные</string>
     <string name="archive">Архив проектов</string>
+    <string name="cancel">Отмена</string>
+    <string name="delete_project">Удалить проект?</string>
+    <string name="yes">Да</string>
+
 
 </resources>

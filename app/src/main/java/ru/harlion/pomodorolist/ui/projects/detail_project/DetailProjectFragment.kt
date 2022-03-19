@@ -15,6 +15,7 @@ import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentDetailProjectBinding
 import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.ui.dialogs.AlertDialogBase
 import ru.harlion.pomodorolist.ui.dialogs.DialogCalendar
 import ru.harlion.pomodorolist.ui.dialogs.DialogPriorityTask
 import ru.harlion.pomodorolist.ui.projects.lists_projects.ListProjectsFragment
@@ -44,35 +45,7 @@ class DetailProjectFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-        binding.saveTask.setOnClickListener {
-            viewModel.addTask(
-                binding.nameTask.text.toString(),
-                priorityTask
-            )
-            binding.nameTask.setText("")
-        }
-
-        binding.dateTask.setOnClickListener {
-            DialogCalendar().show(parentFragmentManager, null)
-        }
-
-        binding.priority.setOnClickListener {
-            DialogPriorityTask().show(parentFragmentManager, null)
-        }
-
-        binding.deleteProject.setOnClickListener {
-            AlertDialog.Builder(requireContext()).apply {
-                setTitle("Удалить проект?")
-                setPositiveButton("Да") { _, _ ->
-                    viewModel.deleteProject()
-                    replaceFragment(ListProjectsFragment(), false)
-                }
-                setNegativeButton("Нет") { _, _ ->
-                }
-            }.show()
-        }
+        initClicks()
 
         viewModel.tasks.observe(viewLifecycleOwner, {
             tasksRecyclerView(it.sortedBy { task ->
@@ -99,6 +72,50 @@ class DetailProjectFragment :
         })
 
         viewModel.getProjectById(projectId)
+    }
+
+    private fun initClicks() {
+        binding.saveTask.setOnClickListener {
+            viewModel.addTask(
+                binding.nameTask.text.toString(),
+                priorityTask
+            )
+            binding.nameTask.setText("")
+        }
+
+        binding.dateTask.setOnClickListener {
+            DialogCalendar().show(parentFragmentManager, null)
+        }
+
+        binding.priority.setOnClickListener {
+            DialogPriorityTask().show(parentFragmentManager, null)
+        }
+
+        binding.deleteProject.setOnClickListener {
+            AlertDialogBase(requireContext()).apply {
+                setTitle(getString(R.string.delete_project))
+                setPositiveButton(getString(R.string.yes)) {
+                    viewModel.deleteProject()
+                    replaceFragment(ListProjectsFragment(), false) }
+                setNegativeButton(getString(R.string.no)) {}
+                show()
+            }
+        }
+
+        binding.nameProject.setOnClickListener {
+            AlertDialogBase(requireContext()).apply {
+                val text = setEditText("2", "")
+                setPositiveButton(getString(R.string.yes)) {
+                    viewModel.updateProject(text)
+                    replaceFragment(ListProjectsFragment(), false) }
+                setNegativeButton(getString(R.string.no)) {}
+                show()
+            }
+        }
+
+        binding.archiveProject.setOnClickListener {
+
+        }
     }
 
     private fun tasksRecyclerView(tasks: List<Task>) {

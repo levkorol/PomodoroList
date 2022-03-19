@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentListProjectsBinding
 import ru.harlion.pomodorolist.models.Project
@@ -61,5 +62,10 @@ class ListProjectsFragment :
         binding.addBtn.setOnClickListener {
             replaceFragment(AddProjectFragment(), true)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppActivity).updateNavigation(this)
     }
 }

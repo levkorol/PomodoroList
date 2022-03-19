@@ -48,4 +48,9 @@ class ListTasksFragment : BindingFragment<FragmentListTasksBinding>(FragmentList
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppActivity).updateNavigation(this)
+    }
 }

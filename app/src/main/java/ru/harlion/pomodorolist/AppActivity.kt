@@ -3,6 +3,7 @@ package ru.harlion.pomodorolist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.profile.ProfileFragment
@@ -34,9 +35,9 @@ class AppActivity : AppCompatActivity() {
 
         if (!prefs.isShowOnBoarding) {
             prefs.isShowOnBoarding = true
-            replaceFragment(OnBoardingFragment(), true)
+            replaceFragment(OnBoardingFragment(), false)
         } else {
-            replaceFragment(TimerFragment(), true)
+            replaceFragment(TimerFragment(), false)
         }
 
 
@@ -73,6 +74,19 @@ class AppActivity : AppCompatActivity() {
             bottomNavView.visibility = View.VISIBLE
         } else {
             bottomNavView.visibility = View.GONE
+        }
+    }
+
+    fun updateNavigation(fragment: Fragment) {
+        when (fragment) {
+            is TimerFragment -> bottomNavView.menu.findItem(R.id.item_main_page).isChecked =
+                true
+            is ListTasksFragment -> bottomNavView.menu.findItem(R.id.item_tasks_page).isChecked =
+                true
+            is ListProjectsFragment -> bottomNavView.menu.findItem(R.id.item_projects_page).isChecked =
+                true
+            is ProfileFragment -> bottomNavView.menu.findItem(R.id.item_profile_page).isChecked =
+                true
         }
     }
 }

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="?light"
     tools:background="@color/light"
-    tools:context=".ui.projects.lists_projects.archive.ArchiveProjectFragment">
+    tools:context=".ui.profile.archive.ArchiveProjectFragment">
 
 
     <RelativeLayout

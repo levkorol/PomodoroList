@@ -8,6 +8,7 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import android.view.View
+import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentTimerBinding
 import ru.harlion.pomodorolist.ui.profile.settings.SettingsTimerFragment
@@ -101,4 +102,9 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {}
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppActivity).updateNavigation(this)
+    }
 }
