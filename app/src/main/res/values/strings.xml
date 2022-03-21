@@ -61,6 +61,9 @@
     <string name="sky">Небо</string>
     <string name="peach">Персик</string>
     <string name="avocado">Авокадо</string>
+    <string name="add_archive">Убрать проект в архив?</string>
+    <string name="delete_archive">Убрать с архива?</string>
+    <string name="statistic">Статистика</string>
 
 
 </resources>

@@ -28,7 +28,9 @@ class ListProjectsFragment :
 
         viewModel.projects.observe(
             viewLifecycleOwner, { projects ->
-                projectsRecyclerView(projects)
+                projectsRecyclerView(projects.filter {
+                    !it.isArchive
+                })
             })
     }
 

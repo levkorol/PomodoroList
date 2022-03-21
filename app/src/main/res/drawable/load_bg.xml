@@ -5,6 +5,5 @@
     </item>
     <item
         android:drawable="@drawable/image_fast_working_flatline"
-        android:gravity="center"
-        />
+        android:gravity="center"/>
 </layer-list>

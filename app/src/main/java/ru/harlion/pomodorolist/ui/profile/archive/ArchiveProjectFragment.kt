@@ -18,7 +18,7 @@ class ArchiveProjectFragment :
     BindingFragment<FragmentArchiveProjectBinding>(FragmentArchiveProjectBinding::inflate) {
 
     private lateinit var adapterProject: ProjectsAdapter
-    private val viewModel : ArchiveProjectViewModel by viewModels()
+    private val viewModel: ArchiveProjectViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,14 +27,16 @@ class ArchiveProjectFragment :
 
         viewModel.projects.observe(
             viewLifecycleOwner, { projects ->
-                projectsRecyclerView(projects)
+                projectsRecyclerView(projects.filter {
+                    it.isArchive
+                })
             })
     }
 
     private fun projectsRecyclerView(projects: List<Project>) {
         val llm = LinearLayoutManager(requireContext())
         llm.orientation = LinearLayoutManager.VERTICAL
-        adapterProject =  ProjectsAdapter(
+        adapterProject = ProjectsAdapter(
             { replaceFragment(DetailProjectFragment.newInstance(it), true) },
             viewModel::getListTasks,
             viewModel::updateTask
@@ -57,7 +59,9 @@ class ArchiveProjectFragment :
     }
 
     private fun initClicks() {
-
+        binding.back.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     override fun onStart() {

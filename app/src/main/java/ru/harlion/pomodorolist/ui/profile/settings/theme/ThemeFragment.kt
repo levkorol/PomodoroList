@@ -37,6 +37,10 @@ class ThemeFragment : BindingFragment<FragmentThemeBinding>(FragmentThemeBinding
             prefs.theme = "green"
             (activity as AppActivity).recreate()
         }
+
+        binding.back.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     override fun onStart() {

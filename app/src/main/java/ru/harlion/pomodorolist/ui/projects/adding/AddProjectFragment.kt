@@ -85,6 +85,10 @@ class AddProjectFragment :
         viewModel.tasks.observe(viewLifecycleOwner, {
             tasksRecyclerView(it)
         })
+
+        binding.back.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     private fun tasksRecyclerView(tasks: List<Task>) {

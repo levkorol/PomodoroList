@@ -77,7 +77,28 @@
         android:textSize="46sp"
         android:textStyle="bold"
         tools:text="25:00" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/doing"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:padding="10dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_below="@+id/timer_count"-->
+<!--            android:textStyle="bold"-->
+<!--            tools:text="25:00" />-->
     </RelativeLayout>
+    <TextView
+        android:id="@+id/doing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:layout_marginTop="-16dp"
+        android:textStyle="bold"
+        tools:text="25:00" />
 
     <TextView
         android:id="@+id/start_btn"

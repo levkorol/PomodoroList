@@ -18,6 +18,10 @@ class RingtonesFragment : BindingFragment<FragmentRingtonsBinding>(FragmentRingt
         super.onViewCreated(view, savedInstanceState)
 
         initRecyclerSound()
+
+        binding.back.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     private fun initRecyclerSound() {

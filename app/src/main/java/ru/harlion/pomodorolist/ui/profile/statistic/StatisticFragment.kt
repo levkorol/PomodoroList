@@ -7,14 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.R
+import ru.harlion.pomodorolist.base.BindingFragment
+import ru.harlion.pomodorolist.databinding.FragmentStatisticBinding
 
 
-class StatisticFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_statistic, container, false)
+class StatisticFragment : BindingFragment<FragmentStatisticBinding>(FragmentStatisticBinding::inflate) {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.back.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     override fun onStart() {
@@ -26,4 +30,6 @@ class StatisticFragment : Fragment() {
         super.onStop()
         (activity as AppActivity).setBottomNavigationVisible(true)
     }
+
+
 }

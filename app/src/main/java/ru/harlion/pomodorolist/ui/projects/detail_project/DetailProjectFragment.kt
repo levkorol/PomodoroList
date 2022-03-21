@@ -4,7 +4,6 @@ import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.setFragmentResultListener
@@ -18,6 +17,7 @@ import ru.harlion.pomodorolist.models.Task
 import ru.harlion.pomodorolist.ui.dialogs.AlertDialogBase
 import ru.harlion.pomodorolist.ui.dialogs.DialogCalendar
 import ru.harlion.pomodorolist.ui.dialogs.DialogPriorityTask
+import ru.harlion.pomodorolist.ui.profile.archive.ArchiveProjectFragment
 import ru.harlion.pomodorolist.ui.projects.lists_projects.ListProjectsFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
 import ru.harlion.pomodorolist.utils.replaceFragment
@@ -30,6 +30,7 @@ class DetailProjectFragment :
     private val viewModel: DetailProjectViewModel by viewModels()
     private var projectId = 0L
     private var priorityTask: String = ""
+    private var isArchive = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +55,9 @@ class DetailProjectFragment :
         })
 
         viewModel.project.observe(viewLifecycleOwner, {
+            if(it.isArchive) {
+                isArchive = true
+            }
             binding.nameProject.text = it.name
             if (it.prize.isNotBlank()) {
                 binding.prizeToComplete.text = it.prize
@@ -96,7 +100,8 @@ class DetailProjectFragment :
                 setTitle(getString(R.string.delete_project))
                 setPositiveButton(getString(R.string.yes)) {
                     viewModel.deleteProject()
-                    replaceFragment(ListProjectsFragment(), false) }
+                    replaceFragment(ListProjectsFragment(), false)
+                }
                 setNegativeButton(getString(R.string.no)) {}
                 show()
             }
@@ -106,15 +111,42 @@ class DetailProjectFragment :
             AlertDialogBase(requireContext()).apply {
                 val text = setEditText("2", "")
                 setPositiveButton(getString(R.string.yes)) {
-                    viewModel.updateProject(text)
-                    replaceFragment(ListProjectsFragment(), false) }
+                    viewModel.updateProjectName(text)
+                    replaceFragment(ListProjectsFragment(), false)
+                }
                 setNegativeButton(getString(R.string.no)) {}
                 show()
             }
         }
 
+        binding.back.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
         binding.archiveProject.setOnClickListener {
-//            viewModel.updateProject()
+            if(!isArchive) {
+                setArchive(getString(R.string.add_archive), setArchive = true, isArchive = false)
+            } else {
+                setArchive(getString(R.string.delete_archive), setArchive = false, isArchive = true)
+            }
+        }
+    }
+
+    private fun setArchive(title : String, setArchive: Boolean, isArchive : Boolean) {
+        AlertDialogBase(requireContext()).apply {
+            setTitle(title)
+            setPositiveButton(getString(R.string.yes)) {
+                viewModel.updateArchive(setArchive)
+                if(!isArchive) {
+                    parentFragmentManager.popBackStack() //todo stack
+                    replaceFragment(ListProjectsFragment(), true)
+                } else {
+                    parentFragmentManager.popBackStack()
+                    replaceFragment(ArchiveProjectFragment(), true)
+                }
+            }
+            setNegativeButton(getString(R.string.no)) {}
+            show()
         }
     }
 

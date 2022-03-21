@@ -54,11 +54,13 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
         binding.startBtn.setOnClickListener {
            timerService?.startTimer(timeFocus, prefTimeBreak * 60000) //todo
+           binding.doing.text = "Сейчас работаю"
         }
 
         binding.stopBtn.setOnClickListener {
             timerService?.stopTimer()
-            binding.timerCount.text = "stop"
+            binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
+            binding.progressBar.progress = 0F
         }
     }
 
@@ -88,6 +90,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
                 binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
                 //todo сделать отображение минут больше 60ти
                 //todo btn
+
             }
             if (this.timerState == TimerState.WAIT_BREAK) {
                 binding.timerCount.text = formatTimeMins(prefTimeBreak * 60000, resources)
@@ -102,6 +105,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
             onFinish = {
                 binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
                 //todo btn
+                binding.doing.text = "Сейчас перерыв"
             }
         }
     }

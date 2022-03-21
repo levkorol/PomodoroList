@@ -25,10 +25,15 @@ class DetailProjectViewModel : ViewModel() {
         repository.updateTask(task)
     }
 
-    fun updateProject(
+    fun updateProjectName(
         name: String
     ) {
         project.value?.name = name
+        repository.updateProject(project.value!!)
+    }
+
+    fun updateArchive(isArchive : Boolean) {
+        project.value?.isArchive = isArchive
         repository.updateProject(project.value!!)
     }
 
@@ -49,7 +54,7 @@ class DetailProjectViewModel : ViewModel() {
     }
 
     fun deleteProject() {
-        repository.deleteProject(project.value!!)
+         repository.deleteProject(project.value!!)
     }
 
 }

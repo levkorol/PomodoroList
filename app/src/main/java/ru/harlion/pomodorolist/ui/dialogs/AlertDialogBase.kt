@@ -41,7 +41,7 @@ class AlertDialogBase(context: Context)  {
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT
                     )
-              //  setPadding(inset, 0, inset, 0)
+              setPadding(inset, 0, inset, 0)
             }
         }
     }
