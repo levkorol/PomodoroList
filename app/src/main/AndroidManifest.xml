@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.harlion.pomodorolist">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
     <application
         android:name=".AppApplication"
         android:allowBackup="true"

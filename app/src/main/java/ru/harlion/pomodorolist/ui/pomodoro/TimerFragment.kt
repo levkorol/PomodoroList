@@ -53,7 +53,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         val timeFocus = prefTimeFocus * 60000
 
         binding.startBtn.setOnClickListener {
-           timerService?.startTimer(timeFocus)
+           timerService?.startTimer(timeFocus, prefTimeBreak * 60000) //todo
         }
 
         binding.stopBtn.setOnClickListener {
@@ -84,9 +84,13 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
         timerService = (service as TimerService.TimerBinder).service.apply {
-            if (!isFocusTime) {
+            if (this.timerState == TimerState.WAIT_FOCUS) {
                 binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
                 //todo сделать отображение минут больше 60ти
+                //todo btn
+            }
+            if (this.timerState == TimerState.WAIT_BREAK) {
+                binding.timerCount.text = formatTimeMins(prefTimeBreak * 60000, resources)
             }
             onTick = { millisUntilFinished, timeFocus ->
                 binding.timerCount.text = formatTimeMins(millisUntilFinished, resources)
@@ -96,7 +100,8 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
                     timeFocus - min(millisUntilFinished, timeFocus).toFloat()
             }
             onFinish = {
-                binding.timerCount.text = "done!"
+                binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
+                //todo btn
             }
         }
     }

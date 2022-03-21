@@ -28,4 +28,9 @@
         <color name="middle_l">#C8AAAF</color>
         <color name="light">#EFE2E4</color>
 
+    <color name="middle_rubin">#fe2c55</color>
+    <color name="middle_avocado">#1F6826</color>
+    <color name="middle_sky">#31719A</color>
+    <color name="middle_peach">#C69624</color>
+
 </resources>

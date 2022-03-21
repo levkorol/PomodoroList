@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="?light"
     android:orientation="vertical"
+    tools:background="@color/light"
     tools:context=".ui.profile.settings.theme.ThemeFragment">
 
     <RelativeLayout
@@ -30,30 +31,50 @@
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Рубин"/>
+        android:drawableStart="@drawable/ic_circle"
+        android:drawablePadding="6dp"
+        android:background="@drawable/inline_bg_btn"
+        android:padding="10dp"
+        android:drawableTint="@color/middle_rubin"
+        android:text="@string/rubin"/>
 
     <TextView
         android:id="@+id/sky"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="26dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Небо"/>
+        android:drawableStart="@drawable/ic_circle"
+        android:background="@drawable/inline_bg_btn"
+        android:padding="10dp"
+        android:drawableTint="@color/middle_sky"
+        android:drawablePadding="6dp"
+        android:text="@string/sky"/>
 
     <TextView
         android:id="@+id/peach"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="26dp"
         android:layout_width="match_parent"
+        android:drawableStart="@drawable/ic_circle"
+        android:drawablePadding="6dp"
+        android:background="@drawable/inline_bg_btn"
+        android:padding="10dp"
+        android:drawableTint="@color/middle_peach"
         android:layout_height="wrap_content"
-        android:text="Персик"/>
+        android:text="@string/peach"/>
 
     <TextView
         android:id="@+id/green"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="26dp"
+        android:drawableStart="@drawable/ic_circle"
+        android:drawablePadding="6dp"
+        android:background="@drawable/inline_bg_btn"
+        android:padding="10dp"
+        android:drawableTint="@color/middle_avocado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Авокадо"/>
+        android:text="@string/avocado"/>
 
 </LinearLayout>

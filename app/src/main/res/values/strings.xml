@@ -57,6 +57,10 @@
     <string name="cancel">Отмена</string>
     <string name="delete_project">Удалить проект?</string>
     <string name="yes">Да</string>
+    <string name="rubin">Рубин</string>
+    <string name="sky">Небо</string>
+    <string name="peach">Персик</string>
+    <string name="avocado">Авокадо</string>
 
 
 </resources>

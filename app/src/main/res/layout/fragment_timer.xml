@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="?light"
+    tools:background="@color/light"
     tools:context=".ui.pomodoro.TimerFragment">
 
 
@@ -64,8 +65,7 @@
         app:indeterminateMinimumAngle="45"
         app:indeterminateRotationAnimationDuration="1200"
         app:indeterminateSweepAnimationDuration="600"
-        app:progressAnimationDuration="100"
-       />
+        app:progressAnimationDuration="100" />
 
     <TextView
         android:id="@+id/timer_count"

@@ -114,7 +114,7 @@ class DetailProjectFragment :
         }
 
         binding.archiveProject.setOnClickListener {
-
+//            viewModel.updateProject()
         }
     }
 
