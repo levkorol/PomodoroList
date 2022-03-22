@@ -37,4 +37,14 @@ class Prefs(val context: Context) {
         set(value) = sharedPrefs.edit().putString("THEME", value)
             .apply()
 
+    var isAutoFocusTimer : Boolean
+        get() = sharedPrefs.getBoolean("AUTO_FOCUS", false)
+        set(value) = sharedPrefs.edit().putBoolean("AUTO_FOCUS", value)
+            .apply()
+
+    var isAutoBreakTimer : Boolean
+        get() = sharedPrefs.getBoolean("AUTO_Break", false)
+        set(value) = sharedPrefs.edit().putBoolean("AUTO_Break", value)
+            .apply()
+
 }

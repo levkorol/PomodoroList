@@ -109,12 +109,14 @@
         android:text="@string/notify" />
 
     <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swich_break_auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:text="Автоматический старт перерыва" />
 
     <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swich_focus_auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"

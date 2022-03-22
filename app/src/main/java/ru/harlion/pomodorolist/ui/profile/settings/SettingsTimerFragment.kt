@@ -81,6 +81,28 @@ class SettingsTimerFragment : BindingFragment<FragmentSettingsTimerBinding>(Frag
             parentFragmentManager.popBackStack()
         }
 
+        binding.swichBreakAuto.isChecked = prefs.isAutoBreakTimer
+        binding.swichBreakAuto.setOnClickListener {
+            if ( !prefs.isAutoBreakTimer) {
+                binding.swichBreakAuto.isChecked = true
+                prefs.isAutoBreakTimer = true
+            } else {
+                binding.swichBreakAuto.isChecked = false
+                prefs.isAutoBreakTimer = false
+            }
+        }
+
+        binding.swichFocusAuto.isChecked = prefs.isAutoFocusTimer
+        binding.swichFocusAuto.setOnClickListener {
+            if ( !prefs.isAutoFocusTimer) {
+                binding.swichFocusAuto.isChecked = true
+                prefs.isAutoFocusTimer = true
+            } else {
+                binding.swichFocusAuto.isChecked = false
+                prefs.isAutoFocusTimer = false
+            }
+        }
+
         progressSeekBarFocusTime =
             if(prefs.focusTimerActiveSettings < 0) timeFocus!!.toInt() else prefs.focusTimerActiveSettings.toInt()
         setProgressBarTimeFocus(progressSeekBarFocusTime)
