@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?light"
+    tools:background="@color/light"
     android:orientation="vertical"
     tools:context=".ui.profile.statistic.StatisticFragment">
 
@@ -26,19 +27,14 @@
             android:layout_margin="16dp"/>
 
     </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:background="@drawable/bg_white"
-        android:orientation="vertical"
-        android:padding="16dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_white"
+            android:layout_marginHorizontal="16dp"
+            android:padding="16dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -66,7 +62,42 @@
 
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/in_focus"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/count_in_focus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/roboto_slab_black"
+            android:gravity="center"
+            android:text="13:00"
+            android:textColor="?middle_l"
+            android:textSize="16sp" />
+
 
     </LinearLayout>
+
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart_focus"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
 
 </LinearLayout>

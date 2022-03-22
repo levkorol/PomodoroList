@@ -8,6 +8,7 @@ import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentProfileBinding
 import ru.harlion.pomodorolist.ui.profile.settings.theme.ThemeFragment
 import ru.harlion.pomodorolist.ui.profile.archive.ArchiveProjectFragment
+import ru.harlion.pomodorolist.ui.profile.premium.PremiumFragment
 import ru.harlion.pomodorolist.utils.replaceFragment
 
 
@@ -22,6 +23,10 @@ class ProfileFragment : BindingFragment<FragmentProfileBinding>(FragmentProfileB
 
         binding.archive.setOnClickListener {
             replaceFragment(ArchiveProjectFragment(), true)
+        }
+
+        binding.premium.setOnClickListener {
+            replaceFragment(PremiumFragment(), true)
         }
     }
 
