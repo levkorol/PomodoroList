@@ -8,7 +8,9 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import android.view.View
+import androidx.core.content.ContextCompat
 import ru.harlion.pomodorolist.AppActivity
+import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentTimerBinding
 import ru.harlion.pomodorolist.ui.profile.settings.SettingsTimerFragment
@@ -52,15 +54,29 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
         val timeFocus = prefTimeFocus * 60000
 
-        binding.startBtn.setOnClickListener {
-           timerService?.startTimer(timeFocus, prefTimeBreak * 60000) //todo
-           binding.doing.text = "Сейчас работаю"
+        binding.startFocusBtn.setOnClickListener {
+            timerService?.startTimer(
+                timeFocus,
+                if (prefs.isAutoBreakTimer) prefTimeBreak * 60000 else -1
+            )
+            visibleButton(TimerState.FOCUS)
         }
 
-        binding.stopBtn.setOnClickListener {
+        binding.pauseBtn.setOnClickListener {
+            visibleButton(TimerState.PAUSE_FOCUS)
+            timerService?.pause()
+        }
+
+        binding.resumeFocusBtn.setOnClickListener {
+            visibleButton(TimerState.FOCUS)
+            timerService?.resume(prefs)
+        }
+
+        binding.stopFocusBtn.setOnClickListener {
             timerService?.stopTimer()
             binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
             binding.progressBar.progress = 0F
+            visibleButton(TimerState.WAIT_FOCUS)
         }
     }
 
@@ -89,11 +105,11 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
             if (this.timerState == TimerState.WAIT_FOCUS) {
                 binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
                 //todo сделать отображение минут больше 60ти
-                //todo btn
-
+                visibleButton(TimerState.WAIT_FOCUS)
             }
             if (this.timerState == TimerState.WAIT_BREAK) {
                 binding.timerCount.text = formatTimeMins(prefTimeBreak * 60000, resources)
+                visibleButton(TimerState.WAIT_BREAK)
             }
             onTick = { millisUntilFinished, timeFocus ->
                 binding.timerCount.text = formatTimeMins(millisUntilFinished, resources)
@@ -104,8 +120,48 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
             }
             onFinish = {
                 binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
-                //todo btn
-                binding.doing.text = "Сейчас перерыв"
+                //todo btn all without break prefs
+                visibleButton(TimerState.WAIT_BREAK)
+            }
+        }
+    }
+
+    private fun visibleButton(timerState : TimerState) {
+        when(timerState) {
+            TimerState.WAIT_FOCUS -> {
+                binding.startFocusBtn.visibility = View.VISIBLE
+                binding.pauseBtn.visibility = View.GONE
+                binding.pauseLinear.visibility = View.GONE
+                binding.startBreakBtn.visibility = View.GONE
+                binding.skipBreakBtn.visibility = View.GONE
+            }
+            TimerState.FOCUS -> {
+                binding.startFocusBtn.visibility = View.GONE
+                binding.pauseBtn.visibility = View.VISIBLE
+                binding.pauseLinear.visibility = View.GONE
+                binding.startBreakBtn.visibility = View.GONE
+                binding.skipBreakBtn.visibility = View.GONE
+            }
+            TimerState.PAUSE_FOCUS -> {
+                binding.startFocusBtn.visibility = View.GONE
+                binding.pauseBtn.visibility = View.GONE
+                binding.pauseLinear.visibility = View.VISIBLE
+                binding.startBreakBtn.visibility = View.GONE
+                binding.skipBreakBtn.visibility = View.GONE
+            }
+            TimerState.WAIT_BREAK -> {
+                binding.startFocusBtn.visibility = View.GONE
+                binding.pauseBtn.visibility = View.GONE
+                binding.pauseLinear.visibility = View.GONE
+                binding.startBreakBtn.visibility = View.VISIBLE
+                binding.skipBreakBtn.visibility = View.GONE
+            }
+            TimerState.BREAK -> {
+                binding.startFocusBtn.visibility = View.GONE
+                binding.pauseBtn.visibility = View.GONE
+                binding.pauseLinear.visibility = View.GONE
+                binding.startBreakBtn.visibility = View.GONE
+                binding.skipBreakBtn.visibility = View.VISIBLE
             }
         }
     }

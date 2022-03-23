@@ -15,13 +15,14 @@ import ru.harlion.pomodorolist.R
 enum class TimerState {
     WAIT_FOCUS,
     FOCUS,
+    PAUSE_FOCUS,
     WAIT_BREAK,
     BREAK
 }
 
 class TimerService : Service() {
 
-    private var timer: CountDownTimer? = null
+    private var timer: PausableCountDownTimer? = null
     private var player: Player? = null
     var timerState = TimerState.WAIT_FOCUS
         private set
@@ -72,7 +73,7 @@ class TimerService : Service() {
         val prefs = Prefs(this)
         player = Player(this)
 
-        if(timeFocus > 0) {
+        if (timeFocus > 0) {
             createAndStartTimer(timeFocus, TimerState.FOCUS, TimerState.WAIT_BREAK, prefs) {
                 if (timeBreak > 0) {
                     createAndStartTimer(timeFocus, TimerState.BREAK, TimerState.WAIT_FOCUS, prefs)
@@ -90,7 +91,7 @@ class TimerService : Service() {
         prefs: Prefs,
         andThen: (() -> Unit)? = null
     ) {
-        timer = object : CountDownTimer(time, 1000) {
+        timer = object : PausableCountDownTimer(time, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 timerState = tickState
@@ -115,5 +116,17 @@ class TimerService : Service() {
         player?.stopSound()
         player = null
         timerState = TimerState.WAIT_FOCUS
+    }
+
+    fun pause() {
+        timer?.isPaused = true
+        player?.stopSound()
+    }
+
+    fun resume(prefs: Prefs) {
+        timer?.isPaused = false
+        if (prefs.isSound) {
+            player?.playSound()
+        }
     }
 }

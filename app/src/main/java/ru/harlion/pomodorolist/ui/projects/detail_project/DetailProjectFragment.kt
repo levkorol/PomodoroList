@@ -4,6 +4,8 @@ import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.setFragmentResultListener
@@ -20,6 +22,8 @@ import ru.harlion.pomodorolist.ui.dialogs.DialogPriorityTask
 import ru.harlion.pomodorolist.ui.profile.archive.ArchiveProjectFragment
 import ru.harlion.pomodorolist.ui.projects.lists_projects.ListProjectsFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
+import ru.harlion.pomodorolist.utils.dateToString
+import ru.harlion.pomodorolist.utils.hideKeyboardExt
 import ru.harlion.pomodorolist.utils.replaceFragment
 
 
@@ -31,6 +35,7 @@ class DetailProjectFragment :
     private var projectId = 0L
     private var priorityTask: String = ""
     private var isArchive = false
+    private var date = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,10 +46,19 @@ class DetailProjectFragment :
             priorityTask = bundle.getString("priority_task") ?: ""
             setLabelPriorityTask()
         }
+
+        setFragmentResultListener("calendarDate") { _, bundle ->
+            date = bundle.getLong("epochMillis")
+            binding.dateTask.text = dateToString(date)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.setOnClickListener {
+            view.hideKeyboardExt()
+        }
 
         initClicks()
 
@@ -82,9 +96,12 @@ class DetailProjectFragment :
         binding.saveTask.setOnClickListener {
             viewModel.addTask(
                 binding.nameTask.text.toString(),
-                priorityTask
+                priorityTask,
+                date
             )
             binding.nameTask.setText("")
+            it.hideKeyboardExt()
+            binding.nameTask.isCursorVisible = false
         }
 
         binding.dateTask.setOnClickListener {

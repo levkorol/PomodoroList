@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="?light"
+    android:orientation="vertical"
     tools:background="@color/light"
     tools:context=".ui.pomodoro.TimerFragment">
-
 
 
     <RelativeLayout
@@ -17,173 +16,240 @@
         android:layout_height="?attr/actionBarSize"
         app:layout_collapseMode="pin">
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:fabSize="mini"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginEnd="8dp"-->
-<!--            app:backgroundTint="@color/middle_d"-->
-<!--            app:tint="@android:color/white"-->
-<!--            android:src="@drawable/icadd_24"-->
-<!--            android:layout_alignParentEnd="true"/>-->
+        <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:fabSize="mini"-->
+        <!--            android:layout_marginTop="8dp"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            app:backgroundTint="@color/middle_d"-->
+        <!--            app:tint="@android:color/white"-->
+        <!--            android:src="@drawable/icadd_24"-->
+        <!--            android:layout_alignParentEnd="true"/>-->
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_statistic"
-            android:src="@drawable/ic_pie_chart_24"
+            style="@style/ButtonToolBar"
             android:layout_alignParentEnd="true"
-            style="@style/ButtonToolBar" />
+            android:src="@drawable/ic_pie_chart_24" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/settings_timer"
-            android:src="@drawable/ic_baseline_settings_24"
-            style="@style/ButtonToolBar" />
+            style="@style/ButtonToolBar"
+            android:src="@drawable/ic_baseline_settings_24" />
     </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_weight="1"
         android:layout_height="wrap_content">
 
-    <com.budiyev.android.circularprogressbar.CircularProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="26dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:padding="8dp"
-        app:animateProgress="true"
-        app:backgroundStrokeColor="?middle_l"
-        app:backgroundStrokeWidth="4dp"
-        app:startAngle="270"
-        app:drawBackgroundStroke="true"
-        app:foregroundStrokeCap="round"
-        app:foregroundStrokeColor="?middle_d"
-        app:foregroundStrokeWidth="24dp"
-        app:indeterminate="false"
-        app:indeterminateMinimumAngle="45"
-        app:indeterminateRotationAnimationDuration="1200"
-        app:indeterminateSweepAnimationDuration="600"
-        app:progressAnimationDuration="100" />
+        <com.budiyev.android.circularprogressbar.CircularProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="26dp"
+            android:padding="8dp"
+            app:animateProgress="true"
+            app:backgroundStrokeColor="?middle_l"
+            app:backgroundStrokeWidth="4dp"
+            app:drawBackgroundStroke="true"
+            app:foregroundStrokeCap="round"
+            app:foregroundStrokeColor="?middle_d"
+            app:foregroundStrokeWidth="24dp"
+            app:indeterminate="false"
+            app:indeterminateMinimumAngle="45"
+            app:indeterminateRotationAnimationDuration="1200"
+            app:indeterminateSweepAnimationDuration="600"
+            app:progressAnimationDuration="100"
+            app:startAngle="270" />
 
-    <TextView
-        android:id="@+id/timer_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="10dp"
-        android:layout_centerInParent="true"
-        android:textSize="46sp"
-        android:textStyle="bold"
-        tools:text="25:00" />
+        <TextView
+            android:id="@+id/timer_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:textSize="46sp"
+            android:textStyle="bold"
+            tools:text="25:00" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/doing"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:padding="10dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:layout_below="@+id/timer_count"-->
-<!--            android:textStyle="bold"-->
-<!--            tools:text="25:00" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/doing"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:padding="10dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:layout_centerHorizontal="true"-->
+        <!--            android:layout_below="@+id/timer_count"-->
+        <!--            android:textStyle="bold"-->
+        <!--            tools:text="25:00" />-->
     </RelativeLayout>
-    <TextView
-        android:id="@+id/doing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="10dp"
-        android:layout_marginTop="-16dp"
-        android:textStyle="bold"
-        tools:text="25:00" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/doing"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:padding="10dp"-->
+    <!--        android:layout_marginTop="-16dp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        tools:text="25:00" />-->
+
 
     <TextView
-        android:id="@+id/start_btn"
+        android:id="@+id/start_focus_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:paddingHorizontal="16dp"
-        android:paddingStart="8dp"
-        android:textColor="@color/white"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:gravity="center"
+        android:background="@drawable/btn_bg"
         android:drawableStart="@drawable/ic_play"
         android:drawablePadding="4dp"
-        android:background="@drawable/btn_bg"
-        android:text="@string/begin_focus"/>
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="@string/begin_focus"
+        android:textColor="@color/white" />
 
     <TextView
-        android:id="@+id/stop_btn"
+        android:id="@+id/pause_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_gravity="center"
-        android:text="Остановить таймер"/>
+        android:background="@drawable/inline_bg_btn"
+        android:drawablePadding="4dp"
+        android:visibility="gone"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="@string/pause" />
 
-<View
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    />
+    <LinearLayout
+        android:id="@+id/pause_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/resume_focus_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/btn_bg"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="Продолжить"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/stop_focus_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/inline_bg_btn"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="Остановить" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/start_break_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_bg_green"
+        android:drawableStart="@drawable/ic_play"
+        android:drawablePadding="4dp"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingStart="8dp"
+        android:paddingTop="6dp"
+        android:visibility="gone"
+        android:paddingBottom="6dp"
+        android:text="@string/begin_break"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/skip_break_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="8dp"
+        android:background="@drawable/inline_bg_btn"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="8dp"
+        android:visibility="gone"
+        android:paddingBottom="8dp"
+        android:text="Пропустить перерыв" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="36dp"
         android:layout_marginTop="26dp"
         android:gravity="center"
-        android:text="@string/work_on_task"/>
+        android:text="@string/work_on_task" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        app:cardCornerRadius="10dp"
         android:layout_marginTop="8dp"
-        app:cardElevation="4dp"
         android:layout_marginBottom="36dp"
-        >
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp"
-            >
+            android:padding="8dp">
 
             <CheckedTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:checkMark="@null"
                 android:layout_weight="1"
-                android:textColor="@color/black"
-                android:gravity="center_vertical"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:checkMark="@null"
                 android:drawableStart="?android:attr/listChoiceIndicatorSingle"
                 android:drawableEnd="@null"
                 android:drawablePadding="8dp"
+                android:gravity="center_vertical"
                 android:padding="8dp"
                 android:text="Дочитать книгу"
-             />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_pause_24"/>
+                android:src="@drawable/ic_pause_24" />
 
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="-8dp"-->
-<!--                android:layout_marginEnd="8dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:text="Сделать что - gndgndgndgndgndgndggndgndgndgndgndgngndgndgndgndgndgndgnAAAAAA"/>-->
+            <!--            <TextView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="-8dp"-->
+            <!--                android:layout_marginEnd="8dp"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:text="Сделать что - gndgndgndgndgndgndggndgndgndgndgndgngndgndgndgndgndgndgnAAAAAA"/>-->
 
         </LinearLayout>
 

@@ -57,7 +57,7 @@ class AlertDialogBase(context: Context)  {
     fun setEditText(hintText: String, editText: String): String {
        alertDialog.findViewById<EditText>(R.id.editText).apply {
            hint = hintText
-           text = editText as Editable //todo
+         //  text = editText as Editable //todo
            visibility = View.VISIBLE
        }
         return editText

@@ -4,11 +4,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.harlion.pomodorolist.base.BindingHolder
 import ru.harlion.pomodorolist.databinding.ItemSoundBinding
+import ru.harlion.pomodorolist.utils.Prefs
 
 
 private typealias ItemHolderSound = BindingHolder<ItemSoundBinding>
 
-class SoundsAdapter(private val clickDone: (Long) -> Unit) :
+class SoundsAdapter(val prefs: Prefs, private val clickDone: (Long) -> Unit ) :
 RecyclerView.Adapter<ItemHolderSound>(){
 
     var items: List <Sound> = listOf()
@@ -26,6 +27,21 @@ RecyclerView.Adapter<ItemHolderSound>(){
        holder.binding.apply {
            textSound.text = items[position].name
            textSound.isChecked = items[position].isChecked
+           textSound.setOnClickListener {
+
+               if (!textSound.isChecked) {
+                   textSound.isChecked = true
+                   prefs.song = items[position].rawId ?: 0
+
+//                   checkedItems.forEach(::notifyItemChanged)
+//                   checkedItems.clear()
+//                   checkedItems.add(position)
+                   notifyItemChanged(position)
+               } else {
+                   textSound.isChecked = false
+                   prefs.song = items[position].rawId ?: 0
+               }
+           }
        }
     }
 

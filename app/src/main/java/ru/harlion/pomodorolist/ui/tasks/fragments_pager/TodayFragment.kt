@@ -26,7 +26,7 @@ class TodayFragment : BindingFragment<FragmentTodayBinding>(FragmentTodayBinding
         viewModel.tasks.observe(viewLifecycleOwner, {
             taskRecyclerView( it
                 .filter { task ->
-                    task.date == System.currentTimeMillis()
+                    task.date == System.currentTimeMillis() //todo
                 }
             )
         })
