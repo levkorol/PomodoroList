@@ -25,7 +25,6 @@ import ru.harlion.pomodorolist.utils.replaceFragment
 class AddProjectFragment :
     BindingFragment<FragmentAddTaskBinding>(FragmentAddTaskBinding::inflate) {
 
-    private lateinit var adapterTask: AdapterTask
     private val viewModel: AddProjectViewModel by viewModels()
     private var colorId = 0
     private var date = 0L
@@ -38,16 +37,12 @@ class AddProjectFragment :
             binding.dateDeadline.text = dateToString(date)
         }
 
-        arguments?.getLong("id_project")?.takeIf { it > 0 }?.let {
-            viewModel.setProjectId(it, savedInstanceState == null) }
-
         setFragmentResultListener("color") { _, bundle ->
             colorId = bundle.getInt("colorId")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val color = ContextCompat.getColor(requireContext(), colorId)
                 val colorList = ColorStateList.valueOf(color)
                 TextViewCompat.setCompoundDrawableTintList(binding.color, colorList)
-
             }
         }
     }
@@ -58,10 +53,6 @@ class AddProjectFragment :
         viewModel.createdProjectId.onEvent(viewLifecycleOwner, {
             parentFragmentManager.popBackStack()
             replaceFragment(DetailProjectFragment.newInstance(it), true)
-        })
-
-        viewModel.project.observe(viewLifecycleOwner, {
-           binding.name.setText(it.name)
         })
 
         binding.color.setOnClickListener {
@@ -82,29 +73,9 @@ class AddProjectFragment :
             )
         }
 
-//        binding.addTask.setOnClickListener {
-//            viewModel.addTask(binding.nameTask.text.toString())
-//        }
-
-        viewModel.tasks.observe(viewLifecycleOwner, {
-            tasksRecyclerView(it)
-        })
-
         binding.back.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-    }
-
-    private fun tasksRecyclerView(tasks: List<Task>) {
-        val llm = LinearLayoutManager(requireContext())
-        llm.orientation = LinearLayoutManager.VERTICAL
-        adapterTask = AdapterTask( viewModel::updateTask)
-        binding.tasksRecyclerView.apply {
-            layoutManager = llm
-            adapter = adapterTask
-        }
-
-        adapterTask.items = tasks
     }
 
     override fun onStart() {
@@ -115,13 +86,5 @@ class AddProjectFragment :
     override fun onStop() {
         super.onStop()
         (activity as AppActivity).setBottomNavigationVisible(true)
-    }
-
-    companion object {
-        fun newInstance(id: Long) = AddProjectFragment().apply {
-            arguments = Bundle().apply {
-                putLong("id_project", id)
-            }
-        }
     }
 }

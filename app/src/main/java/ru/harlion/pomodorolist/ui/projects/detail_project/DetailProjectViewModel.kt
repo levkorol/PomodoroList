@@ -1,24 +1,23 @@
 package ru.harlion.pomodorolist.ui.projects.detail_project
 
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.models.Project
+import ru.harlion.pomodorolist.models.ProjectWithTasks
 import ru.harlion.pomodorolist.models.Task
 
 class DetailProjectViewModel : ViewModel() {
 
     private val repository = Repository.get()
-    val project = MutableLiveData<Project>()
-    val tasks = MutableLiveData<List<Task>>()
-
+    lateinit var projectWithTasks: LiveData<ProjectWithTasks?>
+    private var projectId = 0L
 
     fun getProjectById(id: Long) {
-        repository.getProjectById(id) {
-            project.postValue(it?.project)
-            tasks.postValue(it?.tasks)
-        }
+        projectWithTasks = repository.getProjectById(id)
+        projectId = id
     }
 
     fun updateTask(task: Task) {
@@ -28,34 +27,32 @@ class DetailProjectViewModel : ViewModel() {
     fun updateProjectName(
         name: String
     ) {
-        project.value?.name = name
-        repository.updateProject(project.value!!)
+        repository.updateNameProject(projectId, name)
     }
 
-    fun updateArchive(isArchive : Boolean) {
-        project.value?.isArchive = isArchive
-        repository.updateProject(project.value!!)
+    fun updateArchive(isArchive: Boolean) {
+        projectWithTasks.value?.project?.let {
+            it.isArchive = isArchive
+            repository.updateProject(it)
+        }
     }
 
     fun addTask(
         name: String,
-        priorityTask : String,
-        date : Long
+        priorityTask: String,
+        date: Long
     ) {
         val task = Task(
             name = name,
             priority = priorityTask,
-            parentId = project.value?.id ?: 0L,
+            parentId = projectWithTasks.value?.project?.id ?: 0L,
             date = date
         )
 
         repository.addTask(task)
-
-        tasks.value = (tasks.value ?: emptyList()) + task
     }
 
     fun deleteProject() {
-         repository.deleteProject(project.value!!)
+        projectWithTasks.value?.project?.let { repository.deleteProject(it) }
     }
-
 }

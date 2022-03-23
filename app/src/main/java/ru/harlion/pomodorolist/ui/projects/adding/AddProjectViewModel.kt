@@ -1,6 +1,7 @@
 package ru.harlion.pomodorolist.ui.projects.adding
 
-import androidx.lifecycle.MediatorLiveData
+
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.harlion.pomodorolist.base.MutableLiveEvent
@@ -14,35 +15,6 @@ class AddProjectViewModel: ViewModel() {
 
     private val repository = Repository.get()
     val createdProjectId = MutableLiveEvent<Long>()
-    val project = MutableLiveData<Project>()
-    val tasks = MutableLiveData<List<Task>>()
-    private var _projectId = -1L
-
-
-    fun setProjectId(id : Long, load: Boolean) {
-        if (_projectId != id ) {
-            _projectId = id
-            if(load) {
-                repository.getProjectById(id) {
-                    project.postValue(it?.project)
-                    tasks.postValue(it?.tasks)
-                }
-            }
-        }
-    }
-
-    fun updateTask(task: Task) {
-        repository.updateTask(task)
-    }
-
-    fun addTask(
-        name: String
-    ) {
-        val task = repository.addTask(Task(
-            name = name,
-            parentId = project.value?.id ?: 0L
-        ))
-    }
 
     fun addProject(
         name : String,

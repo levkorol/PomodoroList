@@ -80,6 +80,7 @@
     <string name="delete_break">Убрать перерыв</string>
     <string name="edit_name_pr">Редактировать название</string>
     <string name="do_deadline">Сделать до : </string>
+    <string name="without_date">Без рекламы</string>
 
 
 </resources>

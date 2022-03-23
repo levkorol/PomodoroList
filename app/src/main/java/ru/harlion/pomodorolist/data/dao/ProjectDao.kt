@@ -10,22 +10,25 @@ import ru.harlion.pomodorolist.models.Task
 abstract class ProjectDao {
 
     @Query("SELECT * FROM project")
-   abstract fun liveProjects(): LiveData<List<Project>>
+    abstract fun liveProjects(): LiveData<List<Project>>
 
     @Query("SELECT * FROM project WHERE id = (:id)")
     abstract fun liveProjectById(id: Long): LiveData<Project?>
 
     @Query("SELECT * FROM project WHERE id = (:id)")
-    abstract fun projectById(id: Long): ProjectWithTasks?
+    abstract fun projectById(id: Long): LiveData<ProjectWithTasks?>
 
     @Update
     abstract fun updateProject(project: Project)
 
-    @Insert
-    protected abstract fun addProject(project: Project) : Long
+    @Query("UPDATE project SET name = coalesce(:name, name), deadline = coalesce(:deadline, deadline) WHERE id = :projectId")
+    abstract fun updateName(projectId: Long, name: String? = null, deadline: Long? = null)
 
-    fun addProject(projectWithTasks: ProjectWithTasks) : Long {
-      val id =  addProject(projectWithTasks.project)
+    @Insert
+    protected abstract fun addProject(project: Project): Long
+
+    fun addProject(projectWithTasks: ProjectWithTasks): Long {
+        val id = addProject(projectWithTasks.project)
         projectWithTasks.tasks.forEach {
             it.parentId = id
         }

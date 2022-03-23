@@ -53,12 +53,12 @@ class AlertDialogBase(context: Context)  {
       }
     }
 
-    var newText = ""
+    var newText : CharSequence = ""
     fun setEditText(hintText: String, oldText: String) {
        alertDialog.findViewById<EditText>(R.id.editText).apply {
            hint = hintText
            setText(oldText)
-           newText = text.toString()
+           newText = text
            inputType =
                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL or InputType.TYPE_TEXT_FLAG_MULTI_LINE
            visibility = View.VISIBLE

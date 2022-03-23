@@ -10,6 +10,8 @@ interface TaskDao {
     @Query("SELECT * FROM task WHERE parentId = :projectId")
     fun getTasks(projectId : Long): List<Task>
 
+    @Query("SELECT * FROM task WHERE date BETWEEN :start AND :end")
+    fun getTasksByTime(start: Long, end: Long) : List<Task>
 
     @Query("SELECT * FROM task WHERE id = :id")
     fun getTaskById(id: Long): LiveData<Task?>

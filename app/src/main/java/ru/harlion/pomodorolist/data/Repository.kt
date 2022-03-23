@@ -6,6 +6,9 @@ import androidx.room.Room
 import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.ProjectWithTasks
 import ru.harlion.pomodorolist.models.Task
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.*
 import java.util.concurrent.Executors
 
 
@@ -32,11 +35,7 @@ class Repository private constructor(context: Context) {
         }
     }
 
-    fun getProjectById(projectId: Long, code: (ProjectWithTasks?) -> Unit) {
-        executor.execute {
-            code.invoke(projectDao.projectById(projectId))
-        }
-    }
+    fun getProjectById(projectId: Long) = projectDao.projectById(projectId)
 
     fun addTask(task: Task) {
         executor.execute {
@@ -52,8 +51,11 @@ class Repository private constructor(context: Context) {
         return taskDao.getTasks(projectId = projectId)
     }
 
-    fun getTasksByDate(): List<Task> {
-        return taskDao.getTasks()
+    fun getTasksByDate(localDate: LocalDate): List<Task> {
+        return taskDao.getTasksByTime(
+            localDate.atStartOfDay(ZoneId.systemDefault()).toEpochSecond() * 1000,
+            localDate.plusDays(1).atStartOfDay(ZoneId.systemDefault()).toEpochSecond() * 1000 - 1
+        )
     }
 
     fun updateTask(task: Task) {
@@ -64,10 +66,13 @@ class Repository private constructor(context: Context) {
 
     fun updateProject(project: Project) = projectDao.updateProject(project)
 
+    fun updateNameProject(projectId: Long, name: String) {
+        projectDao.updateName(projectId, name)
+    }
+
     fun getProject(id: Long): LiveData<Project?> {
         return projectDao.liveProjectById(id)
     }
-
 
     companion object {
         private var INSTANCE: Repository? = null

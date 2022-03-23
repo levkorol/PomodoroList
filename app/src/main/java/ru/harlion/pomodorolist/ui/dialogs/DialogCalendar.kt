@@ -8,6 +8,9 @@ import androidx.fragment.app.setFragmentResult
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.databinding.FragmentDialogSettingsBinding
+import java.time.LocalDate
+import java.time.Month
+import java.time.ZoneId
 import java.util.*
 
 class DialogCalendar : BottomSheetDialogFragment() {
@@ -29,23 +32,22 @@ class DialogCalendar : BottomSheetDialogFragment() {
 //            dismiss()
 //        }
 
-        val calendar = Calendar.getInstance()
-        calendar.timeZone = TimeZone.getTimeZone("UTC")
+        var lDate = LocalDate.now()
 
         binding.calendarView.apply {
-            date = calendar.timeInMillis.let { it + TimeZone.getDefault().getOffset(it) }
-            maxDate = System.currentTimeMillis() + 31536000000
+            val millis = lDate.atStartOfDay(ZoneId.systemDefault()).toEpochSecond() * 1000
+            date = millis
+            maxDate = millis + 31536000000
 
             setOnDateChangeListener { _, year, month, dayOfMonth ->
-                calendar.set(year, month, dayOfMonth)
+                lDate = LocalDate.of(year, Month.values()[month], dayOfMonth)
             }
         }
         binding.save.setOnClickListener {
             setFragmentResult("calendarDate", Bundle().apply {
-                putLong("epochMillis", calendar.timeInMillis)
+                putLong("epochMillis", lDate.atStartOfDay(ZoneId.systemDefault()).toEpochSecond() * 1000)
             })
             dismiss()
         }
     }
-
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.models.Task
+import java.time.LocalDate
 
 class TasksViewModel: ViewModel() {
 
@@ -15,7 +16,8 @@ class TasksViewModel: ViewModel() {
         repository.updateTask(task)
     }
 
-    fun getTasksByDate() {
-       tasks.value = repository.getTasksByDate()
+    fun getTasksByDate(localDate: LocalDate) {
+       tasks.value = repository.getTasksByDate(localDate)
     }
+
 }

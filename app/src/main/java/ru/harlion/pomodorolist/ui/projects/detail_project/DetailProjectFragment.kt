@@ -38,7 +38,7 @@ class DetailProjectFragment :
     private var priorityTask: String = ""
     private var isArchive = false
     private var date = 0L
-    private lateinit var project : Project
+    private var project: Project? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,40 +65,47 @@ class DetailProjectFragment :
 
         initClicks()
 
-        viewModel.tasks.observe(viewLifecycleOwner, {
-            tasksRecyclerView(it.sortedBy { task ->
-                task.isDone
-            })
+        viewModel.getProjectById(projectId)
 
-            val done = it.filter { task -> task.isDone }.size
-            val max = it.size
-            binding.countTasks.text = "$done / $max"
-            binding.progressDoneTasks.max = max
-            binding.progressDoneTasks.progress = done
-        })
-
-        viewModel.project.observe(viewLifecycleOwner, {
-            project = it
-            if(it.isArchive) {
-                isArchive = true
-            }
-
-            binding.deadline.text = getString(R.string.do_deadline) + dateToStringShort(it.deadline)
-
-            binding.nameProject.text = it.name
-            if (it.prize.isNotBlank()) {
-                binding.prizeToComplete.text = it.prize
-                binding.prizeToComplete.visibility = View.VISIBLE
-            } else {
-                binding.prizeToComplete.visibility = View.GONE
-            }
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (it.color > 0) {
-                    val color = ContextCompat.getColor(requireContext(), it.color)
-                    val colorList = ColorStateList.valueOf(color)
-                    TextViewCompat.setCompoundDrawableTintList(binding.nameProject, colorList)
+        viewModel.projectWithTasks.observe(viewLifecycleOwner, { projectWithTasks ->
+            val it = projectWithTasks?.project
+            if (it != null) {
+                project = it
+                if (it.isArchive) {
+                    isArchive = true
                 }
+
+                binding.deadline.text =
+                    getString(R.string.do_deadline) + dateToStringShort(it.deadline)
+
+                binding.nameProject.text = it.name
+                if (it.prize.isNotBlank()) {
+                    binding.prizeToComplete.text = it.prize
+                    binding.prizeToComplete.visibility = View.VISIBLE
+                } else {
+                    binding.prizeToComplete.visibility = View.GONE
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (it.color > 0) {
+                        val color = ContextCompat.getColor(requireContext(), it.color)
+                        val colorList = ColorStateList.valueOf(color)
+                        TextViewCompat.setCompoundDrawableTintList(binding.nameProject, colorList)
+                    }
+                }
+            }
+
+            val tasks = projectWithTasks?.tasks
+            if(tasks != null) {
+                tasksRecyclerView(tasks.sortedBy { task ->
+                    task.isDone
+                })
+
+                val done = tasks.filter { task -> task.isDone }.size
+                val max = tasks.size
+                binding.countTasks.text = "$done / $max"
+                binding.progressDoneTasks.max = max
+                binding.progressDoneTasks.progress = done
             }
         })
 
@@ -140,9 +147,9 @@ class DetailProjectFragment :
         binding.nameProject.setOnClickListener {
             AlertDialogBase(requireContext()).apply {
                 setTitle(getString(R.string.edit_name_pr))
-                setEditText("", project.name)
+                setEditText("", project?.name ?: "")
                 setPositiveButton(getString(R.string.yes)) {
-                    viewModel.updateProjectName(newText) //todo
+                    viewModel.updateProjectName(newText.toString()) //todo
                 }
                 setNegativeButton(getString(R.string.no)) {}
                 show()
@@ -154,7 +161,7 @@ class DetailProjectFragment :
         }
 
         binding.archiveProject.setOnClickListener {
-            if(!isArchive) {
+            if (!isArchive) {
                 setArchive(getString(R.string.add_archive), setArchive = true, isArchive = false)
             } else {
                 setArchive(getString(R.string.delete_archive), setArchive = false, isArchive = true)
@@ -162,12 +169,12 @@ class DetailProjectFragment :
         }
     }
 
-    private fun setArchive(title : String, setArchive: Boolean, isArchive : Boolean) {
+    private fun setArchive(title: String, setArchive: Boolean, isArchive: Boolean) {
         AlertDialogBase(requireContext()).apply {
             setTitle(title)
             setPositiveButton(getString(R.string.yes)) {
                 viewModel.updateArchive(setArchive)
-                if(!isArchive) {
+                if (!isArchive) {
                     parentFragmentManager.popBackStack() //todo stack
                     replaceFragment(ListProjectsFragment(), true)
                 } else {
