@@ -34,6 +34,11 @@ fun dateToString(date: Long): String {
     return dateFormat.format(date)
 }
 
+fun dateToStringShort(date: Long): String {
+    val dateFormat = SimpleDateFormat("EE, dd MMM", Locale.getDefault())
+    return dateFormat.format(date)
+}
+
 fun timeToString(time: Long): String {
     val tim = SimpleDateFormat("HH:mm, EE", Locale.getDefault())
     return tim.format(time).toString()

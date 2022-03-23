@@ -24,6 +24,7 @@ import ru.harlion.pomodorolist.ui.profile.archive.ArchiveProjectFragment
 import ru.harlion.pomodorolist.ui.projects.lists_projects.ListProjectsFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
 import ru.harlion.pomodorolist.utils.dateToString
+import ru.harlion.pomodorolist.utils.dateToStringShort
 import ru.harlion.pomodorolist.utils.hideKeyboardExt
 import ru.harlion.pomodorolist.utils.replaceFragment
 
@@ -68,6 +69,12 @@ class DetailProjectFragment :
             tasksRecyclerView(it.sortedBy { task ->
                 task.isDone
             })
+
+            val done = it.filter { task -> task.isDone }.size
+            val max = it.size
+            binding.countTasks.text = "$done / $max"
+            binding.progressDoneTasks.max = max
+            binding.progressDoneTasks.progress = done
         })
 
         viewModel.project.observe(viewLifecycleOwner, {
@@ -75,6 +82,9 @@ class DetailProjectFragment :
             if(it.isArchive) {
                 isArchive = true
             }
+
+            binding.deadline.text = getString(R.string.do_deadline) + dateToStringShort(it.deadline)
+
             binding.nameProject.text = it.name
             if (it.prize.isNotBlank()) {
                 binding.prizeToComplete.text = it.prize

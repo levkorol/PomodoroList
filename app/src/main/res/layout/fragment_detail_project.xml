@@ -19,11 +19,12 @@
             android:src="@drawable/ic_back_24" />
 
         <TextView
+            android:id="@+id/deadline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="Сделать до 23.12, 19:00" />
+            tools:text="Сделать до 23.12, 19:00" />
 
 <!--        <androidx.appcompat.widget.AppCompatImageButton-->
 <!--            android:id="@+id/save_project"-->

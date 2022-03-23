@@ -2,12 +2,14 @@ package ru.harlion.pomodorolist.ui.projects.adapter
 
 import android.content.res.ColorStateList
 import android.os.Build
+import android.provider.Settings.Global.getString
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.base.BindingHolder
 import ru.harlion.pomodorolist.databinding.ItemProjectBinding
 import ru.harlion.pomodorolist.databinding.ItemTaskBinding
@@ -15,6 +17,7 @@ import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.Task
 import ru.harlion.pomodorolist.ui.tasks.ItemHolderTask
 import ru.harlion.pomodorolist.ui.tasks.bindTask
+import ru.harlion.pomodorolist.utils.dateToStringShort
 
 private typealias ItemHolderProject = BindingHolder<ItemProjectBinding>
 
@@ -67,7 +70,9 @@ class ProjectsAdapter(
                             } else {
                                 val newItems = item.toMutableList()
                                 val elements =
-                                    taskList.invoke((item[adapterPosition] as Project).id)
+                                    taskList.invoke((item[adapterPosition] as Project).id).sortedBy {       //or filter
+                                       it.isDone
+                                    }
                                 newItems.addAll(
                                     adapterPosition + 1,
                                     elements
@@ -98,7 +103,7 @@ class ProjectsAdapter(
                 name.text = project.name
 
                 if (project.deadline > 0) {
-                    deadline.text = "Сделать до : 121212"
+                    deadline.text = "Сделать до : " + dateToStringShort(project.deadline)
                     deadline.visibility = View.VISIBLE
                 } else {
                     deadline.visibility = View.GONE

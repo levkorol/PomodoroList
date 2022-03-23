@@ -19,6 +19,7 @@ import ru.harlion.pomodorolist.ui.dialogs.DialogCalendar
 import ru.harlion.pomodorolist.ui.dialogs.DialogColor
 import ru.harlion.pomodorolist.ui.projects.detail_project.DetailProjectFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
+import ru.harlion.pomodorolist.utils.dateToString
 import ru.harlion.pomodorolist.utils.replaceFragment
 
 class AddProjectFragment :
@@ -27,9 +28,15 @@ class AddProjectFragment :
     private lateinit var adapterTask: AdapterTask
     private val viewModel: AddProjectViewModel by viewModels()
     private var colorId = 0
+    private var date = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setFragmentResultListener("calendarDate") { _, bundle ->
+            date = bundle.getLong("epochMillis")
+            binding.dateDeadline.text = dateToString(date)
+        }
 
         arguments?.getLong("id_project")?.takeIf { it > 0 }?.let {
             viewModel.setProjectId(it, savedInstanceState == null) }
@@ -37,9 +44,6 @@ class AddProjectFragment :
         setFragmentResultListener("color") { _, bundle ->
             colorId = bundle.getInt("colorId")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-              //  binding.color.compoundDrawables[0].setTint(colorId)
-               // TintList = ColorStateList.valueOf(colorId)
-
                 val color = ContextCompat.getColor(requireContext(), colorId)
                 val colorList = ColorStateList.valueOf(color)
                 TextViewCompat.setCompoundDrawableTintList(binding.color, colorList)
@@ -73,7 +77,7 @@ class AddProjectFragment :
                 name = binding.name.text.toString(),
                 tasks = listOf(),
                 prize = binding.prize.text.toString(),
-                deadline = 1,
+                deadline = date,
                 color = colorId
             )
         }
