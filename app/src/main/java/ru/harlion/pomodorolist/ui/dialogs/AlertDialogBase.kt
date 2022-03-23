@@ -3,8 +3,7 @@ package ru.harlion.pomodorolist.ui.dialogs
 import android.app.Dialog
 import android.content.Context
 import android.graphics.drawable.InsetDrawable
-import android.os.Bundle
-import android.text.Editable
+import android.text.InputType
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -54,13 +53,16 @@ class AlertDialogBase(context: Context)  {
       }
     }
 
-    fun setEditText(hintText: String, editText: String): String {
+    var newText = ""
+    fun setEditText(hintText: String, oldText: String) {
        alertDialog.findViewById<EditText>(R.id.editText).apply {
            hint = hintText
-         //  text = editText as Editable //todo
+           setText(oldText)
+           newText = text.toString()
+           inputType =
+               InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL or InputType.TYPE_TEXT_FLAG_MULTI_LINE
            visibility = View.VISIBLE
        }
-        return editText
     }
 
     fun setPositiveButton(title: String, onClickListener: View.OnClickListener?) {

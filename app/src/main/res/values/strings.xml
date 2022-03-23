@@ -78,6 +78,7 @@
     <string name="auto_focus_start">Автоматический старт фокуса</string>
     <string name="auto_break_start">Автоматический старт перерыва</string>
     <string name="delete_break">Убрать перерыв</string>
+    <string name="edit_name_pr">Редактировать название</string>
 
 
 </resources>

@@ -15,6 +15,7 @@ import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentDetailProjectBinding
+import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.Task
 import ru.harlion.pomodorolist.ui.dialogs.AlertDialogBase
 import ru.harlion.pomodorolist.ui.dialogs.DialogCalendar
@@ -36,6 +37,7 @@ class DetailProjectFragment :
     private var priorityTask: String = ""
     private var isArchive = false
     private var date = 0L
+    private lateinit var project : Project
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +71,7 @@ class DetailProjectFragment :
         })
 
         viewModel.project.observe(viewLifecycleOwner, {
+            project = it
             if(it.isArchive) {
                 isArchive = true
             }
@@ -126,10 +129,10 @@ class DetailProjectFragment :
 
         binding.nameProject.setOnClickListener {
             AlertDialogBase(requireContext()).apply {
-                val text = setEditText("2", "")
+                setTitle(getString(R.string.edit_name_pr))
+                setEditText("", project.name)
                 setPositiveButton(getString(R.string.yes)) {
-                    viewModel.updateProjectName(text)
-                    replaceFragment(ListProjectsFragment(), false)
+                    viewModel.updateProjectName(newText) //todo
                 }
                 setNegativeButton(getString(R.string.no)) {}
                 show()

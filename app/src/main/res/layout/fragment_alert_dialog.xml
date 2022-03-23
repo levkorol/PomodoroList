@@ -27,7 +27,6 @@
         android:textSize="14sp"
         tools:text="visible"
         android:visibility="gone"
-        android:background="@drawable/bg_middle_l"
         android:layout_marginHorizontal="16dp"/>
 
     <LinearLayout
