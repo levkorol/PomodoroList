@@ -1,8 +1,6 @@
 package ru.harlion.pomodorolist.ui.projects.adding
 
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.harlion.pomodorolist.base.MutableLiveEvent
 import ru.harlion.pomodorolist.base.postContent
