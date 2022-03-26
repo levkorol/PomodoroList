@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.IBinder
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.base.BindingFragment
@@ -22,6 +23,7 @@ import kotlin.math.min
 class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding::inflate),
     ServiceConnection {
 
+    private val viewModel: TimerViewModel by viewModels()
     private lateinit var prefs: Prefs
     private var prefTimeFocus = 0L
     private var prefTimeBreak = 0L
@@ -52,23 +54,15 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
     private fun initTimerAndClick() {
 
-        val timeFocus = prefTimeFocus * 60000
-
         binding.startFocusBtn.setOnClickListener {
-            timerService?.startTimer(
-                timeFocus,
-                if (prefs.isAutoBreakTimer) prefTimeBreak * 60000 else -1
-            )
-            visibleButton(TimerState.FOCUS)
+            timerService?.startTimer(-1)
         }
 
         binding.pauseBtn.setOnClickListener {
-            visibleButton(TimerState.PAUSE_FOCUS)
             timerService?.pause()
         }
 
         binding.resumeFocusBtn.setOnClickListener {
-            visibleButton(TimerState.FOCUS)
             timerService?.resume(prefs)
         }
 
@@ -76,8 +70,11 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
             timerService?.stopTimer()
             binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
             binding.progressBar.progress = 0F
-            visibleButton(TimerState.WAIT_FOCUS)
         }
+
+        viewModel.task.observe(viewLifecycleOwner, {
+            binding.textTask.text = it?.name
+        })
     }
 
 
@@ -95,6 +92,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         timerService?.apply {
             onTick = null
             onFinish = null
+            onStateChange = null
         }
         timerService = null
         requireContext().unbindService(this)
@@ -102,14 +100,20 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
         timerService = (service as TimerService.TimerBinder).service.apply {
+
+            if (taskId > 0) {
+                viewModel.getTaskById(taskId)
+                binding.taskCv.visibility = View.VISIBLE
+                binding.infoTasks.visibility = View.VISIBLE
+            }
+
+            visibleButton(this.timerState)
             if (this.timerState == TimerState.WAIT_FOCUS) {
                 binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
                 //todo сделать отображение минут больше 60ти
-                visibleButton(TimerState.WAIT_FOCUS)
             }
             if (this.timerState == TimerState.WAIT_BREAK) {
                 binding.timerCount.text = formatTimeMins(prefTimeBreak * 60000, resources)
-                visibleButton(TimerState.WAIT_BREAK)
             }
             onTick = { millisUntilFinished, timeFocus ->
                 binding.timerCount.text = formatTimeMins(millisUntilFinished, resources)
@@ -121,13 +125,15 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
             onFinish = {
                 binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
                 //todo btn all without break prefs
-                visibleButton(TimerState.WAIT_BREAK)
+            }
+            onStateChange = {
+                visibleButton(it)
             }
         }
     }
 
-    private fun visibleButton(timerState : TimerState) {
-        when(timerState) {
+    private fun visibleButton(timerState: TimerState) {
+        when (timerState) {
             TimerState.WAIT_FOCUS -> {
                 binding.startFocusBtn.visibility = View.VISIBLE
                 binding.pauseBtn.visibility = View.GONE

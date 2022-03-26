@@ -78,8 +78,8 @@
     <string name="auto_focus_start">Автоматический старт фокуса</string>
     <string name="auto_break_start">Автоматический старт перерыва</string>
     <string name="delete_break">Убрать перерыв</string>
-    <string name="edit_name_pr">Редактировать название</string>
-    <string name="do_deadline">Сделать до : </string>
+    <string name="edit_name_pr">Редактирование</string>
+    <string name="do_deadline">Сделать до </string>
     <string name="without_date">Без рекламы</string>
 
 

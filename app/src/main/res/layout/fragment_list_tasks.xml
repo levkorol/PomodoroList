@@ -45,14 +45,14 @@
         app:tabIconTint="?middle_d"
         app:tabIconTintMode="src_in"
         app:tabIndicator="@color/black"
-        app:tabIndicatorColor="?middle_d"
+        app:tabIndicatorColor="?middle"
         app:tabIndicatorFullWidth="true"
-        app:tabIndicatorHeight="3dp"
+        app:tabIndicatorHeight="0dp"
         app:tabInlineLabel="true"
         app:tabMode="fixed"
         android:layout_marginTop="-0dp"
         app:tabRippleColor="@null"
-        app:tabSelectedTextColor="?middle_d"
+        app:tabSelectedTextColor="?middle"
         app:tabTextAppearance="@style/tabText" />
 
     <androidx.viewpager2.widget.ViewPager2

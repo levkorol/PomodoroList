@@ -30,10 +30,6 @@ class TodayFragment : BindingFragment<FragmentTodayBinding>(FragmentTodayBinding
 
         viewModel.getTasksByDate(LocalDate.now())
 
-//        viewModel.getTasksByDate(
-//            Instant.ofEpochMilli(0L).atZone(ZoneId.systemDefault()).toLocalDate()
-//        )
-
         viewModel.tasks.observe(viewLifecycleOwner, {
             taskRecyclerView(it)
         })

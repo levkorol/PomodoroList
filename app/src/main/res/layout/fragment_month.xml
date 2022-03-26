@@ -6,10 +6,17 @@
     android:orientation="vertical"
     tools:context=".ui.tasks.fragments_pager.MonthFragment">
 
+
     <CalendarView
+        android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTaskMonth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"/>
 
 </LinearLayout>

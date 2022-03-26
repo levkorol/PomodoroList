@@ -7,10 +7,10 @@ import android.app.Service
 import android.content.Intent
 import android.os.Binder
 import android.os.Build
-import android.os.CountDownTimer
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import ru.harlion.pomodorolist.R
+import ru.harlion.pomodorolist.data.Repository
 
 enum class TimerState {
     WAIT_FOCUS,
@@ -22,10 +22,16 @@ enum class TimerState {
 
 class TimerService : Service() {
 
+    private val repository = Repository.get()
     private var timer: PausableCountDownTimer? = null
     private var player: Player? = null
-    var timerState = TimerState.WAIT_FOCUS
+    var taskId: Long = 0L
         private set
+    var timerState = TimerState.WAIT_FOCUS
+        private set(newState) {
+            field = newState
+            onStateChange?.invoke(newState)
+        }
 
     inner class TimerBinder : Binder() {
         val service get() = this@TimerService
@@ -68,30 +74,58 @@ class TimerService : Service() {
 
     var onTick: ((millisUntilFinished: Long, timeFocus: Long) -> Unit)? = null
     var onFinish: (() -> Unit)? = null
+    var onStateChange: ((TimerState) -> Unit)? = null
 
-    fun startTimer(timeFocus: Long, timeBreak: Long) {
+    fun startTimer(taskId: Long) {
         val prefs = Prefs(this)
         player = Player(this)
+        this.taskId = taskId
+        reallyStartTimer(prefs, taskId)
+    }
 
-        if (timeFocus > 0) {
-            createAndStartTimer(timeFocus, TimerState.FOCUS, TimerState.WAIT_BREAK, prefs) {
-                if (timeBreak > 0) {
-                    createAndStartTimer(timeFocus, TimerState.BREAK, TimerState.WAIT_FOCUS, prefs)
+
+    private fun reallyStartTimer(
+        prefs: Prefs,
+        taskId: Long
+    ) {
+        createAndStartTimer(
+            prefs.focusTimerActiveSettings * 60000,
+            TimerState.FOCUS,
+            TimerState.WAIT_BREAK,
+            prefs,
+            taskId
+        ) {
+            if (prefs.isAutoBreakTimer) {
+                createAndStartTimer(
+                    prefs.breakTimerActiveSettings * 60000,
+                    TimerState.BREAK,
+                    TimerState.WAIT_FOCUS,
+                    prefs,
+                    taskId
+                ) {
+                    if (prefs.isAutoFocusTimer) {
+                        reallyStartTimer(prefs, taskId)
+                    }
                 }
             }
-        } else if (timeBreak > 0) {
-            createAndStartTimer(timeFocus, TimerState.BREAK, TimerState.WAIT_FOCUS, prefs)
         }
     }
+
+
 
     private fun createAndStartTimer(
         time: Long,
         tickState: TimerState,
         finishState: TimerState,
         prefs: Prefs,
+        taskId: Long,
         andThen: (() -> Unit)? = null
     ) {
         timer = object : PausableCountDownTimer(time, 1000) {
+
+            override fun onStop(elapsedMillis: Long) {
+                taskId.let { repository.trackTimeTask(it, elapsedMillis) }
+            }
 
             override fun onTick(millisUntilFinished: Long) {
                 timerState = tickState
@@ -121,9 +155,11 @@ class TimerService : Service() {
     fun pause() {
         timer?.isPaused = true
         player?.stopSound()
+        timerState = TimerState.PAUSE_FOCUS
     }
 
     fun resume(prefs: Prefs) {
+        timerState = TimerState.FOCUS
         timer?.isPaused = false
         if (prefs.isSound) {
             player?.playSound()

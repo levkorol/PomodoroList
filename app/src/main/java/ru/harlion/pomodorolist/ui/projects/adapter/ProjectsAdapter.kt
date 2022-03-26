@@ -103,7 +103,7 @@ class ProjectsAdapter(
                 name.text = project.name
 
                 if (project.deadline > 0) {
-                    deadline.text = "Сделать до : " + dateToStringShort(project.deadline)
+                    deadline.text = "Сделать до" + dateToStringShort(project.deadline)
                     deadline.visibility = View.VISIBLE
                 } else {
                     deadline.visibility = View.GONE

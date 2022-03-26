@@ -8,7 +8,6 @@ import ru.harlion.pomodorolist.models.ProjectWithTasks
 import ru.harlion.pomodorolist.models.Task
 import java.time.LocalDate
 import java.time.ZoneId
-import java.util.*
 import java.util.concurrent.Executors
 
 
@@ -62,16 +61,36 @@ class Repository private constructor(context: Context) {
         return taskDao.updateTask(task)
     }
 
-    fun deleteProject(project: Project) = projectDao.deleteProject(project)
+    fun deleteProject(projectId: Long) = projectDao.deleteProject(projectId)
 
     fun updateProject(project: Project) = projectDao.updateProject(project)
 
     fun updateNameProject(projectId: Long, name: String) {
-        projectDao.updateName(projectId, name)
+        projectDao.updateFieldsProject(projectId, name)
+    }
+
+    fun updateIsArchiveProject(projectId: Long,isArchive: Boolean) {
+        projectDao.updateFieldsProject(projectId, isArchive = isArchive )
+    }
+
+    fun updateDeadlineProject(projectId: Long,deadline: Long) {
+        projectDao.updateFieldsProject(projectId, deadline = deadline )
+    }
+
+    fun updatePrize(projectId : Long, prize: String) {
+        projectDao.updateFieldsProject(projectId, prize = prize)
     }
 
     fun getProject(id: Long): LiveData<Project?> {
         return projectDao.liveProjectById(id)
+    }
+
+    fun trackTimeTask(id: Long, timeWork: Long) {
+        taskDao.trackTaskTime(id, timeWork)
+    }
+
+    fun getTaskById(id : Long) :Task? {
+       return taskDao.getTaskById(id)
     }
 
     companion object {

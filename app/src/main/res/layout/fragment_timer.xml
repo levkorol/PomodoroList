@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/btn_bg"
-        android:drawableStart="@drawable/ic_play"
+        android:drawableStart="@drawable/ic_play_white"
         android:drawablePadding="4dp"
         android:gravity="center"
         android:paddingHorizontal="16dp"
@@ -200,29 +200,37 @@
         android:layout_weight="2" />
 
     <TextView
+        android:id="@+id/info_tasks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="36dp"
         android:layout_marginTop="26dp"
         android:gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible"
         android:text="@string/work_on_task" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/task_cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+        android:visibility="gone"
+        tools:visibility="visible"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="36dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp">
 
             <CheckedTextView
+                android:id="@+id/text_task"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -232,7 +240,7 @@
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:text="Дочитать книгу"
+                tools:text="Дочитать книгу"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/black" />
 
@@ -241,7 +249,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_pause_24" />
+                android:src="@drawable/ic_close_task" />
 
             <!--            <TextView-->
             <!--                android:layout_width="match_parent"-->

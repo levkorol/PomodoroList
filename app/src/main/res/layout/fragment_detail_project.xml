@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?light"
+    tools:background="@color/light"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -20,10 +21,12 @@
 
         <TextView
             android:id="@+id/deadline"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_margin="16dp"
             android:gravity="center"
+            android:visibility="gone"
             tools:text="Сделать до 23.12, 19:00" />
 
 <!--        <androidx.appcompat.widget.AppCompatImageButton-->
@@ -153,17 +156,18 @@
                 android:id="@+id/priority"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.3"
+                android:layout_weight="0.5"
+                android:layout_marginStart="-4dp"
                 android:src="@drawable/ic_label"
-                android:layout_marginEnd="6dp" />
+                 />
 
             <TextView
                 android:id="@+id/date_task"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:drawableStart="@drawable/ic_date"
-                android:drawablePadding="6dp" />
+                android:drawablePadding="4dp" />
 
             <TextView
                 android:id="@+id/save_task"
@@ -183,7 +187,7 @@
             android:background="@drawable/bg_white"
             android:gravity="top|start"
             android:hint="@string/des_task"
-            android:lines="2"
+            android:lines="1"
             android:padding="8dp"
             android:textSize="14sp" />
 
@@ -195,7 +199,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/bg_white"
         android:orientation="vertical"
         android:paddingHorizontal="10dp"
@@ -317,6 +321,7 @@
             android:progressBackgroundTint="?middle_l"
             android:progressTint="?middle_l" />
     </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasks_recycler_view"

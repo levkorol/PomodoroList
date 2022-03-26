@@ -38,7 +38,9 @@ class DetailProjectFragment :
     private var priorityTask: String = ""
     private var isArchive = false
     private var date = 0L
+    private var dateDeadline = 0L
     private var project: Project? = null
+    private var taskFilter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,8 +77,12 @@ class DetailProjectFragment :
                     isArchive = true
                 }
 
-                binding.deadline.text =
-                    getString(R.string.do_deadline) + dateToStringShort(it.deadline)
+                if(it.deadline > 0) {
+                    binding.deadline.text =
+                        getString(R.string.do_deadline) + dateToStringShort(it.deadline)
+                    binding.deadline.visibility = View.VISIBLE
+                }
+
 
                 binding.nameProject.text = it.name
                 if (it.prize.isNotBlank()) {
@@ -96,10 +102,23 @@ class DetailProjectFragment :
             }
 
             val tasks = projectWithTasks?.tasks
-            if(tasks != null) {
-                tasksRecyclerView(tasks.sortedBy { task ->
-                    task.isDone
-                })
+            if (tasks != null) {
+
+                when (taskFilter) {
+                    1 -> tasksRecyclerView(tasks.sortedBy { task ->
+                        task.isDone
+                    })
+                    2 -> tasksRecyclerView(tasks.sortedBy { task ->
+                         task.isDone
+                    })
+                    3 -> tasksRecyclerView(tasks.sortedBy { task ->
+                        task.priority == "high"
+                    })
+                    else -> tasksRecyclerView(tasks.sortedBy { task ->
+                        task.isDone
+                    })
+                }
+
 
                 val done = tasks.filter { task -> task.isDone }.size
                 val max = tasks.size
@@ -107,6 +126,8 @@ class DetailProjectFragment :
                 binding.progressDoneTasks.max = max
                 binding.progressDoneTasks.progress = done
             }
+
+
         })
 
         viewModel.getProjectById(projectId)
@@ -149,7 +170,7 @@ class DetailProjectFragment :
                 setTitle(getString(R.string.edit_name_pr))
                 setEditText("", project?.name ?: "")
                 setPositiveButton(getString(R.string.yes)) {
-                    viewModel.updateProjectName(newText.toString()) //todo
+                    viewModel.updateProjectName(newText.toString())
                 }
                 setNegativeButton(getString(R.string.no)) {}
                 show()
@@ -167,6 +188,22 @@ class DetailProjectFragment :
                 setArchive(getString(R.string.delete_archive), setArchive = false, isArchive = true)
             }
         }
+
+        binding.deadline.setOnClickListener {
+            DialogCalendar().show(parentFragmentManager, null)
+        }
+
+        binding.prizeToComplete.setOnClickListener {
+            AlertDialogBase(requireContext()).apply {
+                setTitle(getString(R.string.edit_name_pr))
+                setEditText("", project?.name ?: "")
+                setPositiveButton(getString(R.string.yes)) {
+                    viewModel.updatePrize(newText.toString())
+                }
+                setNegativeButton(getString(R.string.no)) {}
+                show()
+            }
+        }
     }
 
     private fun setArchive(title: String, setArchive: Boolean, isArchive: Boolean) {
@@ -175,11 +212,9 @@ class DetailProjectFragment :
             setPositiveButton(getString(R.string.yes)) {
                 viewModel.updateArchive(setArchive)
                 if (!isArchive) {
-                    parentFragmentManager.popBackStack() //todo stack
-                    replaceFragment(ListProjectsFragment(), true)
+                    parentFragmentManager.popBackStack()
                 } else {
                     parentFragmentManager.popBackStack()
-                    replaceFragment(ArchiveProjectFragment(), true)
                 }
             }
             setNegativeButton(getString(R.string.no)) {}

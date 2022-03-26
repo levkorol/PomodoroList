@@ -19,19 +19,21 @@ abstract class PausableCountDownTimer(
     private var millisLeft: Long = mMillisInFuture
 
     var isPaused = false
-    set(value) {
-        if (field != value) {
-            field = value
-            if(value) {
-                mHandler.removeMessages(MSG)
-                millisLeft = mStopTimeInFuture - SystemClock.elapsedRealtime()
-            } else {
-                mStopTimeInFuture = SystemClock.elapsedRealtime() + millisLeft
-                mHandler.sendMessage(mHandler.obtainMessage(MSG))
+        set(value) {
+            if (field != value) {
+                field = value
+                if (value) {
+
+                    mHandler.removeMessages(MSG)
+                    val newMillisLeft = mStopTimeInFuture - SystemClock.elapsedRealtime()
+                    onStop(millisLeft - newMillisLeft)
+                    millisLeft = newMillisLeft
+                } else {
+                    mStopTimeInFuture = SystemClock.elapsedRealtime() + millisLeft
+                    mHandler.sendMessage(mHandler.obtainMessage(MSG))
+                }
             }
         }
-    }
-
 
 
     /**
@@ -44,8 +46,19 @@ abstract class PausableCountDownTimer(
      */
     @Synchronized
     fun cancel() {
-        mCancelled = true
-        mHandler.removeMessages(MSG)
+        if (!mCancelled) {
+            mCancelled = true
+            mHandler.removeMessages(MSG)
+
+            val millisLeft =
+                mStopTimeInFuture - SystemClock.elapsedRealtime()
+            if (millisLeft > 0) {
+                onStop(this.millisLeft - millisLeft)
+            }
+
+            onFinish()
+
+        }
     }
 
     /**
@@ -63,6 +76,7 @@ abstract class PausableCountDownTimer(
         return this
     }
 
+    abstract fun onStop(elapsedMillis: Long)
 
     /**
      * Callback fired on regular interval.
@@ -86,6 +100,8 @@ abstract class PausableCountDownTimer(
                 val millisLeft =
                     mStopTimeInFuture - SystemClock.elapsedRealtime()
                 if (millisLeft <= 0) {
+                    onStop(this@PausableCountDownTimer.millisLeft)
+                    mCancelled = true
                     onFinish()
                 } else {
                     val lastTickStart = SystemClock.elapsedRealtime()
@@ -114,6 +130,7 @@ abstract class PausableCountDownTimer(
             }
         }
     }
+
 
     companion object {
         private const val MSG = 1

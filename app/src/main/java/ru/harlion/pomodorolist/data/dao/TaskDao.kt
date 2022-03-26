@@ -14,7 +14,10 @@ interface TaskDao {
     fun getTasksByTime(start: Long, end: Long) : List<Task>
 
     @Query("SELECT * FROM task WHERE id = :id")
-    fun getTaskById(id: Long): LiveData<Task?>
+    fun getTaskById(id: Long): Task?
+
+    @Query("UPDATE task SET timeWork = timeWork + :timeWork WHERE id = :id")
+    fun trackTaskTime(id: Long, timeWork: Long)
 
     @Update
     fun updateTask(task: Task)

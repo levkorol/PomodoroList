@@ -2,10 +2,8 @@ package ru.harlion.pomodorolist.ui.projects.detail_project
 
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.harlion.pomodorolist.data.Repository
-import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.ProjectWithTasks
 import ru.harlion.pomodorolist.models.Task
 
@@ -24,17 +22,20 @@ class DetailProjectViewModel : ViewModel() {
         repository.updateTask(task)
     }
 
-    fun updateProjectName(
-        name: String
-    ) {
+    fun updateProjectName(name: String) {
         repository.updateNameProject(projectId, name)
     }
 
     fun updateArchive(isArchive: Boolean) {
-        projectWithTasks.value?.project?.let {
-            it.isArchive = isArchive
-            repository.updateProject(it)
-        }
+        repository.updateIsArchiveProject(projectId, isArchive)
+    }
+
+    fun updateDeadline(deadline: Long) {
+        repository.updateDeadlineProject(projectId, deadline)
+    }
+
+    fun updatePrize(prize: String) {
+        repository.updatePrize(projectId, prize)
     }
 
     fun addTask(
@@ -45,14 +46,13 @@ class DetailProjectViewModel : ViewModel() {
         val task = Task(
             name = name,
             priority = priorityTask,
-            parentId = projectWithTasks.value?.project?.id ?: 0L,
+            parentId = projectId,
             date = date
         )
-
         repository.addTask(task)
     }
 
     fun deleteProject() {
-        projectWithTasks.value?.project?.let { repository.deleteProject(it) }
+        repository.deleteProject(projectId)
     }
 }

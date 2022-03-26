@@ -1,9 +1,6 @@
 package ru.harlion.pomodorolist.models
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.Relation
+import androidx.room.*
 
 @Entity
 class Project(
@@ -18,7 +15,7 @@ class Project(
     val color: Int = 0,
     val dateCreate: Long,
     val timeInFocus: Long = 0L,
-    var isArchive : Boolean = false
+    var isArchive: Boolean = false
 )
 
 class ProjectWithTasks(

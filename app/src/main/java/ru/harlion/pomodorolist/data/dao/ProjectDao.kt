@@ -21,8 +21,8 @@ abstract class ProjectDao {
     @Update
     abstract fun updateProject(project: Project)
 
-    @Query("UPDATE project SET name = coalesce(:name, name), deadline = coalesce(:deadline, deadline) WHERE id = :projectId")
-    abstract fun updateName(projectId: Long, name: String? = null, deadline: Long? = null)
+    @Query("UPDATE project SET name = coalesce(:name, name), deadline = coalesce(:deadline, deadline), isArchive = coalesce(:isArchive, isArchive), prize = coalesce(:prize, prize) WHERE id = :projectId")
+    abstract fun updateFieldsProject(projectId: Long, name: String? = null, deadline: Long? = null, isArchive: Boolean? = null, prize : String? = null)
 
     @Insert
     protected abstract fun addProject(project: Project): Long
@@ -39,6 +39,6 @@ abstract class ProjectDao {
     @Insert
     abstract fun addTasks(tasks: List<Task>)
 
-    @Delete
-    abstract fun deleteProject(project: Project)
+    @Query("DELETE FROM project WHERE id = :projectId")
+    abstract fun deleteProject(projectId: Long)
 }
