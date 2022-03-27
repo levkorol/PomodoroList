@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?light"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:background="@color/light"
     android:orientation="vertical"
-    tools:context=".ui.projects.adding.AddProjectFragment">
+    tools:context=".ui.tasks.edit.EditTaskFragment">
+
 
     <RelativeLayout
         android:id="@+id/top_ll"
@@ -23,10 +23,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/new_project"
+            android:text="@string/edit_task"
             android:gravity="center"
             android:textColor="@color/black"
             android:layout_margin="16dp"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/delete_task"
+            style="@style/ButtonToolBar"
+            android:layout_toStartOf="@+id/save"
+            android:src="@drawable/ic_baseline_delete_24" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/save"
@@ -39,7 +45,7 @@
 
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/name_task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_white"
@@ -47,11 +53,11 @@
         android:padding="8dp"
         android:layout_marginHorizontal="16dp"
         android:textSize="14sp"
-        android:hint="Название проекта..."
+        android:hint="@string/desk_task"
         android:lines="3" />
 
     <TextView
-        android:id="@+id/date_deadline"
+        android:id="@+id/task_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_white"
@@ -62,11 +68,11 @@
         android:layout_marginHorizontal="16dp"
         android:textSize="14sp"
         android:layout_marginTop="16dp"
-        android:text="Дата дедлайна"
+        android:text="@string/date"
         />
 
     <TextView
-        android:id="@+id/color"
+        android:id="@+id/task_priority"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_white"
@@ -74,35 +80,11 @@
         android:drawablePadding="9dp"
         android:padding="8dp"
         android:paddingStart="12dp"
-        android:drawableStart="@drawable/ic_circle"
+        android:drawableStart="@drawable/ic_label"
         android:layout_marginHorizontal="16dp"
         android:textSize="14sp"
         android:layout_marginTop="16dp"
-        android:text="Цвет"
-        />
-
-
-    <EditText
-        android:id="@+id/prize"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_white"
-        android:gravity="start|center"
-        android:layout_marginTop="16dp"
-        android:drawablePadding="6dp"
-        android:padding="8dp"
-        android:drawableStart="@drawable/ic_price"
-        android:layout_marginHorizontal="16dp"
-        android:textSize="14sp"
-        android:hint="Награда по завершению..."
-        android:lines="1" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tasks_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:nestedScrollingEnabled="false"
+        android:text="@string/priority_task"
         />
 
 </LinearLayout>

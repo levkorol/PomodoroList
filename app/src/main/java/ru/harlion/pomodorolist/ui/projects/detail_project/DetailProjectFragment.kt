@@ -20,13 +20,12 @@ import ru.harlion.pomodorolist.models.Task
 import ru.harlion.pomodorolist.ui.dialogs.AlertDialogBase
 import ru.harlion.pomodorolist.ui.dialogs.DialogCalendar
 import ru.harlion.pomodorolist.ui.dialogs.DialogPriorityTask
+import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.profile.archive.ArchiveProjectFragment
 import ru.harlion.pomodorolist.ui.projects.lists_projects.ListProjectsFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
-import ru.harlion.pomodorolist.utils.dateToString
-import ru.harlion.pomodorolist.utils.dateToStringShort
-import ru.harlion.pomodorolist.utils.hideKeyboardExt
-import ru.harlion.pomodorolist.utils.replaceFragment
+import ru.harlion.pomodorolist.ui.tasks.edit.EditTaskFragment
+import ru.harlion.pomodorolist.utils.*
 
 
 class DetailProjectFragment :
@@ -77,7 +76,7 @@ class DetailProjectFragment :
                     isArchive = true
                 }
 
-                if(it.deadline > 0) {
+                if (it.deadline > 0) {
                     binding.deadline.text =
                         getString(R.string.do_deadline) + dateToStringShort(it.deadline)
                     binding.deadline.visibility = View.VISIBLE
@@ -104,12 +103,14 @@ class DetailProjectFragment :
             val tasks = projectWithTasks?.tasks
             if (tasks != null) {
 
+                binding.countInFocus.text = timeToString(tasks.sumOf{ it.timeWork })
+
                 when (taskFilter) {
                     1 -> tasksRecyclerView(tasks.sortedBy { task ->
                         task.isDone
                     })
                     2 -> tasksRecyclerView(tasks.sortedBy { task ->
-                         task.isDone
+                        task.isDone
                     })
                     3 -> tasksRecyclerView(tasks.sortedBy { task ->
                         task.priority == "high"
@@ -225,7 +226,11 @@ class DetailProjectFragment :
     private fun tasksRecyclerView(tasks: List<Task>) {
         val llm = LinearLayoutManager(requireContext())
         llm.orientation = LinearLayoutManager.VERTICAL
-        adapterTask = AdapterTask(viewModel::updateTask)
+        adapterTask = AdapterTask(viewModel::updateTask, {
+            replaceFragment(TimerFragment(), true)
+        }, {
+            replaceFragment(EditTaskFragment.newInstance(it), true)
+        })
         binding.tasksRecyclerView.apply {
             layoutManager = llm
             adapter = adapterTask

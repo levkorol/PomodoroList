@@ -24,7 +24,8 @@ private typealias ItemHolderProject = BindingHolder<ItemProjectBinding>
 class ProjectsAdapter(
     private val click: (Long) -> Unit,
     private val taskList: (Long) -> List<Task>,
-    private val updateTask: (Task) -> Unit
+    private val updateTask: (Task) -> Unit,
+    private val clickTask: (Long) -> Unit
 ) :
     RecyclerView.Adapter<BindingHolder<*>>() {
 
@@ -132,9 +133,8 @@ class ProjectsAdapter(
                 progressDoneTasks.progress = done
             }
         } else {
-            bindTask(holder as ItemHolderTask, item[position] as Task, updateTask)
+            bindTask(holder as ItemHolderTask, item[position] as Task, updateTask, clickTask){} //todo edit task
         }
-
     }
 
     override fun getItemCount() = item.size

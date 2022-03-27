@@ -16,11 +16,14 @@ import ru.harlion.pomodorolist.base.BindingHolder
 import ru.harlion.pomodorolist.databinding.ItemTaskBinding
 import ru.harlion.pomodorolist.models.Task
 import ru.harlion.pomodorolist.utils.TimerService
+import ru.harlion.pomodorolist.utils.timeToString
 
 typealias ItemHolderTask = BindingHolder<ItemTaskBinding>
 
 class AdapterTask(
-    private val updateTask: (Task) -> Unit
+    private val updateTask: (Task) -> Unit,
+    private val click: (Long) -> Unit,
+    private val clickEditTask: (Long) -> Unit,
 ) : RecyclerView.Adapter<ItemHolderTask>() {
 
     var items: List<Task> = listOf()
@@ -35,7 +38,7 @@ class AdapterTask(
         }
 
     override fun onBindViewHolder(holder: ItemHolderTask, position: Int) {
-        bindTask(holder, items[position], updateTask)
+        bindTask(holder, items[position], updateTask, click, clickEditTask)
     }
 
     override fun getItemCount() = items.size
@@ -44,17 +47,23 @@ class AdapterTask(
 fun bindTask(
     holder: ItemHolderTask,
     task: Task,
-    updateTask: (Task) -> Unit
+    updateTask: (Task) -> Unit,
+    click: (Long) -> Unit,
+    clickEditTask: (Long) -> Unit
 ) {
     holder.binding.apply {
-        descTask.text = task.name
-        time.text = "47:00"
-        //  setCheckMarkDrawable
-        //             colorProj.setBackgroundColor(Color.CYAN)
+        taskName.text = task.name
+
+        if(task.timeWork > 0) {
+            time.text = timeToString(task.timeWork)
+        } else {
+            time.text = ""
+        }
+
         descTask.isChecked = task.isDone
 
         descTask.setOnClickListener {
-            // descTask.isChecked = !descTask.isChecked
+
             if (!descTask.isChecked) {
                 descTask.isChecked = true
                 task.isDone = true
@@ -66,32 +75,38 @@ fun bindTask(
             }
         }
 
+        containerTaskItem.setOnClickListener {
+            clickEditTask.invoke(task.id)
+        }
+
         pauseOrPlay.setOnClickListener {
             it.context.bindService(
                 Intent(it.context, TimerService::class.java),
                 object : ServiceConnection {
                     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-                       (service as TimerService.TimerBinder).service.startTimer(task.id)
+                        (service as TimerService.TimerBinder).service.startTimer(task.id)
                         it.context.unbindService(this)
+                        click.invoke(task.id)
                     }
+
                     override fun onServiceDisconnected(name: ComponentName?) {}
                 },
-        Context.BIND_AUTO_CREATE
-        )
+                Context.BIND_AUTO_CREATE
+            )
+        }
 
+
+        when (task.priority) {
+            "middle" -> priority.setBackgroundColor(
+                ContextCompat.getColor(this.priority.context, R.color.green)
+            )
+
+            "high" -> priority.setBackgroundColor(
+                ContextCompat.getColor(this.priority.context, R.color.priority_red)
+            )
+            else -> priority.visibility = View.GONE
+        }
     }
-
-    when (task.priority) {
-        "middle" -> priority.setBackgroundColor(
-            ContextCompat.getColor(this.priority.context, R.color.green)
-        )
-
-        "high" -> priority.setBackgroundColor(
-            ContextCompat.getColor(this.priority.context, R.color.priority_red)
-        )
-        else -> priority.visibility = View.GONE
-    }
-}
 }
 
 //"high" -> priority.setImageDrawable(

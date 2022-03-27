@@ -40,6 +40,6 @@ fun dateToStringShort(date: Long): String {
 }
 
 fun timeToString(time: Long): String {
-    val tim = SimpleDateFormat("HH:mm, EE", Locale.getDefault())
+    val tim = SimpleDateFormat("HH:mm", Locale.getDefault())
     return tim.format(time).toString()
 }

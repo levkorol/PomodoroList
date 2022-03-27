@@ -48,10 +48,20 @@ class TimerService : Service() {
         return super.onUnbind(intent)
     }
 
+    private fun setMessageNotification(): String {  //todo  не обновляется текст при смене статусов
+        return when (timerState) {
+            TimerState.FOCUS -> "Сейчас в фокусе!"
+            TimerState.WAIT_FOCUS -> ""
+            TimerState.PAUSE_FOCUS -> ""
+            TimerState.BREAK -> "Сейчас перерыв!"
+            TimerState.WAIT_BREAK -> ""
+        }
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         val notify: Notification = NotificationCompat.Builder(this, "channelId")
-            .setContentTitle("Example Service")
+            .setContentTitle(setMessageNotification())
             .setSmallIcon(R.drawable.ic_baseline_av_timer_24)
             .setPriority(NotificationManager.IMPORTANCE_HIGH)
             .build()
@@ -110,7 +120,6 @@ class TimerService : Service() {
             }
         }
     }
-
 
 
     private fun createAndStartTimer(

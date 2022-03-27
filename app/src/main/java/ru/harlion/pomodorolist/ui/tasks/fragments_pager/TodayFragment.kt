@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentTodayBinding
 import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
 import ru.harlion.pomodorolist.ui.tasks.TasksViewModel
+import ru.harlion.pomodorolist.ui.tasks.edit.EditTaskFragment
+import ru.harlion.pomodorolist.utils.replaceFragment
 import java.time.LocalDate
 
 
@@ -23,7 +26,11 @@ class TodayFragment : BindingFragment<FragmentTodayBinding>(FragmentTodayBinding
 
         binding.listTaskRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = AdapterTask(viewModel::updateTask).also {
+            adapter = AdapterTask(viewModel::updateTask,{
+                replaceFragment(TimerFragment(), true)
+            } , {
+                replaceFragment(EditTaskFragment.newInstance(it), true)
+            }) .also {
                 adapterTask = it
             }
         }

@@ -122,11 +122,11 @@
         android:layout_marginHorizontal="16dp"
         android:text="@string/auto_focus_start" />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/swich_is_break"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:text="@string/delete_break" />
+<!--    <androidx.appcompat.widget.SwitchCompat-->
+<!--        android:id="@+id/swich_is_break"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:text="@string/delete_break" />-->
 
 </LinearLayout>

@@ -42,7 +42,9 @@ class ListProjectsFragment :
                 { replaceFragment(DetailProjectFragment.newInstance(it), true) },
                 viewModel::getListTasks,
                 viewModel::updateTask
-            )
+            ) {
+                //todo play task
+            }
 
         binding.listProject.apply {
             layoutManager = llm

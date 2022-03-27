@@ -40,7 +40,9 @@ class ArchiveProjectFragment :
             { replaceFragment(DetailProjectFragment.newInstance(it), true) },
             viewModel::getListTasks,
             viewModel::updateTask
-        )
+        ) {
+            //todo play task
+        }
 
         binding.recyclerArchive.apply {
             layoutManager = llm

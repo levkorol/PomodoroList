@@ -81,6 +81,8 @@
     <string name="edit_name_pr">Редактирование</string>
     <string name="do_deadline">Сделать до </string>
     <string name="without_date">Без рекламы</string>
+    <string name="edit_task">Редактирование задачи</string>
+    <string name="desk_task">Описание задачи...</string>
 
 
 </resources>
