@@ -56,7 +56,7 @@ abstract class PausableCountDownTimer(
                 onStop(this.millisLeft - millisLeft)
             }
 
-            onFinish()
+            onFinish(false)
 
         }
     }
@@ -68,7 +68,7 @@ abstract class PausableCountDownTimer(
     fun start(): PausableCountDownTimer {
         mCancelled = false
         if (millisLeft <= 0) {
-            onFinish()
+            onFinish(true)
             return this
         }
         mStopTimeInFuture = SystemClock.elapsedRealtime() + millisLeft
@@ -88,7 +88,7 @@ abstract class PausableCountDownTimer(
     /**
      * Callback fired when the time is up.
      */
-    abstract fun onFinish()
+    abstract fun onFinish( success : Boolean)
 
     // handles counting down
     private val mHandler: Handler = object : Handler(Looper.myLooper()!!) {
@@ -99,13 +99,15 @@ abstract class PausableCountDownTimer(
                 }
                 val millisLeft =
                     mStopTimeInFuture - SystemClock.elapsedRealtime()
+
+                onTick(millisLeft)
+
                 if (millisLeft <= 0) {
                     onStop(this@PausableCountDownTimer.millisLeft)
                     mCancelled = true
-                    onFinish()
+                    onFinish(true)
                 } else {
                     val lastTickStart = SystemClock.elapsedRealtime()
-                    onTick(millisLeft)
 
                     // take into account user's onTick taking time to execute
                     val lastTickDuration =

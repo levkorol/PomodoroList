@@ -25,6 +25,8 @@ class TimerService : Service() {
     private val repository = Repository.get()
     private var timer: PausableCountDownTimer? = null
     private var player: Player? = null
+    var millisLeft = 0L
+        private set
     var taskId: Long = 0L
         private set
     var timerState = TimerState.WAIT_FOCUS
@@ -86,15 +88,19 @@ class TimerService : Service() {
     var onFinish: (() -> Unit)? = null
     var onStateChange: ((TimerState) -> Unit)? = null
 
-    fun startTimer(taskId: Long) {
+    fun startTimer(taskId: Long, isFocus: Boolean) {
         val prefs = Prefs(this)
         player = Player(this)
         this.taskId = taskId
-        reallyStartTimer(prefs, taskId)
+
+        if(isFocus) {
+            startFocus(prefs, taskId)
+        } else {
+            startBreak(prefs, taskId)
+        }
     }
 
-
-    private fun reallyStartTimer(
+    private fun startFocus(
         prefs: Prefs,
         taskId: Long
     ) {
@@ -106,17 +112,21 @@ class TimerService : Service() {
             taskId
         ) {
             if (prefs.isAutoBreakTimer) {
-                createAndStartTimer(
-                    prefs.breakTimerActiveSettings * 60000,
-                    TimerState.BREAK,
-                    TimerState.WAIT_FOCUS,
-                    prefs,
-                    taskId
-                ) {
-                    if (prefs.isAutoFocusTimer) {
-                        reallyStartTimer(prefs, taskId)
-                    }
-                }
+                startBreak(prefs, taskId)
+            }
+        }
+    }
+
+    private fun startBreak(prefs: Prefs, taskId: Long) {
+        createAndStartTimer(
+            prefs.breakTimerActiveSettings * 60000,
+            TimerState.BREAK,
+            TimerState.WAIT_FOCUS,
+            prefs,
+            taskId
+        ) {
+            if (prefs.isAutoFocusTimer) {
+                startFocus(prefs, taskId)
             }
         }
     }
@@ -139,16 +149,19 @@ class TimerService : Service() {
             override fun onTick(millisUntilFinished: Long) {
                 timerState = tickState
                 onTick?.invoke(millisUntilFinished, time)
+                millisLeft = millisUntilFinished
                 if (prefs.isSound) {
                     player?.playSound()
                 }
             }
 
-            override fun onFinish() {
-                timerState = finishState
-                onFinish?.invoke()
+            override fun onFinish(success: Boolean) {
+                if (success) {
+                    timerState = finishState
+                    onFinish?.invoke()
+                    andThen?.invoke()
+                }
                 player?.stopSound()
-                andThen?.invoke()
             }
         }.start()
     }

@@ -8,10 +8,8 @@ import android.content.ServiceConnection
 import android.os.Bundle
 import android.os.IBinder
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import ru.harlion.pomodorolist.AppActivity
-import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentTimerBinding
 import ru.harlion.pomodorolist.ui.profile.settings.SettingsTimerFragment
@@ -55,7 +53,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
     private fun initTimerAndClick() {
 
         binding.startFocusBtn.setOnClickListener {
-            timerService?.startTimer(-1)
+            timerService?.taskId?.let { id -> timerService?.startTimer(id, true) }
         }
 
         binding.pauseBtn.setOnClickListener {
@@ -64,6 +62,17 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
         binding.resumeFocusBtn.setOnClickListener {
             timerService?.resume(prefs)
+        }
+
+        binding.skipBreakBtn.setOnClickListener {
+             timerService?.apply {
+                 stopTimer()
+                 startTimer(taskId, true)
+             }
+        }
+
+        binding.startBreakBtn.setOnClickListener {
+            timerService?.taskId?.let { id -> timerService?.startTimer(id, false) }
         }
 
         binding.stopFocusBtn.setOnClickListener {
@@ -91,8 +100,8 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         super.onStop()
         timerService?.apply {
             onTick = null
-            onFinish = null
             onStateChange = null
+            onFinish = null
         }
         timerService = null
         requireContext().unbindService(this)
@@ -108,28 +117,44 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
             }
 
             visibleButton(this.timerState)
-            if (this.timerState == TimerState.WAIT_FOCUS) {
-                binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
-                //todo сделать отображение минут больше 60ти
-            }
-            if (this.timerState == TimerState.WAIT_BREAK) {
-                binding.timerCount.text = formatTimeMins(prefTimeBreak * 60000, resources)
-            }
-            onTick = { millisUntilFinished, timeFocus ->
-                binding.timerCount.text = formatTimeMins(millisUntilFinished, resources)
-                binding.progressBar.maximum = timeFocus.toFloat()
 
-                binding.progressBar.progress =
-                    timeFocus - min(millisUntilFinished, timeFocus).toFloat()
+            bind()
+
+            onTick = { millisUntilFinished, time ->
+                bind(millisUntilFinished, time)
             }
+
             onFinish = {
-                binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
-                //todo btn all without break prefs
+                bind()
             }
+
             onStateChange = {
                 visibleButton(it)
             }
         }
+    }
+
+    private fun TimerService.bind() {
+        val timeFocus = prefTimeFocus * 60000
+        val timeBreak = prefTimeBreak * 60000
+
+        when (timerState) {
+            TimerState.WAIT_FOCUS -> bind(timeFocus, timeFocus)
+            TimerState.WAIT_BREAK -> bind(timeBreak, timeBreak)
+            TimerState.FOCUS, TimerState.PAUSE_FOCUS -> bind(millisLeft, timeFocus)
+            TimerState.BREAK -> bind(millisLeft, timeBreak)
+        }
+    }
+
+    private fun TimerService.bind(
+        millisUntilFinished: Long,
+        timeFocus: Long
+    ) {
+        binding.timerCount.text = formatTimeMins(millisUntilFinished, resources)
+        binding.progressBar.maximum = timeFocus.toFloat()
+
+        binding.progressBar.progress =
+            timeFocus - min(millisUntilFinished, timeFocus).toFloat()
     }
 
     private fun visibleButton(timerState: TimerState) {

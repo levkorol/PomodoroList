@@ -22,11 +22,14 @@ interface TaskDao {
     @Update
     fun updateTask(task: Task)
 
+    @Query("UPDATE project SET name = coalesce(:name, name), deadline = coalesce(:deadline, deadline), isArchive = coalesce(:isArchive, isArchive), prize = coalesce(:prize, prize) WHERE id = :projectId")
+    abstract fun updateTaskFields(projectId: Long, name: String? = null, deadline: Long? = null, isArchive: Boolean? = null, prize : String? = null)
+
     @Insert
     fun addTask(task: Task)
 
-    @Delete
-    fun deleteTask(task: Task)
+    @Query("DELETE FROM task WHERE id = :taskId")
+    fun deleteTask(taskId: Long)
 
     @Query("SELECT * FROM task")
     fun getTasks(): List<Task>

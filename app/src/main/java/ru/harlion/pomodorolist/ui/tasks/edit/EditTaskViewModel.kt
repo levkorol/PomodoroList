@@ -9,12 +9,18 @@ class EditTaskViewModel : ViewModel() {
 
     private val repository = Repository.get()
     var task = MutableLiveData<Task?>()
+    private var taskId = 0L
 
     fun getTaskById(id: Long) {
         task.value = repository.getTaskById(id)
+        taskId = id
     }
 
     fun updateTask(task: Task) {
         repository.updateTask(task)
+    }
+
+    fun deleteTask() {
+        repository.deleteTask(taskId)
     }
 }

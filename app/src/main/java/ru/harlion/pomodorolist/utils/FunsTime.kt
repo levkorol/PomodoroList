@@ -23,10 +23,7 @@ fun formatTimeMins(millis: Long, resources: Resources): String {
     val minutes = seconds / 60
     val secsInMin = seconds % 60
 
-    val hours = minutes / 60
-    val minsInHour = minutes % 60
-
-    return resources.getString(R.string.time_minutes_seconds_formatter, minsInHour, secsInMin)
+    return resources.getString(R.string.time_minutes_seconds_formatter, minutes, secsInMin)
 }
 
 fun dateToString(date: Long): String {
@@ -41,5 +38,6 @@ fun dateToStringShort(date: Long): String {
 
 fun timeToString(time: Long): String {
     val tim = SimpleDateFormat("HH:mm", Locale.getDefault())
-    return tim.format(time).toString()
+    tim.timeZone = TimeZone.getTimeZone("UTC")
+    return tim.format(time)
 }

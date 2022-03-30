@@ -9,6 +9,7 @@ import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentListProjectsBinding
 import ru.harlion.pomodorolist.models.Project
+import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.projects.adapter.ProjectsAdapter
 import ru.harlion.pomodorolist.ui.projects.adding.AddProjectFragment
 import ru.harlion.pomodorolist.ui.projects.detail_project.DetailProjectFragment
@@ -43,7 +44,7 @@ class ListProjectsFragment :
                 viewModel::getListTasks,
                 viewModel::updateTask
             ) {
-                //todo play task
+                replaceFragment(TimerFragment(), true)
             }
 
         binding.listProject.apply {

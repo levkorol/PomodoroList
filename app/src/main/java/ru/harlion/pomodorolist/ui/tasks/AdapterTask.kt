@@ -84,9 +84,10 @@ fun bindTask(
                 Intent(it.context, TimerService::class.java),
                 object : ServiceConnection {
                     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-                        (service as TimerService.TimerBinder).service.startTimer(task.id)
+                        (service as TimerService.TimerBinder).service.startTimer(task.id, true)
                         it.context.unbindService(this)
                         click.invoke(task.id)
+
                     }
 
                     override fun onServiceDisconnected(name: ComponentName?) {}
@@ -108,10 +109,3 @@ fun bindTask(
         }
     }
 }
-
-//"high" -> priority.setImageDrawable(
-//ContextCompat.getDrawable(
-//this.priority.context,
-//R.drawable.ic_label_red
-//)
-//)

@@ -63,6 +63,8 @@ class Repository private constructor(context: Context) {
 
     fun deleteProject(projectId: Long) = projectDao.deleteProject(projectId)
 
+    fun deleteTask(taskId: Long) = taskDao.deleteTask(taskId)
+
     fun updateProject(project: Project) = projectDao.updateProject(project)
 
     fun updateNameProject(projectId: Long, name: String) {

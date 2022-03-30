@@ -47,7 +47,7 @@
         android:padding="8dp"
         android:layout_marginHorizontal="16dp"
         android:textSize="14sp"
-        android:hint="Название проекта..."
+        android:hint="@string/name_project"
         android:lines="3" />
 
     <TextView
@@ -62,7 +62,7 @@
         android:layout_marginHorizontal="16dp"
         android:textSize="14sp"
         android:layout_marginTop="16dp"
-        android:text="Дата дедлайна"
+        android:text="@string/date_deadline"
         />
 
     <TextView
@@ -78,7 +78,7 @@
         android:layout_marginHorizontal="16dp"
         android:textSize="14sp"
         android:layout_marginTop="16dp"
-        android:text="Цвет"
+        android:text="@string/color_ad"
         />
 
 
@@ -94,15 +94,7 @@
         android:drawableStart="@drawable/ic_price"
         android:layout_marginHorizontal="16dp"
         android:textSize="14sp"
-        android:hint="Награда по завершению..."
+        android:hint="@string/prize_et"
         android:lines="1" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tasks_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:nestedScrollingEnabled="false"
-        />
 
 </LinearLayout>

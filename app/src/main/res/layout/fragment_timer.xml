@@ -148,7 +148,7 @@
             android:paddingHorizontal="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:text="Продолжить"
+            android:text="@string/resume"
             android:textColor="@color/white" />
 
         <TextView
@@ -160,7 +160,7 @@
             android:paddingHorizontal="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:text="Остановить" />
+            android:text="@string/stop" />
 
     </LinearLayout>
 
@@ -171,6 +171,7 @@
         android:layout_gravity="center"
         android:background="@drawable/btn_bg_green"
         android:drawableStart="@drawable/ic_play"
+        android:drawableTint="@color/white"
         android:drawablePadding="4dp"
         android:gravity="center"
         android:paddingHorizontal="16dp"
@@ -192,7 +193,7 @@
         android:paddingTop="8dp"
         android:visibility="gone"
         android:paddingBottom="8dp"
-        android:text="Пропустить перерыв" />
+        android:text="@string/skip_break" />
 
     <View
         android:layout_width="match_parent"
