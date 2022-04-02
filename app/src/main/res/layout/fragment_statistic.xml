@@ -78,6 +78,25 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/count_in_focus_tasks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/roboto_slab_black"
+            android:gravity="center"
+            android:text="13:00"
+            android:textColor="?middle_l"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginStart="16dp"
+            android:text="@string/in_focus_tasks"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/count_in_focus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

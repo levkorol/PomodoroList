@@ -68,7 +68,12 @@ class EditTaskFragment :
         }
 
         binding.save.setOnClickListener {
-            viewModel.updateTask(task)
+            viewModel.updateTask(
+                binding.nameTask.text.toString(),
+                priorityTask,
+                date,
+                0L //todo
+            )
             parentFragmentManager.popBackStack()
         }
 
@@ -123,7 +128,7 @@ class EditTaskFragment :
                     )
                 )
             )
-            "high" ->TextViewCompat.setCompoundDrawableTintList(
+            "high" -> TextViewCompat.setCompoundDrawableTintList(
                 binding.nameTask,
                 ColorStateList.valueOf(
                     ContextCompat.getColor(

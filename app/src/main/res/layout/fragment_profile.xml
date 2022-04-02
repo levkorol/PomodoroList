@@ -90,6 +90,7 @@
             android:background="@drawable/bg_white" />
 
         <TextView
+            android:id="@+id/mail_dev"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_right_24"
@@ -103,6 +104,7 @@
             android:text="@string/mail_dev"/>
 
         <TextView
+            android:id="@+id/google_play"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_right_24"

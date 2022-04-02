@@ -22,7 +22,7 @@
     <string name="on_boarding_three">Будь продуктивнее и быстрее</string>
     <string name="des_task">Описание новой задачи...</string>
     <string name="new_project">Новый проект</string>
-    <string name="today">Сегодня</string>
+    <string name="today">Задачи сегодня</string>
     <string name="month">Месяц</string>
     <string name="in_focus">В фокусе - </string>
     <string name="color">Цвет</string>
@@ -62,7 +62,7 @@
     <string name="peach">Персик</string>
     <string name="avocado">Авокадо</string>
     <string name="add_archive">Убрать проект в архив?</string>
-    <string name="delete_archive">Убрать с архива?</string>
+    <string name="delete_archive">Вернуть проект в работу?</string>
     <string name="statistic">Статистика</string>
     <string name="premium">Премиум</string>
     <string name="pro_motivation">Мотивация и развитие приложения</string>
@@ -93,6 +93,8 @@
     <string name="skip_break">Пропустить перерыв</string>
     <string name="prize_et">Награда по завершению...</string>
     <string name="color_ad">Цвет</string>
+    <string name="in_focus_tasks">Фокус с задачами -</string>
+    <string name="calendar_menu">Календарь</string>
 
 
 </resources>

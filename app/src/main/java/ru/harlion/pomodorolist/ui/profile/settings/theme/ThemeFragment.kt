@@ -38,6 +38,21 @@ class ThemeFragment : BindingFragment<FragmentThemeBinding>(FragmentThemeBinding
             (activity as AppActivity).recreate()
         }
 
+        binding.violet.setOnClickListener {
+            prefs.theme = "violet"
+            (activity as AppActivity).recreate()
+        }
+
+        binding.pink.setOnClickListener {
+            prefs.theme = "pink"
+            (activity as AppActivity).recreate()
+        }
+
+        binding.sea.setOnClickListener {
+            prefs.theme = "sea"
+            (activity as AppActivity).recreate()
+        }
+
         binding.back.setOnClickListener {
             parentFragmentManager.popBackStack()
         }

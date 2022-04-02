@@ -53,7 +53,30 @@
         <item name="middle">#C69624</item>
         <item name="middle_d">#8A7647</item>
         <item name="middle_l">#AFA385</item>
+    </style>
 
+    <style name="VioletTheme">
+        <item name="light">#F1EAFA</item>
+        <item name="darker">#180735</item>
+        <item name="middle">#552797</item>
+        <item name="middle_d">#685097</item>
+        <item name="middle_l">#87779C</item>
+    </style>
+
+    <style name="SeaTheme">
+        <item name="light">#EDFAF8</item>
+        <item name="darker">#0E393A</item>
+        <item name="middle">#319A8E</item>
+        <item name="middle_d">#5C9F9F</item>
+        <item name="middle_l">#87A6A2</item>
+    </style>
+
+    <style name="PinkTheme">
+        <item name="light">#F8ECFA</item>
+        <item name="darker">#390E3A</item>
+        <item name="middle">#9A3198</item>
+        <item name="middle_d">#9B5C9F</item>
+        <item name="middle_l">#A687A3</item>
     </style>
 
 

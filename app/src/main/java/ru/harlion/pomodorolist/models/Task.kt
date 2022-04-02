@@ -21,8 +21,6 @@ data class Task (
     val priority: String = "",
     var isDone: Boolean = false,
     val position: Int = 0,
-    val countCyclePomodoro: Int = 0,
-    val isPomodoro: Boolean = false,
     val date: Long = 0,
     val timeWork: Long = 0
     )

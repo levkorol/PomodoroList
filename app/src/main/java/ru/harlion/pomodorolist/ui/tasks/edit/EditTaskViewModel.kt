@@ -16,8 +16,25 @@ class EditTaskViewModel : ViewModel() {
         taskId = id
     }
 
-    fun updateTask(task: Task) {
-        repository.updateTask(task)
+    fun updateTask(
+        name: String,
+        priority: String,
+        date : Long,
+        timeWork : Long
+    ) {
+        val newTask = Task(
+            id = task.value?.id ?: 0L,
+            name = name,
+            priority = priority,
+            date = date,
+            timeWork = timeWork,
+            parentColor = task.value?.parentColor ?: 0,
+            parentId = task.value?.parentId ?: -1L,
+            parentName = task.value?.parentName ?: "",
+            isDone = task.value?.isDone ?: false,
+            position = task.value?.position ?: 0
+        )
+        repository.updateTask(newTask)
     }
 
     fun deleteTask() {

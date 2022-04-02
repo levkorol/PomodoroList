@@ -77,4 +77,43 @@
         android:layout_height="wrap_content"
         android:text="@string/avocado"/>
 
+    <TextView
+        android:id="@+id/violet"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="26dp"
+        android:drawableStart="@drawable/ic_circle"
+        android:drawablePadding="6dp"
+        android:background="@drawable/inline_bg_btn"
+        android:padding="10dp"
+        android:drawableTint="@color/middle_violet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/violet"/>
+
+    <TextView
+        android:id="@+id/pink"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="26dp"
+        android:drawableStart="@drawable/ic_circle"
+        android:drawablePadding="6dp"
+        android:background="@drawable/inline_bg_btn"
+        android:padding="10dp"
+        android:drawableTint="@color/middle_pink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pink"/>
+
+    <TextView
+        android:id="@+id/sea"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="26dp"
+        android:drawableStart="@drawable/ic_circle"
+        android:drawablePadding="6dp"
+        android:background="@drawable/inline_bg_btn"
+        android:padding="10dp"
+        android:drawableTint="@color/middle_sea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sea"/>
+
 </LinearLayout>

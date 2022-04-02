@@ -24,7 +24,10 @@ class AppActivity : AppCompatActivity() {
             "green" -> setTheme(R.style.GreenTheme)
             "sky" -> setTheme(R.style.SkyTheme)
             "peach" -> setTheme(R.style.PeachTheme)
-             else -> setTheme(R.style.RedTheme)
+            "violet" -> setTheme(R.style.VioletTheme)
+            "pink" -> setTheme(R.style.PinkTheme)
+            "sea" -> setTheme(R.style.SeaTheme)
+            else -> setTheme(R.style.RedTheme)
         }
 
         super.onCreate(savedInstanceState)
