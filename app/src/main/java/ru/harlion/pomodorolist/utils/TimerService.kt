@@ -24,6 +24,13 @@ class TimerService : Service() {
 
     private val repository = Repository.get()
     private var timer: PausableCountDownTimer? = null
+        set(value) {
+            if ((field == null) != (value == null)) {
+                if (value == null) stopSelf()
+                else startService(Intent(this, TimerService::class.java))
+            }
+            field = value
+        }
     private var player: Player? = null
     var millisLeft = 0L
         private set
@@ -41,13 +48,6 @@ class TimerService : Service() {
 
     override fun onBind(intent: Intent?): IBinder? {
         return TimerBinder()
-    }
-
-    override fun onUnbind(intent: Intent?): Boolean {
-        if (timer != null) {
-            startService(Intent(this, TimerService::class.java))
-        }
-        return super.onUnbind(intent)
     }
 
     private fun setMessageNotification(): String {  //todo  не обновляется текст при смене статусов
