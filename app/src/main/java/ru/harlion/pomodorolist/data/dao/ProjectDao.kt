@@ -3,11 +3,18 @@ package ru.harlion.pomodorolist.data.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import ru.harlion.pomodorolist.models.Project
+import ru.harlion.pomodorolist.models.ProjectWithProgress
 import ru.harlion.pomodorolist.models.ProjectWithTasks
 import ru.harlion.pomodorolist.models.Task
 
 @Dao
 abstract class ProjectDao {
+
+    @Query("SELECT * ," +
+            " (SELECT count(*) from task where parentId = project.id) as tasks," +
+            " (SELECT count(*) from task where parentId = project.id and isDone = 1) as doneTasks" +
+            " from project where isArchive = :isArchive")
+    abstract fun progressTask(isArchive: Boolean) : LiveData<List<ProjectWithProgress>>
 
     @Query("SELECT * FROM project")
     abstract fun liveProjects(): LiveData<List<Project>>
@@ -42,3 +49,5 @@ abstract class ProjectDao {
     @Query("DELETE FROM project WHERE id = :projectId")
     abstract fun deleteProject(projectId: Long)
 }
+
+

@@ -23,7 +23,6 @@ class AddProjectViewModel: ViewModel() {
     ) {
         val project = ProjectWithTasks(Project(
             name = name,
-            tasks = tasks,
             prize = prize,
             deadline = deadline,
             color = color,

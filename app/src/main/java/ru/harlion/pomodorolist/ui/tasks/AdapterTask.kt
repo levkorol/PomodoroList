@@ -26,6 +26,12 @@ class AdapterTask(
     private val clickEditTask: (Long) -> Unit,
 ) : RecyclerView.Adapter<ItemHolderTask>() {
 
+    var currentTaskId = 0L
+        set (value){
+            field = value
+            notifyDataSetChanged()
+        }
+
     var items: List<Task> = listOf()
         set(value) {
             field = value
@@ -38,13 +44,14 @@ class AdapterTask(
         }
 
     override fun onBindViewHolder(holder: ItemHolderTask, position: Int) {
-        bindTask(holder, items[position], updateTask, click, clickEditTask)
+        bindTask(currentTaskId, holder, items[position], updateTask, click, clickEditTask)
     }
 
     override fun getItemCount() = items.size
 }
 
 fun bindTask(
+    currentTaskId: Long,
     holder: ItemHolderTask,
     task: Task,
     updateTask: (Task) -> Unit,
@@ -54,11 +61,13 @@ fun bindTask(
     holder.binding.apply {
         taskName.text = task.name
 
-        if(task.timeWork > 0) {
+        if (task.timeWork > 0) {
             time.text = timeToString(task.timeWork)
         } else {
             time.text = ""
         }
+
+        pauseOrPlay.setImageLevel(if (task.id == currentTaskId) 1 else 0)
 
         descTask.isChecked = task.isDone
 

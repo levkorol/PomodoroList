@@ -190,9 +190,9 @@ class DetailProjectFragment :
             }
         }
 
-        binding.deadline.setOnClickListener {
-            DialogCalendar().show(parentFragmentManager, null)
-        }
+//        binding.deadline.setOnClickListener {
+//            DialogCalendar().show(parentFragmentManager, null)
+//        }
 
         binding.prizeToComplete.setOnClickListener {
             AlertDialogBase(requireContext()).apply {

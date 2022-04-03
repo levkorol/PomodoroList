@@ -13,18 +13,17 @@ import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.Task
 
 @Database(entities = [Project::class, Task::class], version = 1, exportSchema = false)
-@TypeConverters(ConverterApp::class)
 abstract class DataBaseApp : RoomDatabase() {
 
     abstract fun projectDao(): ProjectDao
     abstract fun taskDao(): TaskDao
 }
 
-object ConverterApp {
-    @TypeConverter
-    fun taskToString(emotion : List<Task>): String = AppApplication.gson.toJson(emotion)
-
-    @TypeConverter
-    fun stringToTask(string: String): List<Task> =
-        AppApplication.gson.fromJson(string, TypeToken.getParameterized(List::class.java, Task::class.java).type)
-}
+//object ConverterApp {
+//    @TypeConverter
+//    fun taskToString(emotion : List<Task>): String = AppApplication.gson.toJson(emotion)
+//
+//    @TypeConverter
+//    fun stringToTask(string: String): List<Task> =
+//        AppApplication.gson.fromJson(string, TypeToken.getParameterized(List::class.java, Task::class.java).type)
+//}

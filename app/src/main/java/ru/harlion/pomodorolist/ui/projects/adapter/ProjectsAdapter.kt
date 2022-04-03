@@ -14,6 +14,7 @@ import ru.harlion.pomodorolist.base.BindingHolder
 import ru.harlion.pomodorolist.databinding.ItemProjectBinding
 import ru.harlion.pomodorolist.databinding.ItemTaskBinding
 import ru.harlion.pomodorolist.models.Project
+import ru.harlion.pomodorolist.models.ProjectWithProgress
 import ru.harlion.pomodorolist.models.Task
 import ru.harlion.pomodorolist.ui.tasks.ItemHolderTask
 import ru.harlion.pomodorolist.ui.tasks.bindTask
@@ -29,11 +30,42 @@ class ProjectsAdapter(
 ) :
     RecyclerView.Adapter<BindingHolder<*>>() {
 
-    var item: List<Any> = listOf()
+    private var item: List<Any> = listOf()
+    var currentTaskId = 0L
+    set (value){
+        field = value
+        notifyDataSetChanged()
+    }
+
+    fun setItems(value : List<ProjectWithProgress>) {
+        val newList = value.toMutableList<Any>()
+        val listIterator = newList.listIterator()
+        while(listIterator.hasNext()) {
+            listIterator.next()
+            val previousIndex = listIterator.previousIndex()
+            if (item.getOrNull(previousIndex + 1) is Task) {
+                val index = item.subList(previousIndex + 1, item.size).indexOfFirst {
+                    it is ProjectWithProgress
+                }
+                item.subList(
+                    previousIndex + 1,
+                    if (index < 0) {
+                        item.size
+                    } else {
+                        previousIndex + 1 + index
+                    }
+                ).forEach {
+                    listIterator.add(it)
+                }
+            }
+        }
+        item = newList
+        notifyDataSetChanged()
+    }
 
     override fun getItemViewType(position: Int): Int {
         return when (item[position]) {
-            is Project -> 1
+            is ProjectWithProgress -> 1
             is Task -> 2
             else -> throw Exception()
         }
@@ -45,7 +77,7 @@ class ProjectsAdapter(
                 ItemHolderProject(ItemProjectBinding::inflate, parent).apply {
                     binding.containerItemCv.setOnClickListener {
                         if (adapterPosition > -1) {
-                            click.invoke((item[adapterPosition] as Project).id)
+                            click.invoke((item[adapterPosition] as ProjectWithProgress).project.id)
                         }
                     }
                     binding.countTasks.setOnClickListener {
@@ -53,7 +85,7 @@ class ProjectsAdapter(
                             if (item.getOrNull(adapterPosition + 1) is Task) {
                                 var taskCount =
                                     item.subList(adapterPosition + 1, item.size).indexOfFirst {
-                                        it is Project
+                                        it is ProjectWithProgress
                                     }
                                 val newItems = item.toMutableList()
                                 val subList = newItems.subList(
@@ -71,7 +103,7 @@ class ProjectsAdapter(
                             } else {
                                 val newItems = item.toMutableList()
                                 val elements =
-                                    taskList.invoke((item[adapterPosition] as Project).id).sortedBy {       //or filter
+                                    taskList.invoke((item[adapterPosition] as ProjectWithProgress).project.id).sortedBy {       //or filter
                                        it.isDone
                                     }
                                 newItems.addAll(
@@ -99,7 +131,8 @@ class ProjectsAdapter(
                 countTasks.compoundDrawablesRelative[2].level =
                     if (item.getOrNull(position + 1) is Task) 0 else 5000
 
-                val project = item[position] as Project
+                val projectWithP = item[position] as ProjectWithProgress
+                val project = projectWithP.project
 
                 name.text = project.name
 
@@ -125,15 +158,12 @@ class ProjectsAdapter(
                     }
                 }
 
-                val elements = taskList.invoke((item[position] as Project).id)
-                val done = elements.filter { it.isDone }.size
-                val max = elements.size
-                countTasks.text = "$done / $max"
-                progressDoneTasks.max = max
-                progressDoneTasks.progress = done
+                countTasks.text = "${projectWithP.doneTasks} / ${projectWithP.tasks}"
+                progressDoneTasks.max = projectWithP.tasks
+                progressDoneTasks.progress = projectWithP.doneTasks
             }
         } else {
-            bindTask(holder as ItemHolderTask, item[position] as Task, updateTask, clickTask){} //todo edit task
+            bindTask(currentTaskId, holder as ItemHolderTask, item[position] as Task, updateTask, clickTask){} //todo edit task
         }
     }
 

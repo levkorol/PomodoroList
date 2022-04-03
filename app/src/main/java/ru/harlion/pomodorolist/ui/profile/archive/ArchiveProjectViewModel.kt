@@ -8,7 +8,7 @@ class ArchiveProjectViewModel: ViewModel() {
 
     private val repository = Repository.get()
 
-    val projects = repository.getListProjects()
+    val project =  repository.progressTask(true)
 
     fun getListTasks(projectId: Long): List<Task> {
         return repository.getListTasksByProjectId(projectId)

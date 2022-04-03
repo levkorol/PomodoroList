@@ -8,7 +8,6 @@ class Project(
     val id: Long = 0,
     var name: String,
     var prize: String,
-    val tasks: List<Task>,
     val isDone: Boolean = false,
     var deadline: Long = 0,
     val position: Int = 0,
@@ -25,4 +24,10 @@ class ProjectWithTasks(
         entityColumn = "parentId"
     )
     val tasks: List<Task>
+)
+
+class ProjectWithProgress (
+   @Embedded val project: Project,
+   val tasks : Int,
+   val doneTasks : Int
 )

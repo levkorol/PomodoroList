@@ -10,7 +10,7 @@ class ListProjectsViewModel : ViewModel() {
 
     private val repository = Repository.get()
 
-    val projects = repository.getListProjects()
+    val projects =  repository.progressTask(false)
 
     fun getListTasks(projectId: Long): List<Task> {
        return repository.getListTasksByProjectId(projectId)

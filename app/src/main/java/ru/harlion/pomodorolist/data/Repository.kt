@@ -95,6 +95,8 @@ class Repository private constructor(context: Context) {
        return taskDao.getTaskById(id)
     }
 
+    fun progressTask(isArchive: Boolean) = projectDao.progressTask(isArchive)
+
     companion object {
         private var INSTANCE: Repository? = null
 

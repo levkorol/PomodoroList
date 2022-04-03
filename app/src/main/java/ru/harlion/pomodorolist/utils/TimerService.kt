@@ -95,6 +95,7 @@ class TimerService : Service() {
 
         if(isFocus) {
             startFocus(prefs, taskId)
+            prefs.taskId = taskId
         } else {
             startBreak(prefs, taskId)
         }

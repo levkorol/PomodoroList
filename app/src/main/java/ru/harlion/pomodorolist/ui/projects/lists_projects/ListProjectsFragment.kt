@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentListProjectsBinding
-import ru.harlion.pomodorolist.models.Project
+import ru.harlion.pomodorolist.models.ProjectWithProgress
 import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.projects.adapter.ProjectsAdapter
 import ru.harlion.pomodorolist.ui.projects.adding.AddProjectFragment
 import ru.harlion.pomodorolist.ui.projects.detail_project.DetailProjectFragment
+import ru.harlion.pomodorolist.utils.Prefs
 import ru.harlion.pomodorolist.utils.replaceFragment
 
 
@@ -21,23 +22,17 @@ class ListProjectsFragment :
 
     private lateinit var adapterProject: ProjectsAdapter
     private val viewModel: ListProjectsViewModel by viewModels()
+    private lateinit var prefs : Prefs
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        prefs = Prefs(requireContext())
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initClicks()
-
-        viewModel.projects.observe(
-            viewLifecycleOwner, { projects ->
-                projectsRecyclerView(projects.filter {
-                    !it.isArchive
-                })
-            })
-    }
-
-    private fun projectsRecyclerView(projects: List<Project>) {
-        val llm = LinearLayoutManager(requireContext())
-        llm.orientation = LinearLayoutManager.VERTICAL
         adapterProject =
             ProjectsAdapter(
                 { replaceFragment(DetailProjectFragment.newInstance(it), true) },
@@ -46,15 +41,26 @@ class ListProjectsFragment :
             ) {
                 replaceFragment(TimerFragment(), true)
             }
-
         binding.listProject.apply {
-            layoutManager = llm
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = adapterProject
         }
 
+        initClicks()
+
+        viewModel.projects.observe(viewLifecycleOwner, {
+            projectsRecyclerView(it)
+        })
+
+        prefs.observeTaskId().observe(viewLifecycleOwner, {
+             adapterProject.currentTaskId = it
+        })
+    }
+
+    private fun projectsRecyclerView(projects: List<ProjectWithProgress>) {
         if (projects.isNotEmpty()) {
-            adapterProject.item = projects
-            adapterProject.notifyDataSetChanged()
+            adapterProject.setItems(projects)
+
             binding.listProject.visibility = View.VISIBLE
             binding.emptyList.visibility = View.GONE
         } else {

@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentArchiveProjectBinding
-import ru.harlion.pomodorolist.models.Project
+import ru.harlion.pomodorolist.models.ProjectWithProgress
+import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.projects.adapter.ProjectsAdapter
 import ru.harlion.pomodorolist.ui.projects.detail_project.DetailProjectFragment
 import ru.harlion.pomodorolist.utils.replaceFragment
@@ -23,34 +24,31 @@ class ArchiveProjectFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initClicks()
-
-        viewModel.projects.observe(
-            viewLifecycleOwner, { projects ->
-                projectsRecyclerView(projects.filter {
-                    it.isArchive
-                })
-            })
-    }
-
-    private fun projectsRecyclerView(projects: List<Project>) {
-        val llm = LinearLayoutManager(requireContext())
-        llm.orientation = LinearLayoutManager.VERTICAL
-        adapterProject = ProjectsAdapter(
-            { replaceFragment(DetailProjectFragment.newInstance(it), true) },
-            viewModel::getListTasks,
-            viewModel::updateTask
-        ) {
-            //todo play task
-        }
-
+        adapterProject =
+            ProjectsAdapter(
+                { replaceFragment(DetailProjectFragment.newInstance(it), true) },
+                viewModel::getListTasks,
+                viewModel::updateTask
+            ) {
+                replaceFragment(TimerFragment(), true)
+            }
         binding.recyclerArchive.apply {
-            layoutManager = llm
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = adapterProject
         }
 
+        initClicks()
+
+        viewModel.project.observe(
+            viewLifecycleOwner, { projects ->
+                projectsRecyclerView(projects)
+            })
+    }
+
+    private fun projectsRecyclerView(projects: List<ProjectWithProgress>) {
+
         if (projects.isNotEmpty()) {
-            adapterProject.item = projects
+            adapterProject.setItems(projects)
             adapterProject.notifyDataSetChanged()
             binding.recyclerArchive.visibility = View.VISIBLE
             binding.emptyListProject.visibility = View.GONE
