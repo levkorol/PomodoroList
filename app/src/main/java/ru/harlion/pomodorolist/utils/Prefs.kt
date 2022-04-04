@@ -29,11 +29,6 @@ class Prefs(val context: Context) {
         set(value) = sharedPrefs.edit().putInt("SOUND", value)
             .apply()
 
-    var isSound: Boolean
-        get() = sharedPrefs.getBoolean("IS_SOUND", false)
-        set(value) = sharedPrefs.edit().putBoolean("IS_SOUND", value)
-            .apply()
-
     var theme: String?
         get() = sharedPrefs.getString("THEME", "")
         set(value) = sharedPrefs.edit().putString("THEME", value)

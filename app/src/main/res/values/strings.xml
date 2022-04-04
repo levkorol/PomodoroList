@@ -7,8 +7,8 @@
     <string name="main">Главная</string>
     <string name="begin_focus">Начать фокусировку</string>
     <string name="settings_pomodoro">Настройки Помодоро</string>
-    <string name="sound_focus">Звук сессии Помодоро</string>
-    <string name="notify">Сигнал</string>
+    <string name="sound_focus">Звук сессии фокусировки</string>
+    <string name="notify">Сигнал завершенных таймеров</string>
     <string name="work_on_task">Работа над задачей:</string>
     <string name="save">Сохранить</string>
     <string name="change_theme_menu">Сменить оформление</string>

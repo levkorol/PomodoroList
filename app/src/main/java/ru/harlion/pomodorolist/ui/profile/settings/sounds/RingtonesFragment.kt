@@ -30,19 +30,16 @@ class RingtonesFragment :
     }
 
     private fun initRecyclerSound() {
-        val llm = LinearLayoutManager(requireContext())
-        llm.orientation = LinearLayoutManager.VERTICAL
         adapterSound = SoundsAdapter(prefs) { }
         binding.ringtonesRecyclerView.apply {
-            layoutManager = llm
+            layoutManager = LinearLayoutManager(requireContext())
             adapter = adapterSound
         }
-
         adapterSound.items = listSound()
     }
 
     private fun listSound() = listOf(
-        Sound(1, getString(R.string.no), null),
+        Sound(1, getString(R.string.no), 0),
         Sound(2, getString(R.string.tick_sound), R.raw.alarm_clock),
         Sound(3, getString(R.string.sound_bird), R.raw.sound_birds),
         Sound(4, getString(R.string.sound_fire), R.raw.sound_fire),

@@ -13,7 +13,7 @@ class Player(val context: Context) {
         if (mMediaPlayer == null) {
             prefs = Prefs(context)
 
-            mMediaPlayer = MediaPlayer.create(context, R.raw.alarm_clock)
+            mMediaPlayer = MediaPlayer.create(context, prefs.song)//R.raw.alarm_clock
             mMediaPlayer!!.isLooping = true
             mMediaPlayer!!.start()
         } else mMediaPlayer!!.start()
@@ -30,13 +30,4 @@ class Player(val context: Context) {
             mMediaPlayer = null
         }
     }
-
-    // 4. Closes the MediaPlayer when the app is closed in fragment
-//    override fun onStop() {
-//        super.onStop()
-//        if (mMediaPlayer != null) {
-//            mMediaPlayer!!.release()
-//            mMediaPlayer = null
-//        }
-//    }
 }

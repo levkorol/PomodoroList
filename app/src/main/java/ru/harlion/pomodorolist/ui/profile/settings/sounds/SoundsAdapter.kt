@@ -32,11 +32,6 @@ RecyclerView.Adapter<ItemHolderSound>(){
                if (!textSound.isChecked) {
                    textSound.isChecked = true
                    prefs.song = items[position].rawId ?: 0
-
-//                   checkedItems.forEach(::notifyItemChanged)
-//                   checkedItems.clear()
-//                   checkedItems.add(position)
-                   notifyItemChanged(position)
                } else {
                    textSound.isChecked = false
                    prefs.song = items[position].rawId ?: 0
