@@ -6,26 +6,7 @@
     android:orientation="vertical"
     android:background="?light"
     tools:background="@color/light"
-    tools:context=".ui.profile.archive.ArchiveProjectFragment">
-
-
-    <RelativeLayout
-        android:id="@+id/top_ll"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/back"
-            android:src="@drawable/ic_back_24"
-            style="@style/ButtonToolBar" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/archive"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:layout_margin="16dp"/>
-    </RelativeLayout>
+    tools:context=".ui.projects.lists_projects.archive.ArchiveProjectFragment">
 
     <LinearLayout
         android:id="@+id/empty_list_project"

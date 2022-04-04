@@ -8,6 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.profile.ProfileFragment
 import ru.harlion.pomodorolist.ui.profile.on_boarding.OnBoardingFragment
+import ru.harlion.pomodorolist.ui.projects.ProjectsFragment
 import ru.harlion.pomodorolist.ui.projects.lists_projects.ListProjectsFragment
 import ru.harlion.pomodorolist.ui.tasks.ListTasksFragment
 import ru.harlion.pomodorolist.utils.Prefs
@@ -59,7 +60,7 @@ class AppActivity : AppCompatActivity() {
                 }
 
                 R.id.item_projects_page -> {
-                    replaceFragment(ListProjectsFragment(), true)
+                    replaceFragment(ProjectsFragment(), true)
                     true
                 }
                 R.id.item_profile_page -> {

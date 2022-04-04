@@ -4,8 +4,6 @@ import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.setFragmentResultListener
@@ -21,7 +19,7 @@ import ru.harlion.pomodorolist.ui.dialogs.AlertDialogBase
 import ru.harlion.pomodorolist.ui.dialogs.DialogCalendar
 import ru.harlion.pomodorolist.ui.dialogs.DialogPriorityTask
 import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
-import ru.harlion.pomodorolist.ui.profile.archive.ArchiveProjectFragment
+import ru.harlion.pomodorolist.ui.projects.ProjectsFragment
 import ru.harlion.pomodorolist.ui.projects.lists_projects.ListProjectsFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
 import ru.harlion.pomodorolist.ui.tasks.edit.EditTaskFragment
@@ -159,7 +157,7 @@ class DetailProjectFragment :
                 setTitle(getString(R.string.delete_project))
                 setPositiveButton(getString(R.string.yes)) {
                     viewModel.deleteProject()
-                    replaceFragment(ListProjectsFragment(), false)
+                    replaceFragment(ProjectsFragment(), false)
                 }
                 setNegativeButton(getString(R.string.no)) {}
                 show()
@@ -189,10 +187,6 @@ class DetailProjectFragment :
                 setArchive(getString(R.string.delete_archive), setArchive = false, isArchive = true)
             }
         }
-
-//        binding.deadline.setOnClickListener {
-//            DialogCalendar().show(parentFragmentManager, null)
-//        }
 
         binding.prizeToComplete.setOnClickListener {
             AlertDialogBase(requireContext()).apply {

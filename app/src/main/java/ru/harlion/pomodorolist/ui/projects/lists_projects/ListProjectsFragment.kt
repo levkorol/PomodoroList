@@ -35,7 +35,7 @@ class ListProjectsFragment :
 
         adapterProject =
             ProjectsAdapter(
-                { replaceFragment(DetailProjectFragment.newInstance(it), true) },
+                { requireParentFragment().replaceFragment(DetailProjectFragment.newInstance(it), true) },
                 viewModel::getListTasks,
                 viewModel::updateTask
             ) {
@@ -70,9 +70,9 @@ class ListProjectsFragment :
     }
 
     private fun initClicks() {
-        binding.addBtn.setOnClickListener {
-            replaceFragment(AddProjectFragment(), true)
-        }
+//        binding.addBtn.setOnClickListener {
+//            replaceFragment(AddProjectFragment(), true)
+//        }
     }
 
     override fun onResume() {

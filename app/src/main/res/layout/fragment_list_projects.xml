@@ -8,24 +8,24 @@
     android:orientation="vertical"
     tools:context=".ui.tasks.ListTasksFragment">
 
-    <RelativeLayout
-        android:id="@+id/top_ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_collapseMode="pin">
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/top_ll"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_collapseMode="pin">-->
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/icadd_24"
-            app:backgroundTint="?middle_d"
-            app:fabSize="mini"
-            app:tint="@android:color/white" />
-    </RelativeLayout>
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/add_btn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginEnd="8dp"-->
+<!--            android:src="@drawable/icadd_24"-->
+<!--            app:backgroundTint="?middle_d"-->
+<!--            app:fabSize="mini"-->
+<!--            app:tint="@android:color/white" />-->
+<!--    </RelativeLayout>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_project"

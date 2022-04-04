@@ -26,6 +26,8 @@
     <color name="gray_normal_l">#42000000</color>
     <color name="gray_normal_d">#89000000</color>
 
+    <color name="ripple_tab">#D3D1D1</color>
+
 <!--      for  theme rubin-->
         <color name="darker">#230309</color>
         <color name="middle">#fe2c55</color>

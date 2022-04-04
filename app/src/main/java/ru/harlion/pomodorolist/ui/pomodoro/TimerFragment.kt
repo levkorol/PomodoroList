@@ -48,6 +48,20 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         binding.btnStatistic.setOnClickListener {
             replaceFragment(StatisticFragment(), true)
         }
+        binding.closeTask.setOnClickListener {
+            prefs.taskId = 0L
+            timerService?.taskId = 0L
+            binding.taskCv.visibility = View.GONE
+            binding.infoTasks.visibility = View.GONE
+        }
+
+        binding.doneTask.setOnClickListener {
+            viewModel.updateTaskDone()
+            prefs.taskId = 0L
+            timerService?.taskId = 0L
+            binding.taskCv.visibility = View.GONE
+            binding.infoTasks.visibility = View.GONE
+        }
     }
 
     private fun initTimerAndClick() {

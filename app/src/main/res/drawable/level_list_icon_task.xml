@@ -3,9 +3,9 @@
     <item
         android:drawable="@drawable/ic_play"
         android:maxLevel="0"
-        android:minLevel="0"></item>
+        android:minLevel="0"/>
     <item
         android:drawable="@drawable/ic_pause_24"
         android:maxLevel="1"
-        android:minLevel="1"></item>
+        android:minLevel="1"/>
 </level-list>

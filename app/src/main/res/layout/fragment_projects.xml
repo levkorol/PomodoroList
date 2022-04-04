@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.projects.ProjectsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="?light"
+            app:tabGravity="fill"
+            app:tabIconTint="?middle_d"
+            app:tabIconTintMode="src_in"
+            app:tabIndicator="@color/black"
+            app:tabIndicatorColor="?middle_d"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicatorHeight="0dp"
+            app:tabInlineLabel="true"
+            app:tabMode="fixed"
+            app:tabRippleColor="@color/ripple_tab"
+            app:tabSelectedTextColor="?middle_d"
+            app:tabTextAppearance="@style/tabText" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/icadd_24"
+            app:backgroundTint="?middle_d"
+            app:fabSize="mini"
+            app:tint="@android:color/white" />
+    </LinearLayout>
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

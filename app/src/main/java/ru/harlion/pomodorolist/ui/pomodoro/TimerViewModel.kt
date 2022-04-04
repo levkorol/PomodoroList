@@ -16,4 +16,9 @@ class TimerViewModel : ViewModel() {
     fun getTaskById(id: Long) {
         _task.value = repository.getTaskById(id)
     }
+
+    fun updateTaskDone() {
+        task.value?.isDone = true
+        task.value?.let { repository.updateTask(it) }
+    }
 }

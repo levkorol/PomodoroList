@@ -16,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:src="@drawable/image_fly"/>
-
+            android:src="@drawable/image_fast_working_flatline"/>
 
         <TextView
             android:id="@+id/premium"
@@ -32,35 +31,18 @@
             android:background="@drawable/bg_white"
             android:text="@string/pro" />
 
-        <TextView
-            android:id="@+id/archive"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_right_24"
-            android:gravity="center|start"
-            android:padding="16dp"
-            android:layout_marginTop="16dp"
-            android:drawableStart="@drawable/ic_baseline_archive_24"
-            android:drawablePadding="6dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/bg_white"
-            android:text="@string/archive" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_right_24"
-            android:gravity="center|start"
-            android:padding="16dp"
-            android:layout_marginTop="16dp"
-            android:drawableStart="@drawable/ic_hot_24"
-            android:drawablePadding="6dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/bg_white"
-            android:text="@string/c_newtime" />
-
-
-
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:drawableEnd="@drawable/ic_right_24"-->
+<!--            android:gravity="center|start"-->
+<!--            android:padding="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:drawableStart="@drawable/ic_hot_24"-->
+<!--            android:drawablePadding="6dp"-->
+<!--            android:layout_marginHorizontal="16dp"-->
+<!--            android:background="@drawable/bg_white"-->
+<!--            android:text="@string/c_newtime" />-->
 
         <TextView
             android:id="@+id/change_theme"

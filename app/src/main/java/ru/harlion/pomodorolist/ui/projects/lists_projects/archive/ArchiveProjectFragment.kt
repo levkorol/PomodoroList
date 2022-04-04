@@ -1,11 +1,10 @@
-package ru.harlion.pomodorolist.ui.profile.archive
+package ru.harlion.pomodorolist.ui.projects.lists_projects.archive
 
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentArchiveProjectBinding
 import ru.harlion.pomodorolist.models.ProjectWithProgress
@@ -26,7 +25,7 @@ class ArchiveProjectFragment :
 
         adapterProject =
             ProjectsAdapter(
-                { replaceFragment(DetailProjectFragment.newInstance(it), true) },
+                { requireParentFragment().replaceFragment(DetailProjectFragment.newInstance(it), true) },
                 viewModel::getListTasks,
                 viewModel::updateTask
             ) {
@@ -36,8 +35,6 @@ class ArchiveProjectFragment :
             layoutManager = LinearLayoutManager(requireContext())
             adapter = adapterProject
         }
-
-        initClicks()
 
         viewModel.project.observe(
             viewLifecycleOwner, { projects ->
@@ -56,21 +53,5 @@ class ArchiveProjectFragment :
             binding.recyclerArchive.visibility = View.GONE
             binding.emptyListProject.visibility = View.VISIBLE
         }
-    }
-
-    private fun initClicks() {
-        binding.back.setOnClickListener {
-            parentFragmentManager.popBackStack()
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        (activity as AppActivity).setBottomNavigationVisible(false)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as AppActivity).setBottomNavigationVisible(true)
     }
 }

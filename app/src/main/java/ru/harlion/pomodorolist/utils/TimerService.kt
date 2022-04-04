@@ -35,7 +35,7 @@ class TimerService : Service() {
     var millisLeft = 0L
         private set
     var taskId: Long = 0L
-        private set
+//        private set
     var timerState = TimerState.WAIT_FOCUS
         private set(newState) {
             field = newState

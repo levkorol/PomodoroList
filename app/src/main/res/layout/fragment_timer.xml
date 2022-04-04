@@ -78,27 +78,7 @@
             android:textStyle="bold"
             tools:text="25:00" />
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/doing"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_gravity="center"-->
-        <!--            android:padding="10dp"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            android:layout_centerHorizontal="true"-->
-        <!--            android:layout_below="@+id/timer_count"-->
-        <!--            android:textStyle="bold"-->
-        <!--            tools:text="25:00" />-->
     </RelativeLayout>
-    <!--    <TextView-->
-    <!--        android:id="@+id/doing"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_gravity="center"-->
-    <!--        android:padding="10dp"-->
-    <!--        android:layout_marginTop="-16dp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        tools:text="25:00" />-->
 
 
     <TextView
@@ -224,41 +204,35 @@
         app:cardElevation="4dp">
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:padding="16dp">
 
             <CheckedTextView
-                android:id="@+id/text_task"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checkMark="@null"
-                android:drawableStart="?android:attr/listChoiceIndicatorSingle"
-                android:drawableEnd="@null"
-                android:drawablePadding="8dp"
-                android:gravity="center_vertical"
-                android:padding="8dp"
-                tools:text="Дочитать книгу"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/black" />
-
-            <ImageView
+                android:id="@+id/done_task"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_close_task" />
+                android:checkMark="@null"
+                android:layout_marginStart="-4dp"
+                android:drawablePadding="4dp"
+                android:drawableStart="?android:attr/listChoiceIndicatorSingle"
+                android:gravity="center_vertical"
+                />
 
-            <!--            <TextView-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="-8dp"-->
-            <!--                android:layout_marginEnd="8dp"-->
-            <!--                android:textColor="@color/black"-->
-            <!--                android:text="Сделать что - gndgndgndgndgndgndggndgndgndgndgndgngndgndgndgndgndgndgnAAAAAA"/>-->
+            <TextView
+                android:id="@+id/text_task"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                tools:text="Сделать что11111111111"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/close_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/ic_close_task" />
 
         </LinearLayout>
 
