@@ -99,5 +99,11 @@
     <string name="pink">Фламинго</string>
     <string name="sea">Море</string>
     <string name="mail">Письмо разработчику Focus Time</string>
+    <string name="signal_1">Сигнал 1</string>
+    <string name="signal_2">Сигнал 2</string>
+    <string name="signal_3">Сигнал 3</string>
+    <string name="signal_4">Сигнал 4</string>
+    <string name="signal_5">Сигнал 5</string>
+    <string name="signal_6">Сигнал 6</string>
 
 </resources>

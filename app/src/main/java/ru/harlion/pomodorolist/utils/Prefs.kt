@@ -24,9 +24,14 @@ class Prefs(val context: Context) {
         set(value) = sharedPrefs.edit().putLong("BREAK_TIMER_MIN", value)
             .apply()
 
-    var song: Int
-        get() = sharedPrefs.getInt("SOUND", -1)
+    var songRawId: Int
+        get() = sharedPrefs.getInt("SOUND", 0)
         set(value) = sharedPrefs.edit().putInt("SOUND", value)
+            .apply()
+
+    var signalRawId: Int
+        get() = sharedPrefs.getInt("SIGNAL", 0)
+        set(value) = sharedPrefs.edit().putInt("SIGNAL", value)
             .apply()
 
     var theme: String?

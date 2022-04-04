@@ -2,7 +2,6 @@ package ru.harlion.pomodorolist.utils
 
 import android.content.Context
 import android.media.MediaPlayer
-import ru.harlion.pomodorolist.R
 
 class Player(val context: Context) {
     var mMediaPlayer: MediaPlayer? = null
@@ -13,7 +12,17 @@ class Player(val context: Context) {
         if (mMediaPlayer == null) {
             prefs = Prefs(context)
 
-            mMediaPlayer = MediaPlayer.create(context, prefs.song)//R.raw.alarm_clock
+            mMediaPlayer = MediaPlayer.create(context, prefs.songRawId)//R.raw.alarm_clock
+            mMediaPlayer!!.isLooping = true
+            mMediaPlayer!!.start()
+        } else mMediaPlayer!!.start()
+    }
+
+    fun playSoundById(rawId : Int) {
+        if (mMediaPlayer == null) {
+            prefs = Prefs(context)
+
+            mMediaPlayer = MediaPlayer.create(context, rawId)
             mMediaPlayer!!.isLooping = true
             mMediaPlayer!!.start()
         } else mMediaPlayer!!.start()

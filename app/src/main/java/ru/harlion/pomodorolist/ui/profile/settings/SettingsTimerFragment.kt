@@ -73,8 +73,12 @@ class SettingsTimerFragment : BindingFragment<FragmentSettingsTimerBinding>(Frag
         super.onViewCreated(view, savedInstanceState)
         prefs = Prefs(requireContext())
 
-        binding.ringtones.setOnClickListener {
-            replaceFragment(RingtonesFragment(), true)
+        binding.sound.setOnClickListener {
+            replaceFragment(RingtonesFragment.newInstance(true), true)
+        }
+
+        binding.signal.setOnClickListener {
+            replaceFragment(RingtonesFragment.newInstance(false), true)
         }
 
         binding.back.setOnClickListener {

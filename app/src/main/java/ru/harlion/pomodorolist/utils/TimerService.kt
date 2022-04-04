@@ -151,7 +151,7 @@ class TimerService : Service() {
                 timerState = tickState
                 onTick?.invoke(millisUntilFinished, time)
                 millisLeft = millisUntilFinished
-                if (prefs.song > 0) {
+                if (prefs.songRawId > 0) {
                     player?.playSound()
                 }
             }
@@ -184,7 +184,7 @@ class TimerService : Service() {
     fun resume(prefs: Prefs) {
         timerState = TimerState.FOCUS
         timer?.isPaused = false
-        if (prefs.song > 0) {
+        if (prefs.songRawId > 0) {
             player?.playSound()
         }
     }

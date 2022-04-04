@@ -17,6 +17,7 @@
             android:src="@drawable/ic_back_24"
             style="@style/ButtonToolBar" />
         <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sound_focus"

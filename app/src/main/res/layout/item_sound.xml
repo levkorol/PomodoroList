@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/textSound"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:checkMark="@null"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginTop="26dp"
-    android:drawableStart="?android:attr/listChoiceIndicatorSingle"
-    android:drawableEnd="@null"
-    android:drawablePadding="8dp"
-    android:gravity="center"
-    tools:text="text text text" />
+    android:orientation="horizontal">
+
+    <CheckedTextView
+        android:id="@+id/check_sound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:checkMark="@null"
+        android:drawableStart="?android:attr/listChoiceIndicatorSingle"
+        android:drawableEnd="@null"
+        android:drawablePadding="8dp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/textSound"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_weight="1"
+        android:gravity="center|start"
+        tools:text="text text text" />
+</LinearLayout>
