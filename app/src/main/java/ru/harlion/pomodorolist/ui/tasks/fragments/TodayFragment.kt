@@ -1,4 +1,4 @@
-package ru.harlion.pomodorolist.ui.tasks.fragments_pager
+package ru.harlion.pomodorolist.ui.tasks.fragments
 
 
 import android.os.Bundle

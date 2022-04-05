@@ -39,7 +39,7 @@ class ListProjectsFragment :
                 viewModel::getListTasks,
                 viewModel::updateTask
             ) {
-                replaceFragment(TimerFragment(), true)
+                requireParentFragment().replaceFragment(TimerFragment(), true)
             }
         binding.listProject.apply {
             layoutManager = LinearLayoutManager(requireContext())

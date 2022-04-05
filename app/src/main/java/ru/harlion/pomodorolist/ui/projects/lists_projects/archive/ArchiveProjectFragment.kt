@@ -29,7 +29,7 @@ class ArchiveProjectFragment :
                 viewModel::getListTasks,
                 viewModel::updateTask
             ) {
-                replaceFragment(TimerFragment(), true)
+                requireParentFragment().replaceFragment(TimerFragment(), true)
             }
         binding.recyclerArchive.apply {
             layoutManager = LinearLayoutManager(requireContext())

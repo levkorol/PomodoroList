@@ -12,10 +12,8 @@ import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentListTasksBinding
-import ru.harlion.pomodorolist.ui.projects.adding.AddProjectFragment
-import ru.harlion.pomodorolist.ui.tasks.fragments_pager.MonthFragment
-import ru.harlion.pomodorolist.ui.tasks.fragments_pager.TodayFragment
-import ru.harlion.pomodorolist.utils.replaceFragment
+import ru.harlion.pomodorolist.ui.tasks.fragments.MonthFragment
+import ru.harlion.pomodorolist.ui.tasks.fragments.TodayFragment
 
 class ListTasksFragment : BindingFragment<FragmentListTasksBinding>(FragmentListTasksBinding::inflate) {
 

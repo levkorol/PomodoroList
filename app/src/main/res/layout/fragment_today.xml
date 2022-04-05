@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="?light"
-    tools:context=".ui.tasks.fragments_pager.TodayFragment">
+    tools:context=".ui.tasks.fragments.TodayFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView

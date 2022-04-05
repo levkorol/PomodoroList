@@ -6,7 +6,7 @@
     <string name="profile">Профиль</string>
     <string name="main">Главная</string>
     <string name="begin_focus">Начать фокусировку</string>
-    <string name="settings_pomodoro">Настройки Помодоро</string>
+    <string name="settings_pomodoro">Настройки таймера</string>
     <string name="sound_focus">Звук сессии фокусировки</string>
     <string name="notify">Сигнал завершенных таймеров</string>
     <string name="work_on_task">Работа над задачей:</string>
@@ -105,5 +105,5 @@
     <string name="signal_4">Сигнал 4</string>
     <string name="signal_5">Сигнал 5</string>
     <string name="signal_6">Сигнал 6</string>
-
+    <string name="task_empty">В этот день пока нет задач...</string>
 </resources>

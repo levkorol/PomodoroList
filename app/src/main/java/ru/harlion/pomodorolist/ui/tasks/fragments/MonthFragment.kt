@@ -1,4 +1,4 @@
-package ru.harlion.pomodorolist.ui.tasks.fragments_pager
+package ru.harlion.pomodorolist.ui.tasks.fragments
 
 
 import android.os.Bundle
@@ -49,22 +49,24 @@ class MonthFragment : BindingFragment<FragmentMonthBinding>(FragmentMonthBinding
             date = millis
             maxDate = millis + 31536000000
 
-            viewModel.getTasksByDate(
-                Instant.ofEpochMilli(
-                    lDate.atStartOfDay(ZoneId.systemDefault())
-                        .toEpochSecond() * 1000
-                ).atZone(ZoneId.systemDefault()).toLocalDate()
-            )
+//            viewModel.getTasksByDate(
+//                Instant.ofEpochMilli(
+//                    lDate.atStartOfDay(ZoneId.systemDefault())
+//                        .toEpochSecond() * 1000
+//                ).atZone(ZoneId.systemDefault()).toLocalDate()
+//            )
 
             setOnDateChangeListener { _, year, month, dayOfMonth ->
                 lDate = LocalDate.of(year, Month.values()[month], dayOfMonth)
 
-                viewModel.getTasksByDate(
-                    Instant.ofEpochMilli(
-                        lDate.atStartOfDay(ZoneId.systemDefault())
-                            .toEpochSecond() * 1000
-                    ).atZone(ZoneId.systemDefault()).toLocalDate()
-                )
+                requireParentFragment().replaceFragment(DayTasksFragment.newInstance(millis), true)
+
+//                viewModel.getTasksByDate(
+//                    Instant.ofEpochMilli(
+//                        lDate.atStartOfDay(ZoneId.systemDefault())
+//                            .toEpochSecond() * 1000
+//                    ).atZone(ZoneId.systemDefault()).toLocalDate()
+//                )
             }
         }
     }
