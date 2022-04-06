@@ -31,7 +31,7 @@ class DayTasksFragment :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        dateTasks = arguments?.getSerializable("DATE_TASKS") as LocalDate
+        dateTasks = arguments?.getSerializable("DATE_TASK") as LocalDate
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,7 +88,9 @@ class DayTasksFragment :
 
     companion object {
         fun newInstance(date: LocalDate) = DayTasksFragment().apply {
-            arguments?.putSerializable("DATE_TASK", date)
+            arguments = Bundle().apply {
+                putSerializable("DATE_TASK", date)
+            }
         }
     }
 }

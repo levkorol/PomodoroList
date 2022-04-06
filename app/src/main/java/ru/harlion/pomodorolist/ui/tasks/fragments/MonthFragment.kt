@@ -34,24 +34,11 @@ class MonthFragment : BindingFragment<FragmentMonthBinding>(FragmentMonthBinding
             date = millis
             maxDate = millis + 31536000000
 
-//            viewModel.getTasksByDate(
-//                Instant.ofEpochMilli(
-//                    lDate.atStartOfDay(ZoneId.systemDefault())
-//                        .toEpochSecond() * 1000
-//                ).atZone(ZoneId.systemDefault()).toLocalDate()
-//            )
-
             setOnDateChangeListener { _, year, month, dayOfMonth ->
                 lDate = LocalDate.of(year, Month.values()[month], dayOfMonth)
 
                 requireParentFragment().replaceFragment(DayTasksFragment.newInstance(lDate), true)
 
-//                viewModel.getTasksByDate(
-//                    Instant.ofEpochMilli(
-//                        lDate.atStartOfDay(ZoneId.systemDefault())
-//                            .toEpochSecond() * 1000
-//                    ).atZone(ZoneId.systemDefault()).toLocalDate()
-//                )
             }
         }
     }
