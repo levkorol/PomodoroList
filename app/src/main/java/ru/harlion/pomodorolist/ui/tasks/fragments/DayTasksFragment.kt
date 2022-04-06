@@ -53,6 +53,8 @@ class DayTasksFragment :
             }
         }
 
+        binding.back.setOnClickListener { parentFragmentManager.popBackStack() }
+
         viewModel.getTasksByDate(
             Instant.ofEpochMilli(
                 dateTasks.atStartOfDay(ZoneId.systemDefault())
