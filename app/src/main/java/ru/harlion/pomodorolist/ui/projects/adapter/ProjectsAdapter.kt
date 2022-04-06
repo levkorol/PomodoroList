@@ -18,11 +18,13 @@ import ru.harlion.pomodorolist.models.ProjectWithProgress
 import ru.harlion.pomodorolist.models.Task
 import ru.harlion.pomodorolist.ui.tasks.ItemHolderTask
 import ru.harlion.pomodorolist.ui.tasks.bindTask
+import ru.harlion.pomodorolist.utils.Prefs
 import ru.harlion.pomodorolist.utils.dateToStringShort
 
 private typealias ItemHolderProject = BindingHolder<ItemProjectBinding>
 
 class ProjectsAdapter(
+    private val prefs: Prefs,
     private val click: (Long) -> Unit,
     private val taskList: (Long) -> List<Task>,
     private val updateTask: (Task) -> Unit,
@@ -163,7 +165,7 @@ class ProjectsAdapter(
                 progressDoneTasks.progress = projectWithP.doneTasks
             }
         } else {
-            bindTask(currentTaskId, holder as ItemHolderTask, item[position] as Task, updateTask, clickTask){} //todo edit task
+            bindTask(prefs, currentTaskId, holder as ItemHolderTask, item[position] as Task, updateTask, clickTask){} //todo edit task
         }
     }
 

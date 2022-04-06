@@ -22,26 +22,11 @@ import java.time.ZoneId
 class MonthFragment : BindingFragment<FragmentMonthBinding>(FragmentMonthBinding::inflate) {
 
     private val viewModel: TasksViewModel by viewModels()
-    private lateinit var adapterTask: AdapterTask
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        binding.recyclerViewTaskMonth.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = AdapterTask(viewModel::updateTask, {
-                replaceFragment(TimerFragment(), true)
-            }, {
-                replaceFragment(EditTaskFragment.newInstance(it), true)
-            }).also {
-                adapterTask = it
-            }
-        }
-
-        viewModel.tasks.observe(viewLifecycleOwner, {
-            setTasks(it)
-        })
+        binding.calendarView
 
         var lDate = LocalDate.now()
         binding.calendarView.apply {
@@ -59,7 +44,7 @@ class MonthFragment : BindingFragment<FragmentMonthBinding>(FragmentMonthBinding
             setOnDateChangeListener { _, year, month, dayOfMonth ->
                 lDate = LocalDate.of(year, Month.values()[month], dayOfMonth)
 
-                requireParentFragment().replaceFragment(DayTasksFragment.newInstance(millis), true)
+                requireParentFragment().replaceFragment(DayTasksFragment.newInstance(lDate), true)
 
 //                viewModel.getTasksByDate(
 //                    Instant.ofEpochMilli(
@@ -70,16 +55,4 @@ class MonthFragment : BindingFragment<FragmentMonthBinding>(FragmentMonthBinding
             }
         }
     }
-
-    private fun setTasks(tasks: List<Task>) {
-        if (tasks.isNotEmpty()) {
-            adapterTask.items = tasks
-//            binding.listTaskRecycler.visibility = View.VISIBLE
-//            binding.taskEmpty.visibility = View.GONE
-        } else {
-//            binding.listTaskRecycler.visibility = View.GONE
-//            binding.taskEmpty.visibility = View.VISIBLE
-        }
-    }
-
 }

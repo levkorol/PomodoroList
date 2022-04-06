@@ -38,6 +38,7 @@ class DetailProjectFragment :
     private var dateDeadline = 0L
     private var project: Project? = null
     private var taskFilter = 0
+    private lateinit var prefs: Prefs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +58,8 @@ class DetailProjectFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        prefs = Prefs(requireContext())
 
         view.setOnClickListener {
             view.hideKeyboardExt()
@@ -101,7 +104,7 @@ class DetailProjectFragment :
             val tasks = projectWithTasks?.tasks
             if (tasks != null) {
 
-                binding.countInFocus.text = timeToString(tasks.sumOf{ it.timeWork })
+                binding.countInFocus.text = timeToString(tasks.sumOf { it.timeWork })
 
                 when (taskFilter) {
                     1 -> tasksRecyclerView(tasks.sortedBy { task ->
@@ -220,7 +223,7 @@ class DetailProjectFragment :
     private fun tasksRecyclerView(tasks: List<Task>) {
         val llm = LinearLayoutManager(requireContext())
         llm.orientation = LinearLayoutManager.VERTICAL
-        adapterTask = AdapterTask(viewModel::updateTask, {
+        adapterTask = AdapterTask(prefs, viewModel::updateTask, {
             replaceFragment(TimerFragment(), true)
         }, {
             replaceFragment(EditTaskFragment.newInstance(it), true)

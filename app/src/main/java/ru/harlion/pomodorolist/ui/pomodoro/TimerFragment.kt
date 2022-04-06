@@ -34,6 +34,12 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         prefTimeFocus = prefs.focusTimerActiveSettings
         prefTimeBreak = prefs.breakTimerActiveSettings
 
+        if (prefs.taskId > 0) {
+            viewModel.getTaskById(prefs.taskId)
+            binding.taskCv.visibility = View.VISIBLE
+            binding.infoTasks.visibility = View.VISIBLE
+        }
+
         initTimerAndClick()
 
         initClicks()
@@ -50,7 +56,6 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         }
         binding.closeTask.setOnClickListener {
             prefs.taskId = 0L
-            timerService?.taskId = 0L
             binding.taskCv.visibility = View.GONE
             binding.infoTasks.visibility = View.GONE
         }
@@ -58,7 +63,6 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         binding.doneTask.setOnClickListener {
             viewModel.updateTaskDone()
             prefs.taskId = 0L
-            timerService?.taskId = 0L
             binding.taskCv.visibility = View.GONE
             binding.infoTasks.visibility = View.GONE
         }
@@ -67,7 +71,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
     private fun initTimerAndClick() {
 
         binding.startFocusBtn.setOnClickListener {
-            timerService?.taskId?.let { id -> timerService?.startTimer(id, true) }
+            timerService?.startTimer( true)
         }
 
         binding.pauseBtn.setOnClickListener {
@@ -81,12 +85,12 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         binding.skipBreakBtn.setOnClickListener {
              timerService?.apply {
                  stopTimer()
-                 startTimer(taskId, true)
+                 startTimer( true)
              }
         }
 
         binding.startBreakBtn.setOnClickListener {
-            timerService?.taskId?.let { id -> timerService?.startTimer(id, false) }
+             timerService?.startTimer( false)
         }
 
         binding.stopFocusBtn.setOnClickListener {
@@ -123,12 +127,6 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
         timerService = (service as TimerService.TimerBinder).service.apply {
-
-            if (taskId > 0) {
-                viewModel.getTaskById(taskId)
-                binding.taskCv.visibility = View.VISIBLE
-                binding.infoTasks.visibility = View.VISIBLE
-            }
 
             visibleButton(this.timerState)
 

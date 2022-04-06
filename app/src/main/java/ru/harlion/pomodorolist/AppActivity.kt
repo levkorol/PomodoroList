@@ -28,7 +28,8 @@ class AppActivity : AppCompatActivity() {
             "violet" -> setTheme(R.style.VioletTheme)
             "pink" -> setTheme(R.style.PinkTheme)
             "sea" -> setTheme(R.style.SeaTheme)
-            else -> setTheme(R.style.RedTheme)
+            "red" -> setTheme(R.style.RedTheme)
+             else -> setTheme(R.style.RedTheme)
         }
 
         super.onCreate(savedInstanceState)
@@ -43,9 +44,6 @@ class AppActivity : AppCompatActivity() {
         } else {
             replaceFragment(TimerFragment(), false)
         }
-
-
-
 
         bottomNavView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

@@ -11,6 +11,7 @@ import ru.harlion.pomodorolist.models.ProjectWithProgress
 import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.projects.adapter.ProjectsAdapter
 import ru.harlion.pomodorolist.ui.projects.detail_project.DetailProjectFragment
+import ru.harlion.pomodorolist.utils.Prefs
 import ru.harlion.pomodorolist.utils.replaceFragment
 
 
@@ -19,13 +20,16 @@ class ArchiveProjectFragment :
 
     private lateinit var adapterProject: ProjectsAdapter
     private val viewModel: ArchiveProjectViewModel by viewModels()
+    private lateinit var  prefs : Prefs
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        prefs = Prefs(requireContext())
+
         adapterProject =
             ProjectsAdapter(
-                { requireParentFragment().replaceFragment(DetailProjectFragment.newInstance(it), true) },
+                prefs, { requireParentFragment().replaceFragment(DetailProjectFragment.newInstance(it), true) },
                 viewModel::getListTasks,
                 viewModel::updateTask
             ) {

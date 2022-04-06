@@ -11,6 +11,9 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.data.Repository
+import ru.harlion.pomodorolist.utils.PausableCountDownTimer
+import ru.harlion.pomodorolist.utils.Player
+import ru.harlion.pomodorolist.utils.Prefs
 
 enum class TimerState {
     WAIT_FOCUS,
@@ -34,8 +37,7 @@ class TimerService : Service() {
     private var player: Player? = null
     var millisLeft = 0L
         private set
-    var taskId: Long = 0L
-//        private set
+
     var timerState = TimerState.WAIT_FOCUS
         private set(newState) {
             field = newState
@@ -88,14 +90,15 @@ class TimerService : Service() {
     var onFinish: (() -> Unit)? = null
     var onStateChange: ((TimerState) -> Unit)? = null
 
-    fun startTimer(taskId: Long, isFocus: Boolean) {
+    fun startTimer( isFocus: Boolean) {
+        stopTimer()
+
         val prefs = Prefs(this)
         player = Player(this)
-        this.taskId = taskId
+        val taskId = prefs.taskId
 
         if(isFocus) {
             startFocus(prefs, taskId)
-            prefs.taskId = taskId
         } else {
             startBreak(prefs, taskId)
         }
@@ -157,12 +160,17 @@ class TimerService : Service() {
             }
 
             override fun onFinish(success: Boolean) {
+                player?.stopSound()
                 if (success) {
                     timerState = finishState
                     onFinish?.invoke()
                     andThen?.invoke()
+
+                    if(prefs.signalRawId > 0) {
+                        player?.playSignal() //todo
+                    }
                 }
-                player?.stopSound()
+
             }
         }.start()
     }

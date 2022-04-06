@@ -12,6 +12,7 @@ import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
 import ru.harlion.pomodorolist.ui.tasks.TasksViewModel
 import ru.harlion.pomodorolist.ui.tasks.edit.EditTaskFragment
+import ru.harlion.pomodorolist.utils.Prefs
 import ru.harlion.pomodorolist.utils.replaceFragment
 import java.time.LocalDate
 
@@ -20,13 +21,16 @@ class TodayFragment : BindingFragment<FragmentTodayBinding>(FragmentTodayBinding
 
     private lateinit var adapterTask: AdapterTask
     private val viewModel: TasksViewModel by viewModels()
+    private lateinit var prefs : Prefs
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        prefs = Prefs(requireContext())
+
         binding.listTaskRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = AdapterTask(viewModel::updateTask,{
+            adapter = AdapterTask(prefs, viewModel::updateTask,{
                 replaceFragment(TimerFragment(), true)
             } , {
                 replaceFragment(EditTaskFragment.newInstance(it), true)

@@ -13,7 +13,7 @@ private typealias ItemHolderSound = BindingHolder<ItemSoundBinding>
 class SoundsAdapter(
     val prefs: Prefs,
     private val player: Player?,
-    private val isSound : Boolean
+    private val isSound: Boolean
 ) :
     RecyclerView.Adapter<ItemHolderSound>() {
 
@@ -23,49 +23,36 @@ class SoundsAdapter(
             notifyDataSetChanged()
         }
 
+    private var checkedPosition: Int
+        set(value) {
+            val valueOld = checkedPosition
+            if(value != valueOld) {
+                if (isSound) {
+                    prefs.songRawId = items[value].rawId
+                } else {
+                    prefs.signalRawId = items[value].rawId
+                }
+                notifyItemChanged(value)
+                notifyItemChanged(valueOld)
+            }
+        }
+        get() {
+            val rawId = if (isSound) prefs.songRawId else prefs.signalRawId
+            return items.indexOfFirst { rawId == it.rawId }
+        }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ItemHolderSound(ItemSoundBinding::inflate, parent).apply {}
 
     override fun onBindViewHolder(holder: ItemHolderSound, position: Int) {
         holder.binding.apply {
 
-            //todo
-
-//               if (!items[position].isChecked) {
-//                   items.forEach{
-//                     it.isChecked = false
-//                   }
-//                   notifyItemChanged(position)
-//               }
-          //  val prefRawId = if (isSound) prefs.songRawId else prefs.signalRawId //todo
             textSound.text = items[position].name
 
-            if(isSound) {
-                if (prefs.songRawId == items[position].rawId) {
-                    checkSound.isChecked = true
-                }
-                checkSound.setOnClickListener {
-                    if (!checkSound.isChecked) {
-                        checkSound.isChecked = true
-                        prefs.songRawId = items[position].rawId
-                    } else {
-                        checkSound.isChecked = false
-                        prefs.songRawId = items[position].rawId
-                    }
-                }
-            } else {
-                if (prefs.signalRawId == items[position].rawId) {
-                    checkSound.isChecked = true
-                }
-                checkSound.setOnClickListener {
-                    if (!checkSound.isChecked) {
-                        checkSound.isChecked = true
-                        prefs.signalRawId = items[position].rawId
-                    } else {
-                        checkSound.isChecked = false
-                        prefs.signalRawId = items[position].rawId
-                    }
-                }
+            checkSound.isChecked = position == checkedPosition
+
+            checkSound.setOnClickListener {
+               checkedPosition = position
             }
 
             textSound.setOnClickListener {

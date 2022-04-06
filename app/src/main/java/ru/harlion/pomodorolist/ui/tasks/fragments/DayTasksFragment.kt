@@ -13,48 +13,52 @@ import ru.harlion.pomodorolist.ui.pomodoro.TimerFragment
 import ru.harlion.pomodorolist.ui.tasks.AdapterTask
 import ru.harlion.pomodorolist.ui.tasks.TasksViewModel
 import ru.harlion.pomodorolist.ui.tasks.edit.EditTaskFragment
+import ru.harlion.pomodorolist.utils.Prefs
 import ru.harlion.pomodorolist.utils.dateToString
 import ru.harlion.pomodorolist.utils.replaceFragment
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 
-class DayTasksFragment : BindingFragment<FragmentDayTasksBinding>(FragmentDayTasksBinding::inflate) {
+class DayTasksFragment :
+    BindingFragment<FragmentDayTasksBinding>(FragmentDayTasksBinding::inflate) {
 
-    private val viewModel : TasksViewModel by viewModels()
+    private val viewModel: TasksViewModel by viewModels()
     private lateinit var adapterTask: AdapterTask
-    private var dateTasks = 0L
+    private lateinit var dateTasks: LocalDate
+    private lateinit var prefs : Prefs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        dateTasks = arguments?.getLong("DATE_TASKS", 0L) ?: 0L
+        dateTasks = arguments?.getSerializable("DATE_TASKS") as LocalDate
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.title.text = dateToString(dateTasks)
+        prefs = Prefs(requireContext())
+
+        binding.title.text =
+            dateToString(dateTasks.atStartOfDay(ZoneId.systemDefault()).toEpochSecond() * 1000)
 
         binding.tasksRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = AdapterTask(viewModel::updateTask,{
+            adapter = AdapterTask(prefs, viewModel::updateTask, {
                 replaceFragment(TimerFragment(), true)
-            } , {
+            }, {
                 replaceFragment(EditTaskFragment.newInstance(it), true)
-            }) .also {
+            }).also {
                 adapterTask = it
             }
         }
 
-        val lDate = LocalDate.now()
-        lDate.atStartOfDay(ZoneId.systemDefault()).toEpochSecond() * 1000
-
-        viewModel.getTasksByDate(  Instant.ofEpochMilli(
-            lDate.atStartOfDay(ZoneId.systemDefault())
-                .toEpochSecond() * 1000
-        ).atZone(ZoneId.systemDefault()).toLocalDate())
-
+        viewModel.getTasksByDate(
+            Instant.ofEpochMilli(
+                dateTasks.atStartOfDay(ZoneId.systemDefault())
+                    .toEpochSecond() * 1000
+            ).atZone(ZoneId.systemDefault()).toLocalDate()
+        )
 
         viewModel.tasks.observe(viewLifecycleOwner, {
             taskRecyclerView(it)
@@ -83,8 +87,8 @@ class DayTasksFragment : BindingFragment<FragmentDayTasksBinding>(FragmentDayTas
     }
 
     companion object {
-        fun newInstance(date : Long) = DayTasksFragment().apply {
-            arguments?.putLong("DATE_TASK", date)
+        fun newInstance(date: LocalDate) = DayTasksFragment().apply {
+            arguments?.putSerializable("DATE_TASK", date)
         }
     }
 }

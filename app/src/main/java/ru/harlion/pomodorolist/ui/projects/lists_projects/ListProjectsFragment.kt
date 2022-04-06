@@ -35,7 +35,7 @@ class ListProjectsFragment :
 
         adapterProject =
             ProjectsAdapter(
-                { requireParentFragment().replaceFragment(DetailProjectFragment.newInstance(it), true) },
+                prefs, { requireParentFragment().replaceFragment(DetailProjectFragment.newInstance(it), true) },
                 viewModel::getListTasks,
                 viewModel::updateTask
             ) {

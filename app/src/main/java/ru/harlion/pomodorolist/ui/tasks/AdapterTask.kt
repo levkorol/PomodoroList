@@ -5,7 +5,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.opengl.Visibility
 import android.os.IBinder
 import android.view.View
 import android.view.ViewGroup
@@ -15,19 +14,21 @@ import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.base.BindingHolder
 import ru.harlion.pomodorolist.databinding.ItemTaskBinding
 import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.utils.Prefs
 import ru.harlion.pomodorolist.utils.TimerService
 import ru.harlion.pomodorolist.utils.timeToString
 
 typealias ItemHolderTask = BindingHolder<ItemTaskBinding>
 
 class AdapterTask(
+    private val prefs: Prefs,
     private val updateTask: (Task) -> Unit,
     private val click: (Long) -> Unit,
     private val clickEditTask: (Long) -> Unit,
 ) : RecyclerView.Adapter<ItemHolderTask>() {
 
     var currentTaskId = 0L
-        set (value){
+        set(value) {
             field = value
             notifyDataSetChanged()
         }
@@ -44,13 +45,14 @@ class AdapterTask(
         }
 
     override fun onBindViewHolder(holder: ItemHolderTask, position: Int) {
-        bindTask(currentTaskId, holder, items[position], updateTask, click, clickEditTask)
+        bindTask(prefs, currentTaskId, holder, items[position], updateTask, click, clickEditTask)
     }
 
     override fun getItemCount() = items.size
 }
 
 fun bindTask(
+    prefs: Prefs? = null,
     currentTaskId: Long,
     holder: ItemHolderTask,
     task: Task,
@@ -89,14 +91,15 @@ fun bindTask(
         }
 
         pauseOrPlay.setOnClickListener {
+
             it.context.bindService(
                 Intent(it.context, TimerService::class.java),
                 object : ServiceConnection {
                     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-                        (service as TimerService.TimerBinder).service.startTimer(task.id, true)
+                        (service as TimerService.TimerBinder).service.startTimer( true)
                         it.context.unbindService(this)
                         click.invoke(task.id)
-
+                        prefs?.taskId = task.id
                     }
 
                     override fun onServiceDisconnected(name: ComponentName?) {}
@@ -110,10 +113,10 @@ fun bindTask(
             "middle" -> priority.setBackgroundColor(
                 ContextCompat.getColor(this.priority.context, R.color.green)
             )
-
             "high" -> priority.setBackgroundColor(
                 ContextCompat.getColor(this.priority.context, R.color.priority_red)
             )
+            "normal" -> priority.visibility = View.GONE
             else -> priority.visibility = View.GONE
         }
     }
