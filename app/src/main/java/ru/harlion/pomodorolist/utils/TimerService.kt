@@ -1,14 +1,13 @@
 package ru.harlion.pomodorolist.utils
 
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.Service
+import android.app.*
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Intent
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.utils.PausableCountDownTimer
@@ -25,11 +24,17 @@ enum class TimerState {
 
 class TimerService : Service() {
 
+    private var notificationManager : NotificationManager?  = null
+
     private val repository = Repository.get()
     private var timer: PausableCountDownTimer? = null
         set(value) {
             if ((field == null) != (value == null)) {
-                if (value == null) stopSelf()
+                if (value == null) {
+                    stopSelf()
+                    stopForeground(true)
+                    notificationManager = null
+                }
                 else startService(Intent(this, TimerService::class.java))
             }
             field = value
@@ -42,37 +47,37 @@ class TimerService : Service() {
         private set(newState) {
             field = newState
             onStateChange?.invoke(newState)
+            if(field != newState) {
+                if(notificationManager != null) {
+                    createNotification(notificationManager!!)
+                }
+            }
         }
 
     inner class TimerBinder : Binder() {
         val service get() = this@TimerService
     }
 
-    override fun onBind(intent: Intent?): IBinder? {
+    override fun onBind(intent: Intent?): IBinder {
         return TimerBinder()
     }
 
-    private fun setMessageNotification(): String {  //todo  не обновляется текст при смене статусов
+    private fun setMessageNotification(): String {
         return when (timerState) {
-            TimerState.FOCUS -> "Сейчас в фокусе!"
-            TimerState.WAIT_FOCUS -> ""
-            TimerState.PAUSE_FOCUS -> ""
-            TimerState.BREAK -> "Сейчас перерыв!"
-            TimerState.WAIT_BREAK -> ""
+            TimerState.FOCUS -> getString(R.string.now_in_focus)
+            TimerState.WAIT_FOCUS -> getString(R.string.waiting_focus)
+            TimerState.PAUSE_FOCUS -> getString(R.string.now_pause)
+            TimerState.BREAK -> getString(R.string.now_break)
+            TimerState.WAIT_BREAK -> getString(R.string.weiting_break)
         }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        val notify: Notification = NotificationCompat.Builder(this, "channelId")
-            .setContentTitle(setMessageNotification())
-            .setSmallIcon(R.drawable.ic_baseline_av_timer_24)
-            .setPriority(NotificationManager.IMPORTANCE_HIGH)
-            .build()
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationManager.createNotificationChannel(
+            notificationManager!!.createNotificationChannel(
                 NotificationChannel(
                     "channelId",
                     "channel",
@@ -80,10 +85,32 @@ class TimerService : Service() {
                 )
             )
         }
-        notificationManager.notify(1, notify)
+
+        val notify: Notification = createNotification(notificationManager!!)
 
         startForeground(1, notify)
         return super.onStartCommand(intent, flags, startId)
+    }
+
+    private val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    } else {
+        FLAG_UPDATE_CURRENT
+    }
+
+    private fun createNotification(notificationManager: NotificationManager): Notification {
+        val notify: Notification = NotificationCompat.Builder(this, "channelId")
+            .setContentTitle(setMessageNotification())
+            .setSmallIcon(R.drawable.ic_baseline_av_timer_24)
+            .setPriority(NotificationManager.IMPORTANCE_HIGH)
+            .setContentIntent(
+                PendingIntent.getActivity(
+                    this.baseContext, 0, Intent(this.baseContext, AppActivity::class.java), flags
+                )
+            )
+            .build()
+        notificationManager.notify(1, notify)
+        return notify
     }
 
     var onTick: ((millisUntilFinished: Long, timeFocus: Long) -> Unit)? = null
@@ -154,7 +181,7 @@ class TimerService : Service() {
                 timerState = tickState
                 onTick?.invoke(millisUntilFinished, time)
                 millisLeft = millisUntilFinished
-                if (prefs.songRawId > 0) {
+                if (prefs.songRawId > 0 && tickState == TimerState.FOCUS) {
                     player?.playSound()
                 }
             }
@@ -166,8 +193,8 @@ class TimerService : Service() {
                     onFinish?.invoke()
                     andThen?.invoke()
 
-                    if(prefs.signalRawId > 0) {
-                        player?.playSignal() //todo
+                    if(prefs.signalRawId > 0 && tickState == TimerState.FOCUS) {
+                        player?.playSignal()
                     }
                 }
 
@@ -192,7 +219,7 @@ class TimerService : Service() {
     fun resume(prefs: Prefs) {
         timerState = TimerState.FOCUS
         timer?.isPaused = false
-        if (prefs.songRawId > 0) {
+        if (prefs.songRawId > 0 ) {
             player?.playSound()
         }
     }

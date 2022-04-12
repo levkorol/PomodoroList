@@ -56,20 +56,20 @@
         android:hint="@string/desk_task"
         android:lines="3" />
 
-    <TextView
-        android:id="@+id/task_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_white"
-        android:gravity="start|center"
-        android:drawablePadding="6dp"
-        android:padding="8dp"
-        android:drawableStart="@drawable/ic_arrow_down_24"
-        android:layout_marginHorizontal="16dp"
-        android:textSize="14sp"
-        android:layout_marginTop="16dp"
-        android:text="@string/date"
-        />
+<!--    <TextView-->
+<!--        android:id="@+id/task_date"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/bg_white"-->
+<!--        android:gravity="start|center"-->
+<!--        android:drawablePadding="6dp"-->
+<!--        android:padding="8dp"-->
+<!--        android:drawableStart="@drawable/ic_arrow_down_24"-->
+<!--        android:layout_marginHorizontal="16dp"-->
+<!--        android:textSize="14sp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="@string/date"-->
+<!--        />-->
 
     <TextView
         android:id="@+id/task_priority"

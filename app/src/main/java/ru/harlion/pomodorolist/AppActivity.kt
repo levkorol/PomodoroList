@@ -52,10 +52,10 @@ class AppActivity : AppCompatActivity() {
                     true
                 }
 
-                R.id.item_tasks_page -> {
-                    replaceFragment(ListTasksFragment(), true)
-                    true
-                }
+//                R.id.item_tasks_page -> {
+//                    replaceFragment(ListTasksFragment(), true)
+//                    true
+//                }
 
                 R.id.item_projects_page -> {
                     replaceFragment(ProjectsFragment(), true)
@@ -83,8 +83,8 @@ class AppActivity : AppCompatActivity() {
         when (fragment) {
             is TimerFragment -> bottomNavView.menu.findItem(R.id.item_main_page).isChecked =
                 true
-            is ListTasksFragment -> bottomNavView.menu.findItem(R.id.item_tasks_page).isChecked =
-                true
+//            is ListTasksFragment -> bottomNavView.menu.findItem(R.id.item_tasks_page).isChecked =
+//                true
             is ListProjectsFragment -> bottomNavView.menu.findItem(R.id.item_projects_page).isChecked =
                 true
             is ProfileFragment -> bottomNavView.menu.findItem(R.id.item_profile_page).isChecked =

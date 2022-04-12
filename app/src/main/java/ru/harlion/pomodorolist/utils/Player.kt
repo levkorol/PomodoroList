@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
+import ru.harlion.pomodorolist.ui.profile.settings.sounds.RingtonesFragment
 
 class Player(val context: Context) {
     var mMediaPlayer: MediaPlayer? = null
@@ -20,7 +21,7 @@ class Player(val context: Context) {
         if (mMediaPlayer == null) {
             prefs = Prefs(context)
 
-            mMediaPlayer = MediaPlayer.create(context, prefs.songRawId)
+            mMediaPlayer = MediaPlayer.create(context, RingtonesFragment.SOUNDS[prefs.songRawId].rawId)
             mMediaPlayer!!.isLooping = true
             mMediaPlayer!!.start()
         } else mMediaPlayer!!.start()
@@ -30,7 +31,7 @@ class Player(val context: Context) {
         if (mMediaPlayer == null) {
             prefs = Prefs(context)
 
-            mMediaPlayer = MediaPlayer.create(context, prefs.signalRawId)
+            mMediaPlayer = MediaPlayer.create(context, RingtonesFragment.SIGNALS[prefs.signalRawId].rawId)
             mMediaPlayer!!.isLooping = true
 
             handler.postDelayed(stopPlayer, 2000L)
@@ -39,7 +40,7 @@ class Player(val context: Context) {
         } else mMediaPlayer!!.start()
     }
 
-    fun playSoundById(rawId : Int) {
+    fun playSoundById(rawId: Int) {
         if (mMediaPlayer == null) {
             prefs = Prefs(context)
 

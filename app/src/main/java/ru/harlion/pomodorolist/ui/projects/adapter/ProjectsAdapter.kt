@@ -34,15 +34,15 @@ class ProjectsAdapter(
 
     private var item: List<Any> = listOf()
     var currentTaskId = 0L
-    set (value){
-        field = value
-        notifyDataSetChanged()
-    }
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
-    fun setItems(value : List<ProjectWithProgress>) {
+    fun setItems(value: List<ProjectWithProgress>) {
         val newList = value.toMutableList<Any>()
         val listIterator = newList.listIterator()
-        while(listIterator.hasNext()) {
+        while (listIterator.hasNext()) {
             listIterator.next()
             val previousIndex = listIterator.previousIndex()
             if (item.getOrNull(previousIndex + 1) is Task) {
@@ -105,9 +105,10 @@ class ProjectsAdapter(
                             } else {
                                 val newItems = item.toMutableList()
                                 val elements =
-                                    taskList.invoke((item[adapterPosition] as ProjectWithProgress).project.id).sortedBy {       //or filter
-                                       it.isDone
-                                    }
+                                    taskList.invoke((item[adapterPosition] as ProjectWithProgress).project.id)
+                                        .filter {     //todo filter
+                                            !it.isDone
+                                        }
                                 newItems.addAll(
                                     adapterPosition + 1,
                                     elements
@@ -152,20 +153,25 @@ class ProjectsAdapter(
                     prize.visibility = View.GONE
                 }
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (project.color > 0) {
-                        val color = ContextCompat.getColor(name.context, project.color)
-                        val colorList = ColorStateList.valueOf(color)
-                        TextViewCompat.setCompoundDrawableTintList(name, colorList)
-                    }
+                if (project.color != 0) {
+                    val colorList = ColorStateList.valueOf(project.color)
+                    TextViewCompat.setCompoundDrawableTintList(name, colorList)
                 }
+
 
                 countTasks.text = "${projectWithP.doneTasks} / ${projectWithP.tasks}"
                 progressDoneTasks.max = projectWithP.tasks
                 progressDoneTasks.progress = projectWithP.doneTasks
             }
         } else {
-            bindTask(prefs, currentTaskId, holder as ItemHolderTask, item[position] as Task, updateTask, clickTask){} //todo edit task
+            bindTask(
+                prefs,
+                currentTaskId,
+                holder as ItemHolderTask,
+                item[position] as Task,
+                updateTask,
+                clickTask
+            ) {} //todo edit task
         }
     }
 

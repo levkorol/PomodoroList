@@ -39,11 +39,10 @@ class AddProjectFragment :
 
         setFragmentResultListener("color") { _, bundle ->
             colorId = bundle.getInt("colorId")
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val color = ContextCompat.getColor(requireContext(), colorId)
                 val colorList = ColorStateList.valueOf(color)
                 TextViewCompat.setCompoundDrawableTintList(binding.color, colorList)
-            }
+
         }
     }
 
@@ -69,7 +68,7 @@ class AddProjectFragment :
                 tasks = listOf(),
                 prize = binding.prize.text.toString(),
                 deadline = date,
-                color = colorId
+                color = if(colorId > 0 ) ContextCompat.getColor(requireContext(), colorId) else 0
             )
         }
 

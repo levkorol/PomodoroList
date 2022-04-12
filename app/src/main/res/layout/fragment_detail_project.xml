@@ -92,17 +92,15 @@
                 android:id="@+id/priority"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="-4dp"
-                android:layout_weight="0.5"
                 android:src="@drawable/ic_label" />
 
-            <TextView
-                android:id="@+id/date_task"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:drawableStart="@drawable/ic_date"
-                android:drawablePadding="4dp" />
+<!--            <TextView-->
+<!--                android:id="@+id/date_task"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="2"-->
+<!--                android:drawableStart="@drawable/ic_date"-->
+<!--                android:drawablePadding="4dp" />-->
 
             <TextView
                 android:id="@+id/save_task"

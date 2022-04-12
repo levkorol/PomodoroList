@@ -28,17 +28,16 @@ class SoundsAdapter(
             val valueOld = checkedPosition
             if(value != valueOld) {
                 if (isSound) {
-                    prefs.songRawId = items[value].rawId
+                    prefs.songRawId = value
                 } else {
-                    prefs.signalRawId = items[value].rawId
+                    prefs.signalRawId = value
                 }
                 notifyItemChanged(value)
                 notifyItemChanged(valueOld)
             }
         }
         get() {
-            val rawId = if (isSound) prefs.songRawId else prefs.signalRawId
-            return items.indexOfFirst { rawId == it.rawId }
+            return if (isSound) prefs.songRawId else prefs.signalRawId
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -47,7 +46,7 @@ class SoundsAdapter(
     override fun onBindViewHolder(holder: ItemHolderSound, position: Int) {
         holder.binding.apply {
 
-            textSound.text = items[position].name
+            textSound.setText(items[position].name)
 
             checkSound.isChecked = position == checkedPosition
 
@@ -68,6 +67,6 @@ class SoundsAdapter(
 }
 
 class SoundOrSignal(
-    val name: String,
+    val name: Int,
     val rawId: Int
 )

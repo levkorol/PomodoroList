@@ -106,4 +106,9 @@
     <string name="signal_5">Сигнал 5</string>
     <string name="signal_6">Сигнал 6</string>
     <string name="task_empty">В этот день пока нет задач...</string>
+    <string name="now_in_focus">Сейчас в фокусе!</string>
+    <string name="waiting_focus">Ожидание фокуса...</string>
+    <string name="now_pause">Сейчас пауза!</string>
+    <string name="now_break">Сейчас перерыв!</string>
+    <string name="weiting_break">Ожидание перерыва...</string>
 </resources>

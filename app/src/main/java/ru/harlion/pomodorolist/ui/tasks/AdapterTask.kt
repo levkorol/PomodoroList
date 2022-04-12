@@ -52,7 +52,7 @@ class AdapterTask(
 }
 
 fun bindTask(
-    prefs: Prefs? = null,
+    prefs: Prefs,
     currentTaskId: Long,
     holder: ItemHolderTask,
     task: Task,
@@ -96,10 +96,11 @@ fun bindTask(
                 Intent(it.context, TimerService::class.java),
                 object : ServiceConnection {
                     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+                        prefs.taskId = task.id
                         (service as TimerService.TimerBinder).service.startTimer( true)
                         it.context.unbindService(this)
                         click.invoke(task.id)
-                        prefs?.taskId = task.id
+
                     }
 
                     override fun onServiceDisconnected(name: ComponentName?) {}

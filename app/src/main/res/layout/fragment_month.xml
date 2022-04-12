@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.tasks.fragments.MonthFragment">
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:headerLabelColor="@color/white"
-        app:headerColor="?middle_d"
+        app:headerColor="?middle_l"
         app:abbreviationsBarColor="?light"
         app:abbreviationsLabelsColor="?middle_d"
         app:eventsEnabled="true"

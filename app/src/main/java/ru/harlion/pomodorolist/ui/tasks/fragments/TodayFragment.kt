@@ -31,9 +31,9 @@ class TodayFragment : BindingFragment<FragmentTodayBinding>(FragmentTodayBinding
         binding.listTaskRecycler.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = AdapterTask(prefs, viewModel::updateTask,{
-                replaceFragment(TimerFragment(), true)
+                requireParentFragment().replaceFragment(TimerFragment(), true)
             } , {
-                replaceFragment(EditTaskFragment.newInstance(it), true)
+                requireParentFragment().replaceFragment(EditTaskFragment.newInstance(it), true)
             }) .also {
                 adapterTask = it
             }

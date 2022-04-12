@@ -35,7 +35,6 @@ class DetailProjectFragment :
     private var priorityTask: String = ""
     private var isArchive = false
     private var date = 0L
-    private var dateDeadline = 0L
     private var project: Project? = null
     private var taskFilter = 0
     private lateinit var prefs: Prefs
@@ -47,12 +46,12 @@ class DetailProjectFragment :
 
         setFragmentResultListener("priority") { _, bundle ->
             priorityTask = bundle.getString("priority_task") ?: ""
-            setLabelPriorityTask()
+            setLabelPriorityTask(priorityTask)
         }
 
         setFragmentResultListener("calendarDate") { _, bundle ->
             date = bundle.getLong("epochMillis")
-            binding.dateTask.text = dateToString(date)
+          //  binding.dateTask.text = dateToString(date)
         }
     }
 
@@ -92,12 +91,9 @@ class DetailProjectFragment :
                     binding.prizeToComplete.visibility = View.GONE
                 }
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (it.color > 0) {
-                        val color = ContextCompat.getColor(requireContext(), it.color)
-                        val colorList = ColorStateList.valueOf(color)
-                        TextViewCompat.setCompoundDrawableTintList(binding.nameProject, colorList)
-                    }
+                if (it.color != 0) {
+                    val colorList = ColorStateList.valueOf(it.color)
+                    TextViewCompat.setCompoundDrawableTintList(binding.nameProject, colorList)
                 }
             }
 
@@ -128,8 +124,6 @@ class DetailProjectFragment :
                 binding.progressDoneTasks.max = max
                 binding.progressDoneTasks.progress = done
             }
-
-
         })
 
         viewModel.getProjectById(projectId)
@@ -147,9 +141,9 @@ class DetailProjectFragment :
             binding.nameTask.isCursorVisible = false
         }
 
-        binding.dateTask.setOnClickListener {
-            DialogCalendar().show(parentFragmentManager, null)
-        }
+//        binding.dateTask.setOnClickListener {
+//            DialogCalendar().show(parentFragmentManager, null)
+//        }
 
         binding.priority.setOnClickListener {
             DialogPriorityTask().show(parentFragmentManager, null)
@@ -160,6 +154,7 @@ class DetailProjectFragment :
                 setTitle(getString(R.string.delete_project))
                 setPositiveButton(getString(R.string.yes)) {
                     viewModel.deleteProject()
+                    prefs.taskId = 0L
                     replaceFragment(ProjectsFragment(), false)
                 }
                 setNegativeButton(getString(R.string.no)) {}
@@ -236,8 +231,8 @@ class DetailProjectFragment :
         adapterTask.items = tasks
     }
 
-    private fun setLabelPriorityTask() {
-        when (priorityTask) {
+    private fun setLabelPriorityTask(priority : String) {
+        when (priority) {
             "normal" -> binding.priority.setImageDrawable(
                 ContextCompat.getDrawable(
                     requireContext(),

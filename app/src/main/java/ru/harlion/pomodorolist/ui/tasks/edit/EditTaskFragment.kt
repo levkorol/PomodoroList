@@ -36,12 +36,12 @@ class EditTaskFragment :
 
         setFragmentResultListener("priority") { _, bundle ->
             priorityTask = bundle.getString("priority_task") ?: ""
-            setLabelPriorityTask()
+            setLabelPriorityTask(priorityTask)
         }
 
         setFragmentResultListener("calendarDate") { _, bundle ->
             date = bundle.getLong("epochMillis")
-            binding.taskDate.text = dateToString(date)
+          //  binding.taskDate.text = dateToString(date)
         }
     }
 
@@ -56,8 +56,9 @@ class EditTaskFragment :
             if (it != null) {
                 task = it
                 binding.nameTask.setText(it.name)
-                binding.taskDate.text = dateToString(it.date)
-                binding.taskPriority
+              //  binding.taskDate.text = dateToString(it.date)
+//                binding.taskPriority
+                setLabelPriorityTask(it.priority)
             }
         })
     }
@@ -89,9 +90,9 @@ class EditTaskFragment :
             }
         }
 
-        binding.taskDate.setOnClickListener {
-            DialogCalendar().show(parentFragmentManager, null)
-        }
+//        binding.taskDate.setOnClickListener {
+//            DialogCalendar().show(parentFragmentManager, null)
+//        }
 
         binding.taskPriority.setOnClickListener {
             DialogPriorityTask().show(parentFragmentManager, null)
@@ -117,8 +118,8 @@ class EditTaskFragment :
         (activity as AppActivity).setBottomNavigationVisible(true)
     }
 
-    private fun setLabelPriorityTask() {
-        when (priorityTask) {
+    private fun setLabelPriorityTask(priority : String) {
+        when (priority) {
             "middle" -> TextViewCompat.setCompoundDrawableTintList(
                 binding.nameTask,
                 ColorStateList.valueOf(
@@ -150,9 +151,3 @@ class EditTaskFragment :
     }
 }
 
-//"high" -> priority.setImageDrawable(
-//ContextCompat.getDrawable(
-//this.priority.context,
-//R.drawable.ic_label_red
-//)
-//)
