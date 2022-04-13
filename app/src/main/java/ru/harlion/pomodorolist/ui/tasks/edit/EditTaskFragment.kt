@@ -72,8 +72,7 @@ class EditTaskFragment :
             viewModel.updateTask(
                 binding.nameTask.text.toString(),
                 priorityTask,
-                date,
-                0L //todo
+                date
             )
             parentFragmentManager.popBackStack()
         }

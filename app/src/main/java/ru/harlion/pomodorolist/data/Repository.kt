@@ -3,9 +3,10 @@ package ru.harlion.pomodorolist.data
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import ru.harlion.pomodorolist.models.Project
-import ru.harlion.pomodorolist.models.ProjectWithTasks
-import ru.harlion.pomodorolist.models.Task
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import ru.harlion.pomodorolist.models.*
+import java.time.Duration
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.concurrent.Executors
@@ -21,6 +22,15 @@ class Repository private constructor(context: Context) {
         DataBaseApp::class.java,
         DATABASE_NAME
     ).allowMainThreadQueries()
+        .addCallback(object : RoomDatabase.Callback() {
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                super.onCreate(db)
+                db.execSQL(
+                    """create trigger onTaskDelete before delete on Task begin 
+                        update time set parentId = null where parentId = OLD.id ; end"""
+                )
+            }
+        })
         .build()
 
     private val projectDao = database.projectDao()
@@ -46,7 +56,7 @@ class Repository private constructor(context: Context) {
         return projectDao.liveProjects()
     }
 
-    fun getListTasksByProjectId(projectId: Long): List<Task> {
+    fun getListTasksByProjectId(projectId: Long): List<TaskWithTime> {
         return taskDao.getTasks(projectId = projectId)
     }
 
@@ -71,31 +81,38 @@ class Repository private constructor(context: Context) {
         projectDao.updateFieldsProject(projectId, name)
     }
 
-    fun updateIsArchiveProject(projectId: Long,isArchive: Boolean) {
-        projectDao.updateFieldsProject(projectId, isArchive = isArchive )
+    fun updateIsArchiveProject(projectId: Long, isArchive: Boolean) {
+        projectDao.updateFieldsProject(projectId, isArchive = isArchive)
     }
 
-    fun updateDeadlineProject(projectId: Long,deadline: Long) {
-        projectDao.updateFieldsProject(projectId, deadline = deadline )
+    fun updateDeadlineProject(projectId: Long, deadline: Long) {
+        projectDao.updateFieldsProject(projectId, deadline = deadline)
     }
 
-    fun updatePrize(projectId : Long, prize: String) {
+    fun updatePrize(projectId: Long, prize: String) {
         projectDao.updateFieldsProject(projectId, prize = prize)
     }
 
-    fun getProject(id: Long): LiveData<Project?> {
-        return projectDao.liveProjectById(id)
+
+    fun trackTimeTask(id: Long?, timeWork: Long) {
+        taskDao.trackTaskTime(
+            Time(
+                parentId = id,
+                focusTimeMills = timeWork,
+                epochDay = LocalDate.now().toEpochDay()
+            )
+        )
     }
 
-    fun trackTimeTask(id: Long, timeWork: Long) {
-        taskDao.trackTaskTime(id, timeWork)
-    }
-
-    fun getTaskById(id : Long) :Task? {
-       return taskDao.getTaskById(id)
+    fun getTaskById(id: Long): Task? {
+        return taskDao.getTaskById(id)
     }
 
     fun progressTask(isArchive: Boolean) = projectDao.progressTask(isArchive)
+
+    fun getTaskTime(parentId : Long) = taskDao.getTasksWithTime(parentId)
+
+    fun getFocusStatisticByProject(start : Long) = projectDao.getStatisticFocusByProject(start)
 
     companion object {
         private var INSTANCE: Repository? = null

@@ -174,7 +174,7 @@ class TimerService : Service() {
         timer = object : PausableCountDownTimer(time, 1000) {
 
             override fun onStop(elapsedMillis: Long) {
-                taskId.let { repository.trackTimeTask(it, elapsedMillis) }
+              repository.trackTimeTask( taskId.takeIf { it != 0L }, elapsedMillis)
             }
 
             override fun onTick(millisUntilFinished: Long) {

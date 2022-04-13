@@ -19,15 +19,13 @@ class EditTaskViewModel : ViewModel() {
     fun updateTask(
         name: String,
         priority: String,
-        date : Long,
-        timeWork : Long
+        date : Long
     ) {
         val newTask = Task(
             id = task.value?.id ?: 0L,
             name = name,
             priority = priority,
             date = date,
-            timeWork = timeWork,
             parentColor = task.value?.parentColor ?: 0,
             parentId = task.value?.parentId ?: -1L,
             parentName = task.value?.parentName ?: "",

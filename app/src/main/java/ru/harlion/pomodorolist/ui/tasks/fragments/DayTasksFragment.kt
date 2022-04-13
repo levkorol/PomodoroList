@@ -79,7 +79,7 @@ class DayTasksFragment :
 
     private fun taskRecyclerView(tasks: List<Task>) {
         if (tasks.isNotEmpty()) {
-            adapterTask.items = tasks
+         //   adapterTask.items = tasks
             binding.tasksRecycler.visibility = View.VISIBLE
             binding.taskEmpty.visibility = View.GONE
         } else {

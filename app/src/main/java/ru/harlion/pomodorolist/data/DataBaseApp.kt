@@ -11,8 +11,9 @@ import ru.harlion.pomodorolist.data.dao.ProjectDao
 import ru.harlion.pomodorolist.data.dao.TaskDao
 import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.models.Time
 
-@Database(entities = [Project::class, Task::class], version = 1, exportSchema = false)
+@Database(entities = [Project::class, Task::class, Time::class], version = 1, exportSchema = false)
 abstract class DataBaseApp : RoomDatabase() {
 
     abstract fun projectDao(): ProjectDao

@@ -4,18 +4,22 @@ package ru.harlion.pomodorolist.ui.projects.detail_project
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import ru.harlion.pomodorolist.data.Repository
+import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.ProjectWithTasks
 import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.models.TaskWithTime
 
 class DetailProjectViewModel : ViewModel() {
 
     private val repository = Repository.get()
-    lateinit var projectWithTasks: LiveData<ProjectWithTasks?>
+    lateinit var project: LiveData<Project>
+    lateinit var task: LiveData<List<TaskWithTime>>
     private var projectId = 0L
 
     fun getProjectById(id: Long) {
-        projectWithTasks = repository.getProjectById(id)
+        project = repository.getProjectById(id)
         projectId = id
+        task = repository.getTaskTime(projectId)
     }
 
     fun updateTask(task: Task) {

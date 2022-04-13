@@ -49,7 +49,7 @@ class TodayFragment : BindingFragment<FragmentTodayBinding>(FragmentTodayBinding
 
     private fun taskRecyclerView(tasks: List<Task>) {
         if (tasks.isNotEmpty()) {
-            adapterTask.items = tasks
+         //   adapterTask.items = tasks
             binding.listTaskRecycler.visibility = View.VISIBLE
             binding.taskEmpty.visibility = View.GONE
         } else {

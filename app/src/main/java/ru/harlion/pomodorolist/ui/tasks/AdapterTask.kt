@@ -14,6 +14,7 @@ import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.base.BindingHolder
 import ru.harlion.pomodorolist.databinding.ItemTaskBinding
 import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.models.TaskWithTime
 import ru.harlion.pomodorolist.utils.Prefs
 import ru.harlion.pomodorolist.utils.TimerService
 import ru.harlion.pomodorolist.utils.timeToString
@@ -33,11 +34,12 @@ class AdapterTask(
             notifyDataSetChanged()
         }
 
-    var items: List<Task> = listOf()
+    var items: List<TaskWithTime> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ItemHolderTask(ItemTaskBinding::inflate, parent).apply {
@@ -55,16 +57,17 @@ fun bindTask(
     prefs: Prefs,
     currentTaskId: Long,
     holder: ItemHolderTask,
-    task: Task,
+    taskWithTime: TaskWithTime,
     updateTask: (Task) -> Unit,
     click: (Long) -> Unit,
     clickEditTask: (Long) -> Unit
 ) {
     holder.binding.apply {
+        val (task, timeWork) = taskWithTime
         taskName.text = task.name
 
-        if (task.timeWork > 0) {
-            time.text = timeToString(task.timeWork)
+        if (timeWork > 0) {
+            time.text = timeToString(timeWork)
         } else {
             time.text = ""
         }

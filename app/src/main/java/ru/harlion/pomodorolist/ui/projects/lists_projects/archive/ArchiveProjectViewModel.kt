@@ -3,6 +3,7 @@ package ru.harlion.pomodorolist.ui.projects.lists_projects.archive
 import androidx.lifecycle.ViewModel
 import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.models.TaskWithTime
 
 class ArchiveProjectViewModel: ViewModel() {
 
@@ -10,7 +11,7 @@ class ArchiveProjectViewModel: ViewModel() {
 
     val project =  repository.progressTask(true)
 
-    fun getListTasks(projectId: Long): List<Task> {
+    fun getListTasks(projectId: Long): List<TaskWithTime> {
         return repository.getListTasksByProjectId(projectId)
     }
 

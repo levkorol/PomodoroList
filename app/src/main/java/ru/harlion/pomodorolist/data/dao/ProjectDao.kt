@@ -2,10 +2,7 @@ package ru.harlion.pomodorolist.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import ru.harlion.pomodorolist.models.Project
-import ru.harlion.pomodorolist.models.ProjectWithProgress
-import ru.harlion.pomodorolist.models.ProjectWithTasks
-import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.models.*
 
 @Dao
 abstract class ProjectDao {
@@ -20,10 +17,7 @@ abstract class ProjectDao {
     abstract fun liveProjects(): LiveData<List<Project>>
 
     @Query("SELECT * FROM project WHERE id = (:id)")
-    abstract fun liveProjectById(id: Long): LiveData<Project?>
-
-    @Query("SELECT * FROM project WHERE id = (:id)")
-    abstract fun projectById(id: Long): LiveData<ProjectWithTasks?>
+    abstract fun projectById(id: Long): LiveData<Project>
 
     @Update
     abstract fun updateProject(project: Project)
@@ -48,6 +42,12 @@ abstract class ProjectDao {
 
     @Query("DELETE FROM project WHERE id = :projectId")
     abstract fun deleteProject(projectId: Long)
+
+    @Query("select name, (select sum(time.focusTimeMills) from time where time.epochDay >= :start and parentId in (select id from task where parentId = project.id)) as timeWork from project ")
+    abstract fun getStatisticFocusByProject(start : Long) : List<ProjectWithTime>
+
+    @Query("select sum(time.focusTimeMills) from time where time.epochDay >= :start and parentId is null ")
+    abstract fun getStatisticFocus(start : Long) : Long
 }
 
 

@@ -15,6 +15,7 @@ import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentDetailProjectBinding
 import ru.harlion.pomodorolist.models.Project
 import ru.harlion.pomodorolist.models.Task
+import ru.harlion.pomodorolist.models.TaskWithTime
 import ru.harlion.pomodorolist.ui.dialogs.AlertDialogBase
 import ru.harlion.pomodorolist.ui.dialogs.DialogCalendar
 import ru.harlion.pomodorolist.ui.dialogs.DialogPriorityTask
@@ -60,6 +61,16 @@ class DetailProjectFragment :
 
         prefs = Prefs(requireContext())
 
+        adapterTask = AdapterTask(prefs, viewModel::updateTask, {
+            replaceFragment(TimerFragment(), true)
+        }, {
+            replaceFragment(EditTaskFragment.newInstance(it), true)
+        })
+        binding.tasksRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = adapterTask
+        }
+
         view.setOnClickListener {
             view.hideKeyboardExt()
         }
@@ -68,8 +79,7 @@ class DetailProjectFragment :
 
         viewModel.getProjectById(projectId)
 
-        viewModel.projectWithTasks.observe(viewLifecycleOwner, { projectWithTasks ->
-            val it = projectWithTasks?.project
+        viewModel.project.observe(viewLifecycleOwner, {
             if (it != null) {
                 project = it
                 if (it.isArchive) {
@@ -96,29 +106,33 @@ class DetailProjectFragment :
                     TextViewCompat.setCompoundDrawableTintList(binding.nameProject, colorList)
                 }
             }
+        })
 
-            val tasks = projectWithTasks?.tasks
+        viewModel.task.observe(viewLifecycleOwner, { tasks ->
+
             if (tasks != null) {
 
-                binding.countInFocus.text = timeToString(tasks.sumOf { it.timeWork })
+                adapterTask.items = tasks
 
-                when (taskFilter) {
-                    1 -> tasksRecyclerView(tasks.sortedBy { task ->
+                binding.countInFocus.text = timeToString(tasks.sumOf { it.focusTimeMillis })
+
+                when (taskFilter) { //todo
+                    1 -> tasksRecyclerView(tasks.sortedBy { (task, _) ->
+                       task.isDone
+                    })
+                    2 -> tasksRecyclerView(tasks.sortedBy { (task, _) ->
                         task.isDone
                     })
-                    2 -> tasksRecyclerView(tasks.sortedBy { task ->
-                        task.isDone
-                    })
-                    3 -> tasksRecyclerView(tasks.sortedBy { task ->
+                    3 -> tasksRecyclerView(tasks.sortedBy { (task, _) ->
                         task.priority == "high"
                     })
-                    else -> tasksRecyclerView(tasks.sortedBy { task ->
+                    else -> tasksRecyclerView(tasks.sortedBy { (task, _) ->
                         task.isDone
                     })
                 }
 
 
-                val done = tasks.filter { task -> task.isDone }.size
+                val done = tasks.filter { (task, _) -> task.isDone }.size
                 val max = tasks.size
                 binding.countTasks.text = "$done / $max"
                 binding.progressDoneTasks.max = max
@@ -126,7 +140,12 @@ class DetailProjectFragment :
             }
         })
 
+
         viewModel.getProjectById(projectId)
+
+        prefs.observeTaskId().observe(viewLifecycleOwner, {
+            adapterTask.currentTaskId = it
+        })
     }
 
     private fun initClicks() {
@@ -215,20 +234,8 @@ class DetailProjectFragment :
         }
     }
 
-    private fun tasksRecyclerView(tasks: List<Task>) {
-        val llm = LinearLayoutManager(requireContext())
-        llm.orientation = LinearLayoutManager.VERTICAL
-        adapterTask = AdapterTask(prefs, viewModel::updateTask, {
-            replaceFragment(TimerFragment(), true)
-        }, {
-            replaceFragment(EditTaskFragment.newInstance(it), true)
-        })
-        binding.tasksRecyclerView.apply {
-            layoutManager = llm
-            adapter = adapterTask
-        }
+    private fun tasksRecyclerView(tasks: List<TaskWithTime>) {
 
-        adapterTask.items = tasks
     }
 
     private fun setLabelPriorityTask(priority : String) {
