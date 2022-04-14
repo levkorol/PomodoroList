@@ -95,7 +95,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
         binding.stopFocusBtn.setOnClickListener {
             timerService?.stopTimer()
-            binding.timerCount.text = formatTimeMins(prefTimeFocus * 60000, resources)
+            binding.timerCount.text = formatTimeMinsSec(prefTimeFocus * 60000, resources)
             binding.progressBar.progress = 0F
         }
 
@@ -162,7 +162,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         millisUntilFinished: Long,
         timeFocus: Long
     ) {
-        binding.timerCount.text = formatTimeMins(millisUntilFinished, resources)
+        binding.timerCount.text = formatTimeMinsSec(millisUntilFinished, resources)
         binding.progressBar.maximum = timeFocus.toFloat()
 
         binding.progressBar.progress =

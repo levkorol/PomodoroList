@@ -29,47 +29,60 @@
     </RelativeLayout>
 
 
-        <LinearLayout
+        <RadioGroup
+            android:id="@+id/radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_white"
             android:layout_marginHorizontal="16dp"
-            android:padding="16dp"
+            android:padding="8dp"
             android:orientation="horizontal">
-            <TextView
+            <RadioButton
                 android:id="@+id/today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Сегодня"
+                android:text="@string/today_r"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:drawableBottom="@drawable/selector_check_box"
                 android:layout_weight="1"/>
-            <TextView
+            <RadioButton
                 android:id="@+id/week"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
-                android:text="Неделя"
-                android:layout_marginStart="16dp"
+                android:text="@string/week_r"
+                android:gravity="center"
+                android:button="@null"
+                android:drawableBottom="@drawable/selector_check_box"
                 android:layout_height="wrap_content"/>
-            <TextView
+            <RadioButton
+                android:id="@+id/month"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
-                android:text="Месяц"
-                android:layout_marginStart="16dp"
+                android:text="@string/month"
+                android:button="@null"
+                android:gravity="center"
+                android:drawableBottom="@drawable/selector_check_box"
                 android:layout_height="wrap_content"/>
-            <TextView
+            <RadioButton
+                android:id="@+id/all_time"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
-                android:text="Все время"
-                android:layout_marginStart="16dp"
+                android:text="@string/all_time_"
+                android:gravity="center"
+                android:drawableBottom="@drawable/selector_check_box"
+                android:button="@null"
                 android:layout_height="wrap_content"/>
 
-        </LinearLayout>
+        </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        android:gravity="center"
+        android:layout_marginHorizontal="16dp"
+
         android:orientation="horizontal">
 
         <TextView
@@ -80,38 +93,61 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/count_in_focus_tasks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/roboto_slab_black"
-            android:gravity="center"
-            android:text="13:00"
-            android:textColor="?middle_l"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginStart="16dp"
-            android:text="@string/in_focus_tasks"
-            android:textSize="14sp" />
-
-        <TextView
             android:id="@+id/count_in_focus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:fontFamily="@font/roboto_slab_black"
             android:gravity="center"
-            android:text="13:00"
             android:textColor="?middle_l"
             android:textSize="16sp" />
-
-
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="16dp"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/focus_in_projects"
+        android:textSize="14sp" />
+    <TextView
+        android:id="@+id/count_in_focus_tasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/roboto_slab_black"
+        android:gravity="center"
+        android:textColor="?middle_l"
+        android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="16dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/alls"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/count_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/roboto_slab_black"
+            android:gravity="center"
+            android:textColor="?middle_l"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/chart_focus"

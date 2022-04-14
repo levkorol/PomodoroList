@@ -41,6 +41,7 @@ class Player(val context: Context) {
     }
 
     fun playSoundById(rawId: Int) {
+        stopSound()
         if (mMediaPlayer == null) {
             prefs = Prefs(context)
 
@@ -48,10 +49,6 @@ class Player(val context: Context) {
             mMediaPlayer!!.isLooping = true
             mMediaPlayer!!.start()
         } else mMediaPlayer!!.start()
-    }
-
-    fun pauseSound() {
-        if (mMediaPlayer != null && mMediaPlayer!!.isPlaying) mMediaPlayer!!.pause()
     }
 
     fun stopSound() {

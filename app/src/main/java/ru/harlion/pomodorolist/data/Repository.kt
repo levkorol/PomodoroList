@@ -113,6 +113,7 @@ class Repository private constructor(context: Context) {
     fun getTaskTime(parentId : Long) = taskDao.getTasksWithTime(parentId)
 
     fun getFocusStatisticByProject(start : Long) = projectDao.getStatisticFocusByProject(start)
+    fun getFocusStatistic(start : Long) = projectDao.getStatisticFocus(start)
 
     companion object {
         private var INSTANCE: Repository? = null

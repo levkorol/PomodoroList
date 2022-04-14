@@ -7,10 +7,13 @@ import ru.harlion.pomodorolist.models.ProjectWithTime
 
 class StatisticViewModel : ViewModel() {
 
-    private  val repo = Repository.get()
+    private val repo = Repository.get()
     val projectTime = MutableLiveData<List<ProjectWithTime>>(emptyList())
+    val allFocusTime = MutableLiveData<Long>()
 
-    fun initViewModel (start : Long) {
-      projectTime.value = repo.getFocusStatisticByProject(start)
+    fun getStatisticFocus(start: Long) {
+        projectTime.value = repo.getFocusStatisticByProject(start)
+        allFocusTime.value = repo.getFocusStatistic(start)
     }
+
 }

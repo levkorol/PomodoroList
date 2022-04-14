@@ -2,6 +2,7 @@
     <string name="app_name">FocusTime</string>
     <string name="time_hours_minutes_seconds_formatter" translatable="false">%02d:%02d:%02d</string>
     <string name="time_minutes_seconds_formatter" translatable="false">%02d:%02d</string>
+    <string name="time_minutes_formatter" translatable="false">%02d</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">Profile</string>
     <string name="main">Главная</string>
@@ -111,4 +112,9 @@
     <string name="now_pause">Сейчас пауза!</string>
     <string name="now_break">Сейчас перерыв!</string>
     <string name="weiting_break">Ожидание перерыва...</string>
+    <string name="today_r">Сегодня</string>
+    <string name="week_r">Неделя</string>
+    <string name="all_time_">Все время</string>
+    <string name="focus_in_projects">Фокус в проектах - </string>
+    <string name="alls">Всего</string>
 </resources>
