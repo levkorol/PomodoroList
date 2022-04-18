@@ -43,14 +43,12 @@ class StatisticFragment :
             binding.countInFocusTasks.text = formatTimeMinsSec(millis, resources)
             binding.countAll.text = formatTimeMinsSec(millis + timeAll, resources)
 
-            val colors: ArrayList<Int> = ArrayList() // todo color
-            colors.add(Color.parseColor("#4DD0E1"))
-            colors.add(Color.parseColor("#FFF176"))
-            colors.add(Color.parseColor("#FF8A65"))
-            colors.add(Color.parseColor("#4DD0E6"))
-
             val dataEntries = it.map { (name, timeWork) ->
                 PieEntry(timeWork.toFloat(), name)
+            }
+
+            val colors = it.map { pwt ->
+                    pwt.color
             }
 
             val dataSet = PieDataSet(dataEntries, "")

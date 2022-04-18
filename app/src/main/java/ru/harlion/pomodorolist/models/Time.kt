@@ -27,6 +27,6 @@ data class TaskWithTime(
 
 data class ProjectWithTime(
     val name : String,
-    val timeWork : Long
-//    val color: Int
+    val timeWork : Long,
+    val color: Int
 )

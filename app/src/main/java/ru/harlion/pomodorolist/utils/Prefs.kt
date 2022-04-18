@@ -8,6 +8,11 @@ class Prefs(val context: Context) {
 
     private val sharedPrefs = context.getSharedPreferences("prefs_name", Context.MODE_PRIVATE)
 
+    var isPremium : Boolean
+    get() = sharedPrefs.getBoolean("IS_PREMIUM", false)
+    set(value) = sharedPrefs.edit().putBoolean("IS_PREMIUM", value)
+        .apply()
+
     var isShowOnBoarding: Boolean
         get() = sharedPrefs.getBoolean("ON_BOARDING_SHOW", false)
         set(value) = sharedPrefs.edit().putBoolean("ON_BOARDING_SHOW", value)

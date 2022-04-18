@@ -117,4 +117,6 @@
     <string name="all_time_">Все время</string>
     <string name="focus_in_projects">Фокус в проектах - </string>
     <string name="alls">Всего</string>
+    <string name="premium_month">В месяц - 89 ₽</string>
+    <string name="premium_year">Доступ на год - 899 ₽</string>
 </resources>

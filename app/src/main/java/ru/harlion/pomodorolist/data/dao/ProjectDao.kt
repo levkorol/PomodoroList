@@ -43,7 +43,7 @@ abstract class ProjectDao {
     @Query("DELETE FROM project WHERE id = :projectId")
     abstract fun deleteProject(projectId: Long)
 
-    @Query("select name, (select sum(time.focusTimeMills) from time where time.epochDay >= :start and parentId in (select id from task where parentId = project.id)) as timeWork from project ")
+    @Query("select name, (select sum(time.focusTimeMills) from time where time.epochDay >= :start and parentId in (select id from task where parentId = project.id)) as timeWork, color from project ")
     abstract fun getStatisticFocusByProject(start : Long) : List<ProjectWithTime>
 
     @Query("select sum(time.focusTimeMills) from time where time.epochDay >= :start and parentId is null ")
