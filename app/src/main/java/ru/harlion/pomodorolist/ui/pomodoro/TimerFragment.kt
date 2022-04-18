@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentTimerBinding
+import ru.harlion.pomodorolist.ui.profile.premium.PremiumFragment
 import ru.harlion.pomodorolist.ui.profile.settings.SettingsTimerFragment
 import ru.harlion.pomodorolist.ui.profile.statistic.StatisticFragment
 import ru.harlion.pomodorolist.utils.*
@@ -48,11 +49,19 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
 
     private fun initClicks() {
         binding.settingsTimer.setOnClickListener {
-            replaceFragment(SettingsTimerFragment(), true)
+            if (prefs.isPremium) {
+                replaceFragment(SettingsTimerFragment(), true)
+            } else {
+                replaceFragment(PremiumFragment(), true)
+            }
         }
 
         binding.btnStatistic.setOnClickListener {
-            replaceFragment(StatisticFragment(), true)
+            if (prefs.isPremium) {
+                replaceFragment(StatisticFragment(), true)
+            }else {
+                replaceFragment(PremiumFragment(), true)
+            }
         }
         binding.closeTask.setOnClickListener {
             prefs.taskId = 0L
@@ -71,7 +80,7 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
     private fun initTimerAndClick() {
 
         binding.startFocusBtn.setOnClickListener {
-            timerService?.startTimer( true)
+            timerService?.startTimer(true)
         }
 
         binding.pauseBtn.setOnClickListener {
@@ -83,14 +92,14 @@ class TimerFragment : BindingFragment<FragmentTimerBinding>(FragmentTimerBinding
         }
 
         binding.skipBreakBtn.setOnClickListener {
-             timerService?.apply {
-                 stopTimer()
-                 startTimer( true)
-             }
+            timerService?.apply {
+                stopTimer()
+                startTimer(true)
+            }
         }
 
         binding.startBreakBtn.setOnClickListener {
-             timerService?.startTimer( false)
+            timerService?.startTimer(false)
         }
 
         binding.stopFocusBtn.setOnClickListener {

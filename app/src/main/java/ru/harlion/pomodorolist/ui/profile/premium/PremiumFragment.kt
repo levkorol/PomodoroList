@@ -8,9 +8,11 @@ import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.SkuDetails
 import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.AppApplication
+import ru.harlion.pomodorolist.R
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.data.billing.BillingClientWrapper
 import ru.harlion.pomodorolist.databinding.FragmentPremiumBinding
+import ru.harlion.pomodorolist.ui.dialogs.AlertDialogBase
 import ru.harlion.pomodorolist.utils.Prefs
 
 
@@ -45,6 +47,22 @@ class PremiumFragment : BindingFragment<FragmentPremiumBinding>(FragmentPremiumB
         binding.back.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+
+        binding.promoIn.setOnClickListener {
+            AlertDialogBase(requireContext()).apply {
+                setTitle(getString(R.string.promo_in))
+                setEditText("",  "")
+                setPositiveButton(getString(R.string.yes)) {
+                   if(newText.toString() == "google_test") {
+                       prefs.isPremium = true
+                   }
+                }
+                setNegativeButton(getString(R.string.no)) {}
+                show()
+            }
+
+        }
+
     }
 
     override fun onDestroyView() {
