@@ -119,4 +119,7 @@
     <string name="premium_month">В месяц - 89 ₽</string>
     <string name="premium_year">Доступ на год - 899 ₽</string>
     <string name="promo_in">Ввести промокод</string>
+    <string name="next">Далее</string>
+    <string name="promocode_completed">Промокод подошел! Все функции приложения открыты!</string>
+    <string name="promocode_not_completed">"Промокод не подошел! Попробуйте снова!"</string>
 </resources>

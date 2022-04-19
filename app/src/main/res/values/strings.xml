@@ -120,7 +120,7 @@
     <string name="premium_month">Per month - 89 ₽</string>
     <string name="premium_year">Per year - 899 ₽</string>
     <string name="promo_in">Insert the promocode</string>
-    <string name="next">Далее</string>
-    <string name="promocode_completed">Промокод подошел! Все функции приложения открыты!</string>
-    <string name="promocode_not_completed">\"Промокод не подошел! Попробуйте снова! \"</string>
+    <string name="next">Next</string>
+    <string name="promocode_completed">Promo code arrived! All application features are open!</string>
+    <string name="promocode_not_completed">"Promo code didn't work! Try it again!"</string>
 </resources>
