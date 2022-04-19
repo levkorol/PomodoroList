@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.SkuDetails
+import com.google.android.material.snackbar.Snackbar
 import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.AppApplication
 import ru.harlion.pomodorolist.R
@@ -20,19 +21,19 @@ class PremiumFragment : BindingFragment<FragmentPremiumBinding>(FragmentPremiumB
     BillingClientWrapper.OnPurchaseListener {
 
     lateinit var billingClientWrapper: BillingClientWrapper
-    private lateinit var prefs : Prefs
+    private lateinit var prefs: Prefs
 
     private val purchaseButtonsMap: Map<String, Button> by lazy(LazyThreadSafetyMode.NONE) {
         mapOf(
-            "android.test.premium_sub_month" to binding.premiumMonth,
-            "android.test.premium_sub_year" to binding.premiumYear
+            "premium_sub_month" to binding.premiumMonth,
+            //  "premium_sub_year" to binding.premiumYear
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-       billingClientWrapper = (requireActivity().application as AppApplication).clientWrapper
+        billingClientWrapper = (requireActivity().application as AppApplication).clientWrapper
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,11 +52,15 @@ class PremiumFragment : BindingFragment<FragmentPremiumBinding>(FragmentPremiumB
         binding.promoIn.setOnClickListener {
             AlertDialogBase(requireContext()).apply {
                 setTitle(getString(R.string.promo_in))
-                setEditText("",  "")
+                setEditText("", "")
                 setPositiveButton(getString(R.string.yes)) {
-                   if(newText.toString() == "google_test") {
-                       prefs.isPremium = true
-                   }
+                    if (newText.toString() == "google_test"
+                        || newText.toString() == "lev_dev") {
+                        prefs.isPremium = true
+                        Snackbar.make(binding.root, getString(R.string.promocode_completed), Snackbar.LENGTH_SHORT).show()
+                    } else {
+                        Snackbar.make(binding.root, getString(R.string.promocode_not_completed), Snackbar.LENGTH_SHORT).show()
+                    }
                 }
                 setNegativeButton(getString(R.string.no)) {}
                 show()
@@ -71,7 +76,7 @@ class PremiumFragment : BindingFragment<FragmentPremiumBinding>(FragmentPremiumB
     }
 
     override fun onPurchaseSuccess(purchase: Purchase?) {
-        if(purchase != null) {
+        if (purchase != null) {
             prefs.isPremium = true
         }
     }

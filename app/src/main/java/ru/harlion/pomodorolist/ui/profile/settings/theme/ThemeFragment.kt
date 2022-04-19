@@ -6,12 +6,14 @@ import android.view.View
 import ru.harlion.pomodorolist.AppActivity
 import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentThemeBinding
+import ru.harlion.pomodorolist.ui.profile.premium.PremiumFragment
 import ru.harlion.pomodorolist.utils.Prefs
+import ru.harlion.pomodorolist.utils.replaceFragment
 
 
 class ThemeFragment : BindingFragment<FragmentThemeBinding>(FragmentThemeBinding::inflate) {
 
-    private lateinit var prefs : Prefs
+    private lateinit var prefs: Prefs
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,23 +36,39 @@ class ThemeFragment : BindingFragment<FragmentThemeBinding>(FragmentThemeBinding
         }
 
         binding.green.setOnClickListener {
-            prefs.theme = "green"
-            (activity as AppActivity).recreate()
+            if (prefs.isPremium) {
+                prefs.theme = "green"
+                (activity as AppActivity).recreate()
+            } else {
+                replaceFragment(PremiumFragment(), true)
+            }
         }
 
         binding.violet.setOnClickListener {
-            prefs.theme = "violet"
-            (activity as AppActivity).recreate()
+            if (prefs.isPremium) {
+                prefs.theme = "violet"
+                (activity as AppActivity).recreate()
+            } else {
+                replaceFragment(PremiumFragment(), true)
+            }
         }
 
         binding.pink.setOnClickListener {
-            prefs.theme = "pink"
-            (activity as AppActivity).recreate()
+            if (prefs.isPremium) {
+                prefs.theme = "pink"
+                (activity as AppActivity).recreate()
+            } else {
+                replaceFragment(PremiumFragment(), true)
+            }
         }
 
         binding.sea.setOnClickListener {
-            prefs.theme = "sea"
-            (activity as AppActivity).recreate()
+            if (prefs.isPremium) {
+                prefs.theme = "sea"
+                (activity as AppActivity).recreate()
+            } else {
+                replaceFragment(PremiumFragment(), true)
+            }
         }
 
         binding.back.setOnClickListener {

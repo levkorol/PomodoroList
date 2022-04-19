@@ -58,18 +58,18 @@
             android:background="@drawable/bg_white"
             android:text="@string/change_theme_menu" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_right_24"
-            android:gravity="center|start"
-            android:padding="16dp"
-            android:drawablePadding="6dp"
-            android:layout_marginTop="16dp"
-            android:drawableStart="@drawable/ic_copy"
-            android:text="@string/backup_copy"
-            android:layout_marginHorizontal="16dp"
-            android:background="@drawable/bg_white" />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:drawableEnd="@drawable/ic_right_24"-->
+<!--            android:gravity="center|start"-->
+<!--            android:padding="16dp"-->
+<!--            android:drawablePadding="6dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:drawableStart="@drawable/ic_copy"-->
+<!--            android:text="@string/backup_copy"-->
+<!--            android:layout_marginHorizontal="16dp"-->
+<!--            android:background="@drawable/bg_white" />-->
 
         <TextView
             android:id="@+id/mail_dev"

@@ -53,16 +53,16 @@
           android:text="@string/premium_month"
           android:layout_marginHorizontal="16dp"/>
 
-      <androidx.appcompat.widget.AppCompatButton
-          android:id="@+id/premium_year"
-          android:layout_width="match_parent"
-          android:layout_height="40dp"
-          android:layout_marginTop="8dp"
-          android:background="@drawable/btn_bg"
-          android:textColor="@color/white"
-          android:textAllCaps="false"
-          android:text="@string/premium_year"
-          android:layout_marginHorizontal="16dp"/>
+<!--      <androidx.appcompat.widget.AppCompatButton-->
+<!--          android:id="@+id/premium_year"-->
+<!--          android:layout_width="match_parent"-->
+<!--          android:layout_height="40dp"-->
+<!--          android:layout_marginTop="8dp"-->
+<!--          android:background="@drawable/btn_bg"-->
+<!--          android:textColor="@color/white"-->
+<!--          android:textAllCaps="false"-->
+<!--          android:text="@string/premium_year"-->
+<!--          android:layout_marginHorizontal="16dp"/>-->
 
       <TextView
           android:layout_width="match_parent"
@@ -78,12 +78,12 @@
           android:gravity="center|start"
           android:drawableStart="@drawable/pro_pick_clear_phone"/>
 
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="@string/pro_data"
-          android:gravity="center|start"
-          android:drawableStart="@drawable/pro_pick_data"/>
+<!--      <TextView-->
+<!--          android:layout_width="match_parent"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:text="@string/pro_data"-->
+<!--          android:gravity="center|start"-->
+<!--          android:drawableStart="@drawable/pro_pick_data"/>-->
 
       <TextView
           android:layout_width="match_parent"

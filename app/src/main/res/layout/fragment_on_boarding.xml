@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.profile.on_boarding.OnBoardingFragment">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/on_boarding_view_pager"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="40dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1" />
 
 
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
         android:id="@+id/dots_indicator"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:dotsColor="?middle_l"
+        android:layout_height="48dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        app:dotsColor="?middle_l"
         app:dotsCornerRadius="8dp"
         app:dotsSize="10dp"
-        android:layout_marginBottom="16dp"
         app:dotsSpacing="4dp"
         app:dotsWidthFactor="2.5"
-        app:selectedDotColor="@color/middle"
         app:progressMode="true"
-        />
+        app:selectedDotColor="@color/middle" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/next_button"
@@ -44,7 +41,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="46dp"
         android:background="@drawable/btn_bg"
-        android:text="Далее"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
