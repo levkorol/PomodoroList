@@ -25,6 +25,7 @@
             android:layout_marginHorizontal="36dp"
             android:gravity="center"
             android:layout_marginTop="16dp"
+            android:textColor="@color/gray_normal_d"
             android:text="@string/archive_empty" />
     </LinearLayout>
 

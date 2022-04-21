@@ -38,6 +38,7 @@
             android:layout_marginTop="4dp"
             android:drawableStart="@drawable/ic_date"
             android:drawablePadding="6dp"
+            android:textColor="@color/black"
             android:gravity="start|center"
             tools:text="Сделать до: 25 марта,  19:00" />
 
@@ -48,6 +49,7 @@
             android:layout_marginTop="4dp"
             android:drawableStart="@drawable/ic_price"
             android:drawablePadding="6dp"
+            android:textColor="@color/black"
             android:gravity="start|center"
             tools:text="Награда отпуск уиии" />
 
@@ -67,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/arrow_rotation"
                 android:gravity="end"
+                android:textColor="@color/gray_normal_d"
                 android:paddingTop="4dp"
                 android:layout_weight="1"
                 tools:text="3/4" />

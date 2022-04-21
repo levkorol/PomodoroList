@@ -89,6 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textColor="@color/gray_normal_d"
             android:text="@string/in_focus"
             android:textSize="14sp" />
 
@@ -113,6 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/gray_normal_d"
         android:text="@string/focus_in_projects"
         android:textSize="14sp" />
     <TextView
@@ -136,6 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textColor="@color/gray_normal_d"
             android:text="@string/alls"
             android:textSize="14sp" />
         <TextView

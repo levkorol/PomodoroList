@@ -3,8 +3,9 @@ package ru.harlion.pomodorolist.data.billing
 import android.app.Activity
 import android.content.Context
 import com.android.billingclient.api.*
+import ru.harlion.pomodorolist.utils.Prefs
 
-class BillingClientWrapper(context: Context) : PurchasesUpdatedListener {
+class BillingClientWrapper(val context: Context) : PurchasesUpdatedListener {
 
     private val billingClient = BillingClient
         .newBuilder(context)
@@ -82,6 +83,7 @@ class BillingClientWrapper(context: Context) : PurchasesUpdatedListener {
     ) {
         when (billingResult.responseCode) {
             BillingClient.BillingResponseCode.OK -> {
+
                 if (purchaseList == null) {
                     //to be discussed in the next article
                     onPurchaseListener?.onPurchaseSuccess(null)
@@ -107,22 +109,24 @@ class BillingClientWrapper(context: Context) : PurchasesUpdatedListener {
             onPurchaseListener?.onPurchaseSuccess(purchase)
 
             if (!purchase.isAcknowledged) {
-                acknowledgePurchase(purchase) { billingResult ->
-                    if (billingResult.responseCode != BillingClient.BillingResponseCode.OK) {
-                        //implement retry logic or try to acknowledge again in onResume()
+                val prefs = Prefs(context)
+                prefs.purchaseToken = purchase.purchaseToken
+                acknowledgePurchase(purchase.purchaseToken) { billingResult ->
+                    if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                       prefs.purchaseToken = null
                     }
                 }
             }
         }
     }
 
-    private fun acknowledgePurchase( //todo
-        purchase: Purchase,
+    fun acknowledgePurchase(
+        purchaseToken: String,
         callback: AcknowledgePurchaseResponseListener
     ) {
         onConnected {
             billingClient.acknowledgePurchase(
-                AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchase.purchaseToken)
+                AcknowledgePurchaseParams.newBuilder().setPurchaseToken(purchaseToken)
                     .build(),
                 callback::onAcknowledgePurchaseResponse
             )

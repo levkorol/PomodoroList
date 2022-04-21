@@ -43,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="36dp"
             android:gravity="center"
+            android:textColor="@color/gray_normal_d"
             android:text="@string/task_empty" />
     </LinearLayout>
 

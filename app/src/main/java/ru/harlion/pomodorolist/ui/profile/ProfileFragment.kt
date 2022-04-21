@@ -38,7 +38,7 @@ class ProfileFragment : BindingFragment<FragmentProfileBinding>(FragmentProfileB
         binding.googlePlay.setOnClickListener {
             val browserIntent = Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://play.google.com/store/apps/details?id=ru.harlion.sushifox") //todo
+                Uri.parse("https://play.google.com/store/apps/details?id=ru.harlion.pomodorolist")
             )
             startActivity(browserIntent)
         }

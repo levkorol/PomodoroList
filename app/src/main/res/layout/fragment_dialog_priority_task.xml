@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/high"
+            android:textColor="@color/gray_normal_d"
             android:gravity="center"
             android:drawableTop="@drawable/ic_label_red"/>
 
@@ -33,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/gray_normal_d"
             android:text="@string/middle"
             android:drawableTop="@drawable/ic_label_green"/>
 
@@ -43,6 +45,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/normal"
+            android:textColor="@color/gray_normal_d"
             android:drawableTop="@drawable/ic_label"/>
     </LinearLayout>
 

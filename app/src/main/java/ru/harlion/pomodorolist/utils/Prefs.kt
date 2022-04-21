@@ -3,15 +3,33 @@ package ru.harlion.pomodorolist.utils
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
+import com.android.billingclient.api.BillingClient
+import ru.harlion.pomodorolist.AppApplication
 
 class Prefs(val context: Context) {
 
     private val sharedPrefs = context.getSharedPreferences("prefs_name", Context.MODE_PRIVATE)
 
-    var isPremium : Boolean
-    get() = sharedPrefs.getBoolean("IS_PREMIUM", false)
-    set(value) = sharedPrefs.edit().putBoolean("IS_PREMIUM", value)
-        .apply()
+    var isPremium: Boolean
+        get() = if (sharedPrefs.getBoolean("IS_PREMIUM", false) == true) {
+            if (purchaseToken != null) {
+                (context.applicationContext as AppApplication).clientWrapper.acknowledgePurchase(
+                    purchaseToken!!
+                ) { billingResult ->
+                    if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                        purchaseToken = null
+                    }
+                }
+            }
+            true
+        } else false
+        set(value) = sharedPrefs.edit().putBoolean("IS_PREMIUM", value)
+            .apply()
+
+    var purchaseToken: String?
+        get() = sharedPrefs.getString("PURCHASE_TOKEN", null)
+        set(value) = sharedPrefs.edit().putString("PURCHASE_TOKEN", value)
+            .apply()
 
     var isShowOnBoarding: Boolean
         get() = sharedPrefs.getBoolean("ON_BOARDING_SHOW", false)
@@ -59,7 +77,7 @@ class Prefs(val context: Context) {
         set(value) = sharedPrefs.edit().putLong("TASK_ID", value)
             .apply()
 
-    fun observeTaskId() : LiveData<Long> =
+    fun observeTaskId(): LiveData<Long> =
         object : LiveData<Long>(), SharedPreferences.OnSharedPreferenceChangeListener {
             init {
                 value = taskId
@@ -70,7 +88,7 @@ class Prefs(val context: Context) {
                 sharedPreferences: SharedPreferences?,
                 key: String?
             ) {
-                if(key == "TASK_ID") {
+                if (key == "TASK_ID") {
                     postValue(taskId)
                 }
             }

@@ -25,6 +25,7 @@
 
     <color name="gray_normal_l">#42000000</color>
     <color name="gray_normal_d">#89000000</color>
+    <color name="gray_dark_text">#C8000000</color>
 
     <color name="ripple_tab">#D3D1D1</color>
 

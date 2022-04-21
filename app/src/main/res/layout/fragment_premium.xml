@@ -69,12 +69,14 @@
           android:layout_height="wrap_content"
           android:text="@string/pro_projects"
           android:gravity="center|start"
+          android:textColor="@color/gray_normal_d"
           android:drawableStart="@drawable/pro_pick_projects"/>
 
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:text="@string/without_date"
+          android:textColor="@color/gray_normal_d"
           android:gravity="center|start"
           android:drawableStart="@drawable/pro_pick_clear_phone"/>
 
@@ -90,6 +92,7 @@
           android:layout_height="wrap_content"
           android:text="@string/pro_settings"
           android:gravity="center|start"
+          android:textColor="@color/gray_normal_d"
           android:drawableStart="@drawable/pro_pick_settings"/>
 
       <TextView
@@ -97,6 +100,7 @@
           android:layout_height="wrap_content"
           android:text="@string/pro_theme"
           android:gravity="center|start"
+          android:textColor="@color/gray_normal_d"
           android:drawableStart="@drawable/pro_pick_theme"/>
 
       <TextView
@@ -104,6 +108,7 @@
           android:layout_height="wrap_content"
           android:text="@string/pro_sygnal"
           android:gravity="center|start"
+          android:textColor="@color/gray_normal_d"
           android:drawableStart="@drawable/pro_pick_notification"/>
 
       <TextView
@@ -111,6 +116,7 @@
           android:layout_height="wrap_content"
           android:text="@string/pro_statistic"
           android:gravity="center|start"
+          android:textColor="@color/gray_normal_d"
           android:drawableStart="@drawable/pro_pick_statistic"/>
 
       <TextView
@@ -119,6 +125,7 @@
           android:text="@string/pro_motivation"
           android:gravity="center|start"
           android:layout_marginBottom="26dp"
+          android:textColor="@color/gray_normal_d"
           android:drawableStart="@drawable/pro_pick_motivation"/>
 
   </LinearLayout>

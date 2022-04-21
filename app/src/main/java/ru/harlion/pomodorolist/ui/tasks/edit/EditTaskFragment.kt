@@ -120,7 +120,7 @@ class EditTaskFragment :
     private fun setLabelPriorityTask(priority : String) {
         when (priority) {
             "middle" -> TextViewCompat.setCompoundDrawableTintList(
-                binding.nameTask,
+                binding.taskPriority,
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         binding.nameTask.context,
@@ -129,7 +129,7 @@ class EditTaskFragment :
                 )
             )
             "high" -> TextViewCompat.setCompoundDrawableTintList(
-                binding.nameTask,
+                binding.taskPriority,
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         binding.nameTask.context,
@@ -138,7 +138,7 @@ class EditTaskFragment :
                 )
             )
             else -> TextViewCompat.setCompoundDrawableTintList(
-                binding.nameTask,
+                binding.taskPriority,
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         binding.nameTask.context,
