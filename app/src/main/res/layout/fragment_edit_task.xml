@@ -54,7 +54,7 @@
         android:layout_marginHorizontal="16dp"
         android:textSize="14sp"
         android:hint="@string/desk_task"
-        android:lines="3" />
+        android:lines="7" />
 
 <!--    <TextView-->
 <!--        android:id="@+id/task_date"-->

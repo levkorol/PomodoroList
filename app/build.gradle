@@ -21,8 +21,8 @@ android {
         applicationId "ru.harlion.pomodorolist"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 6
-        versionName "1.1.6"
+        versionCode 7
+        versionName "1.1.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
