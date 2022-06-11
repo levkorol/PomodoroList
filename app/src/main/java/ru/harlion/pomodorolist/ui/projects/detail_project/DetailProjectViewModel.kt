@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import ru.harlion.pomodorolist.data.Repository
 import ru.harlion.pomodorolist.models.Project
-import ru.harlion.pomodorolist.models.ProjectWithTasks
 import ru.harlion.pomodorolist.models.Task
 import ru.harlion.pomodorolist.models.TaskWithTime
 

@@ -16,6 +16,7 @@ import ru.harlion.pomodorolist.base.BindingFragment
 import ru.harlion.pomodorolist.databinding.FragmentStatisticBinding
 import ru.harlion.pomodorolist.utils.formatTimeMins
 import ru.harlion.pomodorolist.utils.formatTimeMinsSec
+import ru.harlion.pomodorolist.utils.timeToString
 import java.time.LocalDate
 
 
@@ -33,15 +34,15 @@ class StatisticFragment :
         initClicks()
 
         viewModel.allFocusTime.observe(viewLifecycleOwner, {
-            binding.countInFocus.text = formatTimeMinsSec(it, resources)
+            binding.countInFocus.text = timeToString(it)
             timeAll = it
         })
 
         viewModel.projectTime.observe(viewLifecycleOwner, {
             binding.chartFocus.setUsePercentValues(true)
             val millis = it.sumOf { pwt -> pwt.timeWork }
-            binding.countInFocusTasks.text = formatTimeMinsSec(millis, resources)
-            binding.countAll.text = formatTimeMinsSec(millis + timeAll, resources)
+            binding.countInFocusTasks.text = timeToString(millis)
+            binding.countAll.text = timeToString(millis + timeAll)
 
             val dataEntries = it.map { (name, timeWork) ->
                 PieEntry(timeWork.toFloat(), name)
@@ -56,7 +57,7 @@ class StatisticFragment :
 
             data.setValueFormatter(object : ValueFormatter() {
                 override fun getPieLabel(value: Float, pieEntry: PieEntry): String {
-                    return formatTimeMinsSec(pieEntry.value.toLong(), resources)
+                    return timeToString(pieEntry.value.toLong())
                 }
             })
             dataSet.sliceSpace = 3f

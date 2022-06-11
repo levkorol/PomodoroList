@@ -90,7 +90,7 @@ dependencies {
 
     implementation 'com.applandeo:material-calendar-view:1.9.0-rc03'
 
-    implementation 'com.android.billingclient:billing:4.1.0'
-    implementation 'com.android.billingclient:billing-ktx:4.1.0'
+    implementation 'com.android.billingclient:billing:5.0.0'
+    implementation 'com.android.billingclient:billing-ktx:5.0.0'
 
 }

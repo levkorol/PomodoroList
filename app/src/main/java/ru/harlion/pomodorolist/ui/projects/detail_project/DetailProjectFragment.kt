@@ -37,7 +37,6 @@ class DetailProjectFragment :
     private var isArchive = false
     private var date = 0L
     private var project: Project? = null
-    private var taskFilter = 0
     private lateinit var prefs: Prefs
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +51,7 @@ class DetailProjectFragment :
 
         setFragmentResultListener("calendarDate") { _, bundle ->
             date = bundle.getLong("epochMillis")
-          //  binding.dateTask.text = dateToString(date)
+            //  binding.dateTask.text = dateToString(date)
         }
     }
 
@@ -112,25 +111,11 @@ class DetailProjectFragment :
 
             if (tasks != null) {
 
-                adapterTask.items = tasks
-
-                binding.countInFocus.text = timeToString(tasks.sumOf { it.focusTimeMillis })
-
-                when (taskFilter) { //todo
-                    1 -> tasksRecyclerView(tasks.sortedBy { (task, _) ->
-                       task.isDone
-                    })
-                    2 -> tasksRecyclerView(tasks.sortedBy { (task, _) ->
-                        task.isDone
-                    })
-                    3 -> tasksRecyclerView(tasks.sortedBy { (task, _) ->
-                        task.priority == "high"
-                    })
-                    else -> tasksRecyclerView(tasks.sortedBy { (task, _) ->
-                        task.isDone
-                    })
+                adapterTask.items = tasks.sortedBy {
+                    it.task.isDone
                 }
 
+                binding.countInFocus.text = timeToString(tasks.sumOf { it.focusTimeMillis })
 
                 val done = tasks.filter { (task, _) -> task.isDone }.size
                 val max = tasks.size
@@ -234,11 +219,7 @@ class DetailProjectFragment :
         }
     }
 
-    private fun tasksRecyclerView(tasks: List<TaskWithTime>) {
-
-    }
-
-    private fun setLabelPriorityTask(priority : String) {
+    private fun setLabelPriorityTask(priority: String) {
         when (priority) {
             "normal" -> binding.priority.setImageDrawable(
                 ContextCompat.getDrawable(
