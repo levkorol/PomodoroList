@@ -41,10 +41,9 @@ class TodayFragment : BindingFragment<FragmentTodayBinding>(FragmentTodayBinding
 
         viewModel.getTasksByDate(LocalDate.now())
 
-        viewModel.tasks.observe(viewLifecycleOwner, {
+        viewModel.tasks.observe(viewLifecycleOwner) {
             taskRecyclerView(it)
-        })
-
+        }
     }
 
     private fun taskRecyclerView(tasks: List<Task>) {

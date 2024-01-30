@@ -52,15 +52,15 @@ class EditTaskFragment :
 
         viewModel.getTaskById(taskId)
 
-        viewModel.task.observe(viewLifecycleOwner, {
+        viewModel.task.observe(viewLifecycleOwner) {
             if (it != null) {
                 task = it
                 binding.nameTask.setText(it.name)
-              //  binding.taskDate.text = dateToString(it.date)
+                //  binding.taskDate.text = dateToString(it.date)
 //                binding.taskPriority
                 setLabelPriorityTask(it.priority)
             }
-        })
+        }
     }
 
     private fun initClicks() {

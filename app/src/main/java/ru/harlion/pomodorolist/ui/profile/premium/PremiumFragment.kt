@@ -39,15 +39,16 @@ class PremiumFragment : BindingFragment<FragmentPremiumBinding>(FragmentPremiumB
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.back.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
         prefs = Prefs(requireContext())
 
         billingClientWrapper.onPurchaseListener = this
 
         displayProducts()
 
-        binding.back.setOnClickListener {
-            parentFragmentManager.popBackStack()
-        }
 
         binding.promoIn.setOnClickListener {
             AlertDialogBase(requireContext()).apply {
@@ -90,7 +91,7 @@ class PremiumFragment : BindingFragment<FragmentPremiumBinding>(FragmentPremiumB
             override fun onSuccess(products: List<SkuDetails>) {
                 products.forEach { product ->
                     purchaseButtonsMap[product.sku]?.apply {
-                        text = "${product.description} for ${product.price}"
+                        text = "${product.description} - ${product.price}"
                         setOnClickListener {
                             billingClientWrapper.purchase(
                                 requireActivity(),

@@ -62,9 +62,9 @@ class DayTasksFragment :
             ).atZone(ZoneId.systemDefault()).toLocalDate()
         )
 
-        viewModel.tasks.observe(viewLifecycleOwner, {
+        viewModel.tasks.observe(viewLifecycleOwner) {
             taskRecyclerView(it)
-        })
+        }
     }
 
     override fun onStart() {

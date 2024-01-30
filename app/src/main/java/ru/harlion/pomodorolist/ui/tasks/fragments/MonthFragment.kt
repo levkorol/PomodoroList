@@ -25,7 +25,7 @@ class MonthFragment : BindingFragment<FragmentMonthBinding>(FragmentMonthBinding
         super.onViewCreated(view, savedInstanceState)
 
 
-//
+
 //        var lDate = LocalDate.now()
 //        binding.calendarView.apply {
 //            val millis = lDate.atStartOfDay(ZoneId.systemDefault()).toEpochSecond() * 1000
@@ -63,9 +63,9 @@ class MonthFragment : BindingFragment<FragmentMonthBinding>(FragmentMonthBinding
     }
 
     private fun observeTasks() {
-        viewModel.tasks.observe(this, { tasks ->
+        viewModel.tasks.observe(this) { tasks ->
             val events = arrayListOf<EventDay>()
-            for (i in 0..tasks.size - 1) {
+            for (i in tasks.indices) {
                 val s = tasks!![i]
                 val calendar = Calendar.getInstance()
                 calendar.timeInMillis = s.date
@@ -77,6 +77,6 @@ class MonthFragment : BindingFragment<FragmentMonthBinding>(FragmentMonthBinding
             }
             val calendarViewM = binding.calendarView
             calendarViewM.setEvents(events)
-        })
+        }
     }
 }
